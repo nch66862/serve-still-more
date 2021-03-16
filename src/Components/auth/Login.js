@@ -66,7 +66,7 @@ export const Login = () => {
                             id="password"
                             className="form-control"
                             placeholder="password"
-                            required autofocus
+                            required autoFocus
                             value={loginUser.password}
                             onChange={handleInputChange} />
                     </fieldset>
@@ -78,7 +78,7 @@ export const Login = () => {
                 </form>
             </section>
             <section className="link--register">
-                <Link to="/register1">Register for an account</Link>
+                <Link to="/register">Register for an account</Link>
             </section>
         </main>
     )

@@ -4,7 +4,7 @@ import { states } from "../Settings"
 import { authApi, userStorageKey } from "./authSettings"
 import "./Register.css"
 
-export const Register1 = () => {
+export const Register = () => {
     const history = useHistory()
     let stateCounter = 0
     const [currentPage, setCurrentPage] = useState("first")
@@ -14,7 +14,7 @@ export const Register1 = () => {
         email: "",
         password: "",
         groupId: 0,
-        role: 0,
+        roleId: 0,
         phone: "",
         address: "",
         city: "",
@@ -29,7 +29,11 @@ export const Register1 = () => {
 
     const handleInputChange = (event) => {
         const newUser = { ...registerUser }
-        newUser[event.target.id] = event.target.value
+        if (event.target.id.includes("Id") || event.target.id.includes("phone")){
+            newUser[event.target.id] = parseInt(event.target.value)
+        } else {
+            newUser[event.target.id] = event.target.value
+        }
         setRegisterUser(newUser)
     }
 
@@ -41,31 +45,33 @@ export const Register1 = () => {
 
     const nextPage = (event) => {
         event.preventDefault()
-        setCurrentPage("second")
+        existingUserCheck()
+            .then((userExists) => {
+                if (!userExists) {
+                    setCurrentPage("second")
+                }
+                else {
+                    setConflictDialog(true)
+                }
+            })
+
     }
 
     const handleRegister = (event) => {
         event.preventDefault()
-        existingUserCheck()
-            .then((userExists) => {
-                if (!userExists) {
-                    fetch(`${authApi.localApiBaseUrl}/${authApi.endpoint}`, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify(registerUser)
-                    })
-                        .then(res => res.json())
-                        .then(createdUser => {
-                            if (createdUser.hasOwnProperty("id")) {
-                                sessionStorage.setItem(userStorageKey, createdUser.id)
-                                history.push("/")
-                            }
-                        })
-                }
-                else {
-                    setConflictDialog(true)
+        fetch(`${authApi.localApiBaseUrl}/${authApi.endpoint}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(registerUser)
+        })
+            .then(res => res.json())
+            .then(createdUser => {
+                if (createdUser.hasOwnProperty("id")) {
+                    sessionStorage.setItem(userStorageKey, createdUser.id)
+                    console.log("you have saved a new user")
+                    history.push("/")
                 }
             })
     }
@@ -106,7 +112,7 @@ export const Register1 = () => {
                 <h1 className="h3 mb-3 font-weight-normal">Sign Up</h1>
                 <fieldset>
                     <label htmlFor="firstName"> Group Number </label>
-                    <select onChange={handleInputChange} value={registerUser.locationId} name="locationId" id="locationId" className="form-control" >
+                    <select onChange={handleInputChange} value={registerUser.groupId} name="groupId" id="groupId" className="form-control" >
                         <option value="0">Select a Group</option>
                         {states.map(state => {
                             stateCounter++
@@ -116,7 +122,7 @@ export const Register1 = () => {
                 </fieldset>
                 <fieldset>
                     <label htmlFor="lastName"> Role </label>
-                    <select onChange={handleInputChange} value={registerUser.locationId} name="locationId" id="locationId" className="form-control" >
+                    <select onChange={handleInputChange} value={registerUser.roleId} name="roleId" id="roleId" className="form-control" >
                         <option value="0">Select a Role</option>
                         {states.map(state => {
                             stateCounter++
@@ -126,23 +132,23 @@ export const Register1 = () => {
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputEmail"> Phone Number </label>
-                    <input onChange={handleInputChange} value={registerUser.phone} type="email" name="email" className="form-control" placeholder="9805554466" required />
+                    <input onChange={handleInputChange} value={registerUser.phone} id="phone" type="phone" name="phone" className="form-control" placeholder="9805554466" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputEmail"> Address </label>
-                    <input onChange={handleInputChange} value={registerUser.address} type="email" name="email" className="form-control" placeholder="address" required />
+                    <input onChange={handleInputChange} value={registerUser.address} id="address" type="address" name="address" className="form-control" placeholder="address" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputEmail"> City </label>
-                    <input onChange={handleInputChange} value={registerUser.city} type="email" name="email" className="form-control" placeholder="city" required />
+                    <input onChange={handleInputChange} value={registerUser.city} id="city" type="text" name="city" className="form-control" placeholder="city" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputEmail"> State </label>
-                    <select onChange={handleInputChange} value={registerUser.state} name="locationId" id="locationId" className="form-control" >
+                    <select onChange={handleInputChange} value={registerUser.state} name="state" id="state" className="form-control" >
                         <option value="0">Select a State</option>
                         {states.map(state => {
                             stateCounter++
-                            return <option key={stateCounter} value={stateCounter}>{state}</option>
+                            return <option key={stateCounter} value={state}>{state}</option>
                         })}
                     </select>
                 </fieldset>
