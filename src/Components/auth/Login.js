@@ -32,6 +32,8 @@ export const Login = () => {
         existingUserCheck()
             .then(exists => {
                 if (exists) {
+                    if (exists.password === loginUser.password)
+                    exists.password
                     sessionStorage.setItem(userStorageKey, exists.id)
                     history.push("/")
                 } else {
