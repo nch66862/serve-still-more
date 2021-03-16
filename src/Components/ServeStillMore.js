@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import { Register } from "./auth/Register";
+import { Login } from "./auth/Login";
+import { Register1 } from "./auth/Register";
 import "./ServeStillMore.css";
 
 export const ServeStillMore = () => (
@@ -18,10 +19,13 @@ export const ServeStillMore = () => (
         />
 
         <Route path="/login">
-            <Register />
+            <Login />
         </Route>
-        <Route path="/register">
-            <Register />
+        <Route path="/register1">
+            <Register1 />
+        </Route>
+        <Route path="/register2">
+            <Register1 />
         </Route>
     </>
 )
