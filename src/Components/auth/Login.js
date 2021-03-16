@@ -10,6 +10,7 @@ export const Login = () => {
         password: ""
     })
     const [existDialog, setExistDialog] = useState(false)
+    const [passExistDialog, setPassExistDialog] = useState(false)
 
     const history = useHistory()
 
@@ -26,16 +27,19 @@ export const Login = () => {
             .then(user => user.length ? user[0] : false)
     }
 
-    const handleLogin = (e) => {
-        e.preventDefault()
+    const handleLogin = (event) => {
+        event.preventDefault()
 
         existingUserCheck()
             .then(exists => {
                 if (exists) {
-                    if (exists.password === loginUser.password)
-                    exists.password
-                    sessionStorage.setItem(userStorageKey, exists.id)
-                    history.push("/")
+                    if (exists.password === loginUser.password) {
+                        sessionStorage.setItem(userStorageKey, exists.id)
+                        history.push("/")
+                    }
+                    else {
+                        setPassExistDialog(true)
+                    }
                 } else {
                     setExistDialog(true)
                 }
@@ -45,8 +49,12 @@ export const Login = () => {
     return (
         <main className="container--login">
             <dialog className="dialog dialog--auth" open={existDialog}>
-                <div>User does not exist</div>
+                <div>an account with this email address does not exist</div>
                 <button className="button--close" onClick={e => setExistDialog(false)}>Close</button>
+            </dialog>
+            <dialog className="dialog dialog--auth" open={passExistDialog}>
+                <div>incorrect password</div>
+                <button className="button--close" onClick={e => setPassExistDialog(false)}>Close</button>
             </dialog>
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
