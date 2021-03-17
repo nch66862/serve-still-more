@@ -3,6 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import { ApplicationViews } from "./ApplicationViews";
 import { Login } from "./auth/Login";
 import { Register } from "./auth/Register";
+import { GroupProvider } from "./groups/GroupProvider";
 import { NavBar } from "./nav/NavBar";
 import { RoleProvider } from "./roles/RoleProvider";
 import "./ServeStillMore.css";
@@ -28,9 +29,11 @@ export const ServeStillMore = () => (
             <Login />
         </Route>
         <Route path="/register">
-            <RoleProvider>
-                <Register />
-            </RoleProvider>
+            <GroupProvider>
+                <RoleProvider>
+                    <Register />
+                </RoleProvider>
+            </GroupProvider>
         </Route>
     </>
 )

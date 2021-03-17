@@ -11,7 +11,6 @@ export const MemberProvider = (props) => {
         return fetch("http://localhost:8088/members")
             .then(res => res.json())
             .then(setMembers)
-            .then(() => console.log("members", members))
     }
 
     const addMember = memberObj => {

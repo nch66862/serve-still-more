@@ -11,7 +11,6 @@ export const GroupProvider = (props) => {
         return fetch("http://localhost:8088/groups")
             .then(res => res.json())
             .then(setGroups)
-            .then(() => console.log("groups", groups))
     }
 
     const addGroup = groupObj => {
