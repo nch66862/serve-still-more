@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
+import { ApplicationViews } from "./ApplicationViews";
 import { Login } from "./auth/Login";
 import { Register } from "./auth/Register";
 import { NavBar } from "./nav/NavBar";
@@ -13,7 +14,7 @@ export const ServeStillMore = () => (
                     return (
                         <>
                             <NavBar />
-                            <h1>I am Logged In</h1>
+                            <ApplicationViews />
                         </>
                     );
                 } else {
