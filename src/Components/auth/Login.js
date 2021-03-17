@@ -68,6 +68,7 @@ export const Login = () => {
                             placeholder="email address"
                             required autoFocus
                             value={loginUser.email}
+                            autoComplete="username"
                             onChange={handleInputChange} />
                     </fieldset>
                     <fieldset>
@@ -78,6 +79,7 @@ export const Login = () => {
                             placeholder="password"
                             required
                             value={loginUser.password}
+                            autoComplete="current-password"
                             onChange={handleInputChange} />
                     </fieldset>
                     <fieldset>

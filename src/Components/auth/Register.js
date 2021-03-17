@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
+import { GroupContext } from "../groups/GroupProvider"
 import { RoleContext } from "../roles/RoleProvider"
 import { states } from "../Settings"
 import { authApi, userStorageKey } from "./authSettings"
@@ -8,6 +9,7 @@ import "./Register.css"
 export const Register = () => {
     const history = useHistory()
     const { roles, getRoles } = useContext(RoleContext)
+    const { groups, getGroups } = useContext(GroupContext)
     let stateCounter = 0
     const [currentPage, setCurrentPage] = useState("first")
     const [registerUser, setRegisterUser] = useState({
@@ -56,7 +58,6 @@ export const Register = () => {
                     setConflictDialog(true)
                 }
             })
-
     }
 
     const handleRegister = (event) => {
@@ -79,6 +80,7 @@ export const Register = () => {
 
     useEffect(() => {
         getRoles()
+        .then(getGroups)
     }, [])
 
     return (
@@ -92,19 +94,19 @@ export const Register = () => {
                 <h1 className="h3 mb-3 font-weight-normal">Sign Up</h1>
                 <fieldset>
                     <label htmlFor="firstName"> First Name </label>
-                    <input onChange={handleInputChange} type="text" name="firstName" className="form-control" placeholder="first name" value={registerUser.firstName} id="firstName" required />
+                    <input onChange={handleInputChange} type="text" name="firstName" className="form-control" placeholder="first name" value={registerUser.firstName} id="firstName" autoComplete="given-name" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="lastName"> Last Name </label>
-                    <input onChange={handleInputChange} type="text" name="lastName" className="form-control" placeholder="last name" value={registerUser.lastName} id="lastName" required />
+                    <input onChange={handleInputChange} type="text" name="lastName" className="form-control" placeholder="last name" value={registerUser.lastName} id="lastName" autoComplete="family-name" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputEmail"> Email address </label>
-                    <input onChange={handleInputChange} type="email" name="email" className="form-control" placeholder="email address" value={registerUser.email} id="email" required />
+                    <input onChange={handleInputChange} type="email" name="email" className="form-control" placeholder="email address" value={registerUser.email} id="email" autoComplete="email" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputPassword"> Create Password </label>
-                    <input onChange={handleInputChange} type="password" name="email" className="form-control" placeholder="create password" value={registerUser.password} id="password" required />
+                    <input onChange={handleInputChange} type="password" name="email" className="form-control" placeholder="create password" value={registerUser.password} id="password" autoComplete="new-password" required />
                 </fieldset>
                 <fieldset>
                     <button type="submit"> Next </button>
@@ -119,9 +121,8 @@ export const Register = () => {
                     <label htmlFor="firstName"> Group Number </label>
                     <select onChange={handleInputChange} value={registerUser.groupId} name="groupId" id="groupId" className="form-control" required >
                         <option value="0">Select a Group</option>
-                        {states.map(state => {
-                            stateCounter++
-                            return <option key={stateCounter} value={stateCounter}>{state}</option>
+                        {groups.map(group => {
+                            return <option key={group.id} value={group.id}>{group.name}</option>
                         })}
                     </select>
                 </fieldset>
@@ -136,11 +137,11 @@ export const Register = () => {
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputEmail"> Phone Number </label>
-                    <input onChange={handleInputChange} value={registerUser.phone} id="phone" type="phone" name="phone" className="form-control" placeholder="9805554466" required />
+                    <input onChange={handleInputChange} value={registerUser.phone} id="phone" type="phone" name="phone" className="form-control" placeholder="9805554466" autoComplete="tel" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputEmail"> Address </label>
-                    <input onChange={handleInputChange} value={registerUser.address} id="address" type="address" name="address" className="form-control" placeholder="address" />
+                    <input onChange={handleInputChange} value={registerUser.address} id="address" type="address" name="address" className="form-control" placeholder="address" autoComplete="street-address" />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputEmail"> City </label>
