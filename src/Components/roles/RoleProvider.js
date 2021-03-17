@@ -11,7 +11,6 @@ export const RoleProvider = (props) => {
         return fetch("http://localhost:8088/roles")
             .then(res => res.json())
             .then(setRoles)
-            .then(() => console.log("roles", roles))
     }
 
     const addRole = roleObj => {

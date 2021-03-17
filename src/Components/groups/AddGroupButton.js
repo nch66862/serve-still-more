@@ -19,7 +19,6 @@ export const AddGroupButton = () => {
         const nextNumber = nextGroupNumber()
         let newGroup = {}
         newGroup.name = nextNumber.toString()
-        debugger
         addGroup(newGroup)
     }
 

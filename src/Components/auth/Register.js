@@ -72,7 +72,6 @@ export const Register = () => {
             .then(createdUser => {
                 if (createdUser.hasOwnProperty("id")) {
                     sessionStorage.setItem(userStorageKey, createdUser.id)
-                    console.log("you have saved a new user")
                     history.push("/")
                 }
             })
