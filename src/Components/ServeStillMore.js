@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { Login } from "./auth/Login";
 import { Register } from "./auth/Register";
+import { NavBar } from "./nav/NavBar";
 import "./ServeStillMore.css";
 
 export const ServeStillMore = () => (
@@ -10,7 +11,10 @@ export const ServeStillMore = () => (
             render={() => {
                 if (sessionStorage.getItem("Lost_River_User")) {
                     return (
-                        <h1>I am Logged In</h1>
+                        <>
+                            <NavBar />
+                            <h1>I am Logged In</h1>
+                        </>
                     );
                 } else {
                     return <Redirect to="/login" />;
