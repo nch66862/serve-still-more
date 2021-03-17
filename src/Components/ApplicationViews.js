@@ -1,6 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { MemberForm } from "./members/MemberForm"
+import { MemberProvider } from "./members/MemberProvider"
 
 export const ApplicationViews = () => {
 
@@ -11,7 +12,9 @@ export const ApplicationViews = () => {
                 </>
             </Route>
             <Route path="/members/create">
-                <MemberForm />
+                <MemberProvider>
+                    <MemberForm />
+                </MemberProvider>
             </Route>
         </>
     )
