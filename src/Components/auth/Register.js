@@ -112,7 +112,7 @@ export const Register = () => {
                 <h1 className="h3 mb-3 font-weight-normal">Sign Up</h1>
                 <fieldset>
                     <label htmlFor="firstName"> Group Number </label>
-                    <select onChange={handleInputChange} value={registerUser.groupId} name="groupId" id="groupId" className="form-control" >
+                    <select onChange={handleInputChange} value={registerUser.groupId} name="groupId" id="groupId" className="form-control" required >
                         <option value="0">Select a Group</option>
                         {states.map(state => {
                             stateCounter++
@@ -122,7 +122,7 @@ export const Register = () => {
                 </fieldset>
                 <fieldset>
                     <label htmlFor="lastName"> Role </label>
-                    <select onChange={handleInputChange} value={registerUser.roleId} name="roleId" id="roleId" className="form-control" >
+                    <select onChange={handleInputChange} value={registerUser.roleId} name="roleId" id="roleId" className="form-control" required >
                         <option value="0">Select a Role</option>
                         {states.map(state => {
                             stateCounter++
@@ -136,11 +136,11 @@ export const Register = () => {
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputEmail"> Address </label>
-                    <input onChange={handleInputChange} value={registerUser.address} id="address" type="address" name="address" className="form-control" placeholder="address" required />
+                    <input onChange={handleInputChange} value={registerUser.address} id="address" type="address" name="address" className="form-control" placeholder="address" />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputEmail"> City </label>
-                    <input onChange={handleInputChange} value={registerUser.city} id="city" type="text" name="city" className="form-control" placeholder="city" required />
+                    <input onChange={handleInputChange} value={registerUser.city} id="city" type="text" name="city" className="form-control" placeholder="city" />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputEmail"> State </label>

@@ -41,14 +41,13 @@ export const MemberForm = () => {
     const existingMemberEmailCheck = () => {
         return fetch(`http://localhost:8088/members/?email=${registerMember.email}`)
             .then(res => res.json())
-            .then(user => !!user.length)
     }
 
     const nextPage = (event) => {
         event.preventDefault()
         existingMemberEmailCheck()
-            .then((userExists) => {
-                if (!userExists) {
+            .then((user) => {
+                if (!user[0] || user[0].email === "") {
                     setCurrentPage("second")
                 }
                 else {
@@ -64,8 +63,6 @@ export const MemberForm = () => {
             .then(createdMember => {
                 if (createdMember.hasOwnProperty("id")) {
                     console.log("a new member has been created")
-                    setMemberCreatedDialog(true)
-                    setTimeout(setMemberCreatedDialog(false), 2000)
                     history.push("/")
                 }
             })
@@ -91,7 +88,7 @@ export const MemberForm = () => {
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputEmail"> Email address </label>
-                    <input onChange={handleInputChange} type="email" name="email" className="form-control" placeholder="email address" value={registerMember.email} id="email" required />
+                    <input onChange={handleInputChange} type="email" name="email" className="form-control" placeholder="email address" value={registerMember.email} id="email" />
                 </fieldset>
                 <fieldset>
                     <button type="submit"> Next </button>
@@ -108,7 +105,7 @@ export const MemberForm = () => {
                 <h1 className="h3 mb-3 font-weight-normal">Register New Member</h1>
                 <fieldset>
                     <label htmlFor="firstName"> Group Number </label>
-                    <select onChange={handleInputChange} value={registerMember.groupId} name="groupId" id="groupId" className="form-control" >
+                    <select onChange={handleInputChange} value={registerMember.groupId} name="groupId" id="groupId" className="form-control" required >
                         <option value="0">Select a Group</option>
                         {states.map(state => {
                             stateCounter++
@@ -117,19 +114,19 @@ export const MemberForm = () => {
                     </select>
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="inputEmail"> Phone Number </label>
+                    <label htmlFor="inputPhone"> Phone Number </label>
                     <input onChange={handleInputChange} value={registerMember.phone} id="phone" type="phone" name="phone" className="form-control" placeholder="(270) 555-2030" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="inputEmail"> Address </label>
-                    <input onChange={handleInputChange} value={registerMember.address} id="address" type="address" name="address" className="form-control" placeholder="address" required />
+                    <label htmlFor="inputAddress"> Address </label>
+                    <input onChange={handleInputChange} value={registerMember.address} id="address" type="address" name="address" className="form-control" placeholder="address"  />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="inputEmail"> City </label>
-                    <input onChange={handleInputChange} value={registerMember.city} id="city" type="text" name="city" className="form-control" placeholder="city" required />
+                    <label htmlFor="inputCity"> City </label>
+                    <input onChange={handleInputChange} value={registerMember.city} id="city" type="text" name="city" className="form-control" placeholder="city"  />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="inputEmail"> State </label>
+                    <label htmlFor="inputState"> State </label>
                     <select onChange={handleInputChange} value={registerMember.state} name="state" id="state" className="form-control" >
                         <option value="0">Select a State</option>
                         {states.map(state => {
