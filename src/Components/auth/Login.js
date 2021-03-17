@@ -76,7 +76,7 @@ export const Login = () => {
                             id="password"
                             className="form-control"
                             placeholder="password"
-                            required autoFocus
+                            required
                             value={loginUser.password}
                             onChange={handleInputChange} />
                     </fieldset>
