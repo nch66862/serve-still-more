@@ -1,7 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
-import { MemberForm } from "./members/MemberForm"
-import { MemberProvider } from "./members/MemberProvider"
+import { MemberForm } from "./members/MemberForm";
+import { MemberProvider } from "./members/MemberProvider";
 
 export const ApplicationViews = () => {
 

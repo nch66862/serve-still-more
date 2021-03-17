@@ -21,15 +21,15 @@ export const Register = () => {
         state: "",
         photo: "",
         callTime: "",
-        canCall: false,
-        familyId: "",
+        canCall: true,
+        familyId: 0,
         primaryMember: false
     })
     const [conflictDialog, setConflictDialog] = useState(false)
 
     const handleInputChange = (event) => {
         const newUser = { ...registerUser }
-        if (event.target.id.includes("Id") || event.target.id.includes("phone")){
+        if (event.target.id.includes("Id")){
             newUser[event.target.id] = parseInt(event.target.value)
         } else {
             newUser[event.target.id] = event.target.value
