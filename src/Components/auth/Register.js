@@ -1,11 +1,13 @@
-import React, { useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
+import { RoleContext } from "../roles/RoleProvider"
 import { states } from "../Settings"
 import { authApi, userStorageKey } from "./authSettings"
 import "./Register.css"
 
 export const Register = () => {
     const history = useHistory()
+    const { roles, getRoles } = useContext(RoleContext)
     let stateCounter = 0
     const [currentPage, setCurrentPage] = useState("first")
     const [registerUser, setRegisterUser] = useState({
@@ -76,6 +78,10 @@ export const Register = () => {
             })
     }
 
+    useEffect(() => {
+        getRoles()
+    }, [])
+
     return (
         currentPage === "first" ? <main style={{ textAlign: "center" }}>
             <dialog className="dialog dialog--password" open={conflictDialog}>
@@ -124,9 +130,8 @@ export const Register = () => {
                     <label htmlFor="lastName"> Role </label>
                     <select onChange={handleInputChange} value={registerUser.roleId} name="roleId" id="roleId" className="form-control" required >
                         <option value="0">Select a Role</option>
-                        {states.map(state => {
-                            stateCounter++
-                            return <option key={stateCounter} value={stateCounter}>{state}</option>
+                        {roles.map(role => {
+                            return <option key={role.id} value={role.id}>{role.name}</option>
                         })}
                     </select>
                 </fieldset>

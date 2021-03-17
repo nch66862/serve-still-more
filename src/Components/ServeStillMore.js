@@ -4,6 +4,7 @@ import { ApplicationViews } from "./ApplicationViews";
 import { Login } from "./auth/Login";
 import { Register } from "./auth/Register";
 import { NavBar } from "./nav/NavBar";
+import { RoleProvider } from "./roles/RoleProvider";
 import "./ServeStillMore.css";
 
 export const ServeStillMore = () => (
@@ -27,7 +28,9 @@ export const ServeStillMore = () => (
             <Login />
         </Route>
         <Route path="/register">
-            <Register />
+            <RoleProvider>
+                <Register />
+            </RoleProvider>
         </Route>
     </>
 )
