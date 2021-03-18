@@ -1,6 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import { AddGroupButton } from "./groups/AddGroupButton";
+import { GroupList } from "./groups/GroupList";
 import { GroupProvider } from "./groups/GroupProvider";
 import { MemberForm } from "./members/MemberForm";
 import { MemberProvider } from "./members/MemberProvider";
@@ -15,6 +16,13 @@ export const ApplicationViews = () => {
         <>
             <Route exact path="/">
                 <>
+                <GroupProvider>
+                    <UserProvider>
+                        <MemberProvider>
+                            <GroupList />
+                        </MemberProvider>
+                    </UserProvider>
+                </GroupProvider>
                     <GroupProvider>
                         <AddGroupButton />
                     </GroupProvider>
