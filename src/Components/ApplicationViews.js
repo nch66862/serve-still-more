@@ -7,6 +7,7 @@ import { MemberProvider } from "./members/MemberProvider";
 import { News } from "./news/News";
 import { NewsForm } from "./news/NewsForm";
 import { NewsProvider } from "./news/NewsProvider";
+import { UserProvider } from "./users/UserProvider";
 
 export const ApplicationViews = () => {
 
@@ -20,7 +21,11 @@ export const ApplicationViews = () => {
                     <NewsProvider>
                         <NewsForm />
                     </NewsProvider>
-                    <News />
+                    <UserProvider>
+                        <NewsProvider>
+                            <News />
+                        </NewsProvider>
+                    </UserProvider>
                 </>
             </Route>
             <Route path="/members/create">

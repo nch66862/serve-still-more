@@ -35,7 +35,7 @@ export const UserProvider = (props) => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(roleObj)
+            body: JSON.stringify(userObj)
         })
             .then(getUsers)
     }

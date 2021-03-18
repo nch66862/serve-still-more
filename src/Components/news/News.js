@@ -6,41 +6,51 @@ import { NewsContext } from './NewsProvider'
 export const News = () => {
     const { getUserById } = useContext(UserContext)
     const { getNews, news } = useContext(NewsContext)
-    const loggedInUserId = sessionStorage.getItem("Lost_River_User")
+    const loggedInUserId = parseInt(sessionStorage.getItem("Lost_River_User"))
     const [loggedInUser, setLoggedInUser] = useState({})
     const [latestGroupNewsPost, setLatestGroupNewsPost] = useState({})
-    const groupIdOfLoggedInUser = loggedInUser.groupId
+    let groupIdOfLoggedInUser = undefined
+    if (loggedInUser) {
+        groupIdOfLoggedInUser = loggedInUser.groupId
+    }
     let arrayOfNewsPostsForMatchingGroup = []
-    if (news) {
+    if (news && groupIdOfLoggedInUser) {
         arrayOfNewsPostsForMatchingGroup = news.filter(newsPost => newsPost.user.groupId === groupIdOfLoggedInUser)
     }
+    // if (arrayOfNewsPostsForMatchingGroup) {
+    //     const sortedNews = arrayOfNewsPostsForMatchingGroup.slice().sort((a, b) => {
+    //         const aDate = new Date(a.date)
+    //         const bDate = new Date(b.date)
+    //         a.date = aDate
+    //         b.date = bDate
+    //         return a.date - b.date
+    //     })
+    //     setLatestGroupNewsPost(sortedNews[0])
+    // }
 
-    const sortedNews = arrayOfNewsPostsForMatchingGroup.slice().sort((a, b) => {
-        const aDate = new Date(a.date)
-        const bDate = new Date(b.date)
-        a.date = aDate
-        b.date = bDate
-        return a.date - b.date
-    })
-    setLatestGroupNewsPost(sortedNews[0])
+    // useEffect(() => {
+    //     getNews()
+    // }, [loggedInUser])
 
     useEffect(() => {
-        getNews()
-            .then(() => {
-                getUserById(loggedInUserId)
-            })
+        getUserById(loggedInUserId)
             .then(setLoggedInUser)
+            .then(getNews)
     }, [])
 
     return (
         <aside className="newsAside">
+            {console.log("loggedInUser", loggedInUser)}
+            {console.log("loggedInUserId", loggedInUserId)}
+            {console.log("groupIdOfLoggedInUser", groupIdOfLoggedInUser)}
+            {console.log("arrayOfNewsPostsForMatchingGroup", arrayOfNewsPostsForMatchingGroup)}
             <h3>News and Notes</h3>
             <h6>Week of</h6>
             <section>
                 <label htmlFor="deaconNews"> To the Deacons </label>
-                <article className="newsArticle">message to the deacons</article>
+                <article className="newsArticle">{latestGroupNewsPost?.deaconNews}</article>
                 <label htmlFor="memberNews"> To the Members </label>
-                <article className="newsArticle">message to the memebers</article>
+                <article className="newsArticle">{latestGroupNewsPost?.memberNews}</article>
             </section>
         </aside>
     )
