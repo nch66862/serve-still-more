@@ -20,6 +20,9 @@ export const GroupList = () => {
                     <article key={group.id}>
                         <h2>Group {group.name}</h2>
                         <h3>Elders</h3>
+                        {users.map(user => {
+                            return user.groupId === group.id ? <div key={user.id}>{user.firstName} {user.lastName}</div> : console.log("null")
+                        })}
                         <h3>Deacons</h3>
                         <h3>Members</h3>
                     </article>
