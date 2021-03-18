@@ -11,7 +11,6 @@ export const NewsProvider = (props) => {
         return fetch("http://localhost:8088/news?_expand=user")
             .then(res => res.json())
             .then(setNews)
-            .then(() => console.log("news in provider", news))
     }
 
     const addNews = newsObj => {

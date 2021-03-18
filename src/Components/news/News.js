@@ -36,11 +36,6 @@ export const News = () => {
 
     return (
         <aside className="newsAside">
-            {console.log("loggedInUser", loggedInUser)}
-            {console.log("loggedInUserId", loggedInUserId)}
-            {console.log("groupIdOfLoggedInUser", groupIdOfLoggedInUser)}
-            {console.log("news", news)}
-            {console.log("arrayOfNewsPostsForMatchingGroup", arrayOfNewsPostsForMatchingGroup)}
             <h3>News and Notes</h3>
             <h6>Week of</h6>
             <section>
