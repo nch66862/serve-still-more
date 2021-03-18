@@ -5,11 +5,24 @@ import { NewsContext } from './NewsProvider'
 
 export const News = () => {
     const { getUserById } = useContext(UserContext)
-    const { getNews } = useContext(NewsContext)
+    const { getNews, news } = useContext(NewsContext)
     const loggedInUserId = sessionStorage.getItem("Lost_River_User")
     const [loggedInUser, setLoggedInUser] = useState({})
-    const groupOfLoggedInUser = loggedInUser.groupId
-    const arrayOf
+    const [latestGroupNewsPost, setLatestGroupNewsPost] = useState({})
+    const groupIdOfLoggedInUser = loggedInUser.groupId
+    let arrayOfNewsPostsForMatchingGroup = []
+    if (news) {
+        arrayOfNewsPostsForMatchingGroup = news.filter(newsPost => newsPost.user.groupId === groupIdOfLoggedInUser)
+    }
+
+    const sortedNews = arrayOfNewsPostsForMatchingGroup.slice().sort((a, b) => {
+        const aDate = new Date(a.date)
+        const bDate = new Date(b.date)
+        a.date = aDate
+        b.date = bDate
+        return a.date - b.date
+    })
+    setLatestGroupNewsPost(sortedNews[0])
 
     useEffect(() => {
         getNews()
@@ -18,6 +31,7 @@ export const News = () => {
             })
             .then(setLoggedInUser)
     }, [])
+
     return (
         <aside className="newsAside">
             <h3>News and Notes</h3>

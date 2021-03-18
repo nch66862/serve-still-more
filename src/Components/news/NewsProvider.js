@@ -14,7 +14,7 @@ export const NewsProvider = (props) => {
     }
 
     const addNews = newsObj => {
-        return fetch("http://localhost:8088/news", {
+        return fetch("http://localhost:8088/news?_expand=user", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
