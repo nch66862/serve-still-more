@@ -41,7 +41,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route path="/members/create">
                 <MemberProvider>
-                    <MemberForm />
+                    <GroupProvider>
+                        <MemberForm />
+                    </GroupProvider>
                 </MemberProvider>
             </Route>
         </>

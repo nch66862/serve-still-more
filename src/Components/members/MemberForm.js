@@ -1,11 +1,13 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { MemberContext } from "./MemberProvider";
 import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { states } from "../Settings"
+import { GroupContext } from "../groups/GroupProvider";
 
 export const MemberForm = () => {
-    const { addMember, getMembers } = useContext(MemberContext)
+    const { addMember } = useContext(MemberContext)
+    const { groups, getGroups } = useContext(GroupContext)
     const history = useHistory()
     let stateCounter = 0
     const [currentPage, setCurrentPage] = useState("first")
@@ -59,15 +61,12 @@ export const MemberForm = () => {
     const handleRegisterMember = (event) => {
         event.preventDefault()
         addMember(registerMember)
-            .then(res => res.json())
-            .then(createdMember => {
-                if (createdMember.hasOwnProperty("id")) {
-                    console.log("a new member has been created")
-                    history.push("/")
-                }
-            })
-            .then(getMembers)
+            .then(() => history.push("/"))
     }
+
+    useEffect(() => {
+        getGroups()
+    })
 
     return (
         currentPage === "first" ? <main style={{ textAlign: "center" }}>
@@ -104,12 +103,11 @@ export const MemberForm = () => {
             <form className="form--login" onSubmit={handleRegisterMember}>
                 <h1 className="h3 mb-3 font-weight-normal">Register New Member</h1>
                 <fieldset>
-                    <label htmlFor="firstName"> Group Number </label>
+                    <label htmlFor="groupNumber"> Group Number </label>
                     <select onChange={handleInputChange} value={registerMember.groupId} name="groupId" id="groupId" className="form-control" required >
                         <option value="0">Select a Group</option>
-                        {states.map(state => {
-                            stateCounter++
-                            return <option key={stateCounter} value={stateCounter}>{state}</option>
+                        {groups.map(group => {
+                            return <option key={group.id} value={group.id}>{group.name}</option>
                         })}
                     </select>
                 </fieldset>
