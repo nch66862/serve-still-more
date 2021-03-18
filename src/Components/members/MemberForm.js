@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom"
 import { states } from "../Settings"
 
 export const MemberForm = () => {
-    const { getMemberById, addMember, getMembers } = useContext(MemberContext)
+    const { addMember, getMembers } = useContext(MemberContext)
     const history = useHistory()
     let stateCounter = 0
     const [currentPage, setCurrentPage] = useState("first")

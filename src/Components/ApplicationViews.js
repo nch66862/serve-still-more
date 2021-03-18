@@ -8,6 +8,7 @@ import { MemberProvider } from "./members/MemberProvider";
 import { News } from "./news/News";
 import { NewsForm } from "./news/NewsForm";
 import { NewsProvider } from "./news/NewsProvider";
+import { RoleProvider } from "./roles/RoleProvider";
 import { UserProvider } from "./users/UserProvider";
 
 export const ApplicationViews = () => {
@@ -16,13 +17,15 @@ export const ApplicationViews = () => {
         <>
             <Route exact path="/">
                 <>
-                <GroupProvider>
-                    <UserProvider>
-                        <MemberProvider>
-                            <GroupList />
-                        </MemberProvider>
-                    </UserProvider>
-                </GroupProvider>
+                    <RoleProvider>
+                        <GroupProvider>
+                            <UserProvider>
+                                <MemberProvider>
+                                    <GroupList />
+                                </MemberProvider>
+                            </UserProvider>
+                        </GroupProvider>
+                    </RoleProvider>
                     <GroupProvider>
                         <AddGroupButton />
                     </GroupProvider>
