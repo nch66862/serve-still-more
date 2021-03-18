@@ -4,6 +4,7 @@ import { AddGroupButton } from "./groups/AddGroupButton";
 import { GroupProvider } from "./groups/GroupProvider";
 import { MemberForm } from "./members/MemberForm";
 import { MemberProvider } from "./members/MemberProvider";
+import { News } from "./news/News";
 import { NewsForm } from "./news/NewsForm";
 import { NewsProvider } from "./news/NewsProvider";
 
@@ -19,6 +20,7 @@ export const ApplicationViews = () => {
                     <NewsProvider>
                         <NewsForm />
                     </NewsProvider>
+                    <News />
                 </>
             </Route>
             <Route path="/members/create">
