@@ -28,8 +28,8 @@ export const NewsForm = ({ setOpenForm} ) => {
     }
 
     return (
-        <main className="container--login">
-            <section>
+        <main className="modal--parent">
+            <section className="modal--content">
                 <form className="form--login" onSubmit={handleSaveNews}>
                     <h1>Lost River Call Center</h1>
                     <h2>News and Notes</h2>
