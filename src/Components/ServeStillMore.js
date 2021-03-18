@@ -5,6 +5,7 @@ import { Login } from "./auth/Login";
 import { Register } from "./auth/Register";
 import { GroupProvider } from "./groups/GroupProvider";
 import { NavBar } from "./nav/NavBar";
+import { Footer } from "./footer/Footer";
 import { RoleProvider } from "./roles/RoleProvider";
 import "./ServeStillMore.css";
 
@@ -17,6 +18,7 @@ export const ServeStillMore = () => (
                         <>
                             <NavBar />
                             <ApplicationViews />
+                            <Footer />
                         </>
                     );
                 } else {

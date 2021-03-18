@@ -5,5 +5,5 @@
 }
 
 .newsAside {
-    width: 25%;
+    min-width: 300px;
 }

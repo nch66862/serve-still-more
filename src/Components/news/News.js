@@ -3,7 +3,7 @@ import { UserContext } from '../users/UserProvider'
 import './News.css'
 import { NewsContext } from './NewsProvider'
 
-export const News = () => {
+export const News = ({ setOpenForm }) => {
     const { getUserById } = useContext(UserContext)
     const { getNews, news } = useContext(NewsContext)
     const loggedInUserId = parseInt(sessionStorage.getItem("Lost_River_User"))
@@ -17,13 +17,18 @@ export const News = () => {
     if (news.length && groupIdOfLoggedInUser) {
         arrayOfNewsPostsForMatchingGroup = news.filter(newsPost => newsPost.user.groupId === groupIdOfLoggedInUser)
     }
+
+    const handleEditButton = () => {
+        setOpenForm(true)
+    }
+
     useEffect(() => {
         const sortedNews = arrayOfNewsPostsForMatchingGroup.slice().sort((a, b) => {
             const aDate = new Date(a.date)
             const bDate = new Date(b.date)
             a.date = aDate
             b.date = bDate
-            return a.date - b.date
+            return b.date - a.date
         })
         setLatestGroupNewsPost(sortedNews[0])
     }, [news])
@@ -38,6 +43,7 @@ export const News = () => {
         <aside className="newsAside">
             <h3>News and Notes</h3>
             <h6>Week of</h6>
+            <button onClick={handleEditButton}>edit</button>
             <section>
                 <label htmlFor="deaconNews"> To the Deacons </label>
                 <article className="newsArticle">{latestGroupNewsPost?.deaconNews}</article>

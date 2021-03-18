@@ -4,7 +4,7 @@ import "./NewsForm.css"
 import { NewsContext } from "./NewsProvider";
 
 
-export const NewsForm = () => {
+export const NewsForm = ({ setOpenForm} ) => {
     const [news, setNews] = useState({
         deaconNews: "",
         memberNews: "",
@@ -24,12 +24,12 @@ export const NewsForm = () => {
     const handleSaveNews = (event) => {
         event.preventDefault()
         addNews(news)
-        .then(() => history.push("/"))
+        .then(() => setOpenForm(false))
     }
 
     return (
-        <main className="container--login">
-            <section>
+        <main className="modal--parent">
+            <section className="modal--content">
                 <form className="form--login" onSubmit={handleSaveNews}>
                     <h1>Lost River Call Center</h1>
                     <h2>News and Notes</h2>
