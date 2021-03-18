@@ -1,9 +1,23 @@
+import { useContext, useEffect, useState } from 'react'
+import { UserContext } from '../users/UserProvider'
 import './News.css'
+import { NewsContext } from './NewsProvider'
 
 export const News = () => {
-    const { getUsers }
+    const { getUserById } = useContext(UserContext)
+    const { getNews } = useContext(NewsContext)
     const loggedInUserId = sessionStorage.getItem("Lost_River_User")
-    const loggedInUserGroup = 
+    const [loggedInUser, setLoggedInUser] = useState({})
+    const groupOfLoggedInUser = loggedInUser.groupId
+    const arrayOf
+
+    useEffect(() => {
+        getNews()
+            .then(() => {
+                getUserById(loggedInUserId)
+            })
+            .then(setLoggedInUser)
+    }, [])
     return (
         <aside className="newsAside">
             <h3>News and Notes</h3>
