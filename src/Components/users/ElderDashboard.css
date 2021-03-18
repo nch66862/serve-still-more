@@ -4,9 +4,9 @@
 }
 
 .leftContent {
-    flex-basis: 2;
+    flex-basis: 3;
 }
 
 .rightContent {
-    flex-basis: 1;
+    flex-basis: 2;
 }

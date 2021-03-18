@@ -1,5 +1,7 @@
+import './UserCard.css'
+
 export const ElderCard = ({ user }) => {
     return (
-        <div>{user.firstName} {user.lastName}</div>
+        <h5 className="personCard">{user.firstName} {user.lastName}</h5>
     )
 }

@@ -3,3 +3,7 @@
     border-radius: 5px;
     height: 400px;
 }
+
+.newsAside {
+    min-width: 300px;
+}

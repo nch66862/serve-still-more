@@ -6,6 +6,7 @@ import { DeaconCard } from "../users/DeaconCard"
 import { UserContext } from "../users/UserProvider"
 import { GroupContext } from "./GroupProvider"
 import { MemberCard } from "../members/MemberCard"
+import './GroupList.css'
 
 export const GroupList = () => {
     const { groups, getGroups } = useContext(GroupContext)
@@ -32,17 +33,23 @@ export const GroupList = () => {
                     <article key={group.id}>
                         <h2>Group {group.name}</h2>
                         <h3>Elders</h3>
+                        <section className="cardList">
                         {users.map(user => {
                             return user.groupId === group.id && user.roleId === elderRoleId ? <ElderCard key={user.id} user={user}/> : ""
                         })}
+                        </section>
                         <h3>Deacons</h3>
+                        <section className="cardList">
                         {users.map(user => {
                             return user.groupId === group.id && user.roleId === deaconRoleId ? <DeaconCard key={user.id} user={user}/> : ""
                         })}
+                        </section>
                         <h3>Members</h3>
+                        <section className="cardList">
                         {members.map(member => {
                             return member.groupId === group.id ? <MemberCard key={member.id} member={member}/> : ""
                         })}
+                        </section>
                     </article>
                 )
             })}
