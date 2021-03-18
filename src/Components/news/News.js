@@ -28,7 +28,7 @@ export const News = ({ setOpenForm }) => {
             const bDate = new Date(b.date)
             a.date = aDate
             b.date = bDate
-            return a.date - b.date
+            return b.date - a.date
         })
         setLatestGroupNewsPost(sortedNews[0])
     }, [news])
