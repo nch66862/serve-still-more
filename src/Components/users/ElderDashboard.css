@@ -1,3 +1,12 @@
 .elderDashboard {
     display: flex;
+    justify-content: space-between;
+}
+
+.leftContent {
+    flex-basis: 2;
+}
+
+.rightContent {
+    flex-basis: 1;
 }

@@ -3,6 +3,7 @@ import { AddGroupButton } from "../groups/AddGroupButton"
 import { GroupList } from "../groups/GroupList"
 import { News } from "../news/News"
 import { NewsForm } from "../news/NewsForm"
+import './ElderDashboard.css'
 
 export const ElderDashboard = () => {
     const [openForm, setOpenForm] = useState(false)
@@ -13,8 +14,10 @@ export const ElderDashboard = () => {
                 <AddGroupButton />
                 <GroupList />
             </section>
-            <News setOpenForm={setOpenForm}/>
-            {openForm && <NewsForm  setOpenForm={setOpenForm}/>}
+            <section className="rightContent">
+                <News setOpenForm={setOpenForm} />
+            </section>
+            {openForm && <NewsForm setOpenForm={setOpenForm} />}
         </main>
     )
 }
