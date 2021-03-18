@@ -8,13 +8,14 @@ export const NewsProvider = (props) => {
     const [news, setNews] = useState([])
 
     const getNews = () => {
-        return fetch("http://localhost:8088/news")
+        return fetch("http://localhost:8088/news?_expand=user")
             .then(res => res.json())
             .then(setNews)
+            .then(() => console.log("news in provider", news))
     }
 
     const addNews = newsObj => {
-        return fetch("http://localhost:8088/news?_expand=user", {
+        return fetch("http://localhost:8088/news", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

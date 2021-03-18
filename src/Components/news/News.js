@@ -9,28 +9,24 @@ export const News = () => {
     const loggedInUserId = parseInt(sessionStorage.getItem("Lost_River_User"))
     const [loggedInUser, setLoggedInUser] = useState({})
     const [latestGroupNewsPost, setLatestGroupNewsPost] = useState({})
-    let groupIdOfLoggedInUser = undefined
+    let groupIdOfLoggedInUser = 0
     if (loggedInUser) {
         groupIdOfLoggedInUser = loggedInUser.groupId
     }
     let arrayOfNewsPostsForMatchingGroup = []
-    if (news && groupIdOfLoggedInUser) {
+    if (news.length && groupIdOfLoggedInUser) {
         arrayOfNewsPostsForMatchingGroup = news.filter(newsPost => newsPost.user.groupId === groupIdOfLoggedInUser)
     }
-    // if (arrayOfNewsPostsForMatchingGroup) {
-    //     const sortedNews = arrayOfNewsPostsForMatchingGroup.slice().sort((a, b) => {
-    //         const aDate = new Date(a.date)
-    //         const bDate = new Date(b.date)
-    //         a.date = aDate
-    //         b.date = bDate
-    //         return a.date - b.date
-    //     })
-    //     setLatestGroupNewsPost(sortedNews[0])
-    // }
-
-    // useEffect(() => {
-    //     getNews()
-    // }, [loggedInUser])
+    useEffect(() => {
+        const sortedNews = arrayOfNewsPostsForMatchingGroup.slice().sort((a, b) => {
+            const aDate = new Date(a.date)
+            const bDate = new Date(b.date)
+            a.date = aDate
+            b.date = bDate
+            return a.date - b.date
+        })
+        setLatestGroupNewsPost(sortedNews[0])
+    }, [news])
 
     useEffect(() => {
         getUserById(loggedInUserId)
@@ -43,6 +39,7 @@ export const News = () => {
             {console.log("loggedInUser", loggedInUser)}
             {console.log("loggedInUserId", loggedInUserId)}
             {console.log("groupIdOfLoggedInUser", groupIdOfLoggedInUser)}
+            {console.log("news", news)}
             {console.log("arrayOfNewsPostsForMatchingGroup", arrayOfNewsPostsForMatchingGroup)}
             <h3>News and Notes</h3>
             <h6>Week of</h6>
