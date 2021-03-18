@@ -41,7 +41,7 @@ export const GroupList = () => {
                         })}
                         <h3>Members</h3>
                         {members.map(member => {
-                            return member.groupId ? <MemberCard key={member.id} member={member}/> : ""
+                            return member.groupId === group.id ? <MemberCard key={member.id} member={member}/> : ""
                         })}
                     </article>
                 )
