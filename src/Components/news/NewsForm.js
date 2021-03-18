@@ -4,7 +4,7 @@ import "./NewsForm.css"
 import { NewsContext } from "./NewsProvider";
 
 
-export const NewsForm = () => {
+export const NewsForm = ({ setOpenForm} ) => {
     const [news, setNews] = useState({
         deaconNews: "",
         memberNews: "",
@@ -24,7 +24,7 @@ export const NewsForm = () => {
     const handleSaveNews = (event) => {
         event.preventDefault()
         addNews(news)
-        .then(() => history.push("/"))
+        .then(() => setOpenForm(false))
     }
 
     return (
