@@ -8,6 +8,7 @@ export const NewsForm = () => {
     const [news, setNews] = useState({
         deaconNews: "",
         memberNews: "",
+        userId: parseInt(sessionStorage.getItem('Lost_River_User')),
         date: new Date()
     })
     const { addNews } = useContext(NewsContext)

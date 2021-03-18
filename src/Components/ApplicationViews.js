@@ -4,8 +4,10 @@ import { AddGroupButton } from "./groups/AddGroupButton";
 import { GroupProvider } from "./groups/GroupProvider";
 import { MemberForm } from "./members/MemberForm";
 import { MemberProvider } from "./members/MemberProvider";
+import { News } from "./news/News";
 import { NewsForm } from "./news/NewsForm";
 import { NewsProvider } from "./news/NewsProvider";
+import { UserProvider } from "./users/UserProvider";
 
 export const ApplicationViews = () => {
 
@@ -19,6 +21,11 @@ export const ApplicationViews = () => {
                     <NewsProvider>
                         <NewsForm />
                     </NewsProvider>
+                    <UserProvider>
+                        <NewsProvider>
+                            <News />
+                        </NewsProvider>
+                    </UserProvider>
                 </>
             </Route>
             <Route path="/members/create">
