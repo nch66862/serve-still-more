@@ -21,6 +21,7 @@ export const MemberProvider = (props) => {
             },
             body: JSON.stringify(memberObj)
         })
+        .then(getMembers)
     }
 
     const getMemberById = (id) => {
