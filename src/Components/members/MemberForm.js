@@ -66,7 +66,7 @@ export const MemberForm = () => {
 
     useEffect(() => {
         getGroups()
-    })
+    }, [])
 
     return (
         currentPage === "first" ? <main style={{ textAlign: "center" }}>

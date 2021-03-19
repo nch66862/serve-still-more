@@ -1,10 +1,11 @@
 import './MemberDetail.css'
-export const MemberDetail = ({ member, setOpenDetail }) => {
+export const MemberDetail = ({ member, setOpenDetail, setOpenEditMember }) => {
     const handleClose = () => {
         setOpenDetail(false)
     }
     const handleEdit = () => {
         setOpenDetail(false)
+        setOpenEditMember(true)
     }
 
     return (
