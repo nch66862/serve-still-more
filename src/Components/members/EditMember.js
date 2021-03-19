@@ -6,7 +6,7 @@ import { states } from "../Settings"
 import { GroupContext } from "../groups/GroupProvider";
 import './EditMember.css'
 
-export const EditMember = ({ member }) => {
+export const EditMember = ({ member, setOpenEditMember, setOpenDetail }) => {
     const { updateMember, getMemberById } = useContext(MemberContext)
     const { groups, getGroups } = useContext(GroupContext)
     const history = useHistory()
@@ -48,16 +48,18 @@ export const EditMember = ({ member }) => {
 
     const handleRegisterMember = (event) => {
         event.preventDefault()
-        existingMemberEmailCheck()
-            .then((user) => {
-                if (!user[0] || user[0].email === "") {
-                    updateMember(registerMember)
-                        .then(() => history.push("/"))
-                }
-                else {
-                    setConflictDialog(true)
-                }
+        setIsLoading(true)
+        updateMember(registerMember)
+            .then(() => {
+                setOpenEditMember(false)
+                setOpenDetail(true)
             })
+    }
+
+    const handleCancel = (event) => {
+        event.preventDefault()
+        setOpenEditMember(false)
+        setOpenDetail(true)
     }
 
     useEffect(() => {
@@ -129,7 +131,8 @@ export const EditMember = ({ member }) => {
                         </select>
                     </fieldset>
                     <fieldset>
-                        <button type="submit"> Submit Edit </button>
+                        <button disabled={isLoading} type="submit"> Submit Edit </button>
+                        <button onClick={handleCancel}> Cancel </button>
                     </fieldset>
                 </form>
             </section>

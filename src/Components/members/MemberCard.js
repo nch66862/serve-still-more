@@ -13,7 +13,7 @@ export const MemberCard = ({ member }) => {
         <>
             <h5 onClick={handleClickMember} className="personCard">{member.firstName} {member.lastName}</h5>
             {openDetail && <MemberDetail setOpenDetail={setOpenDetail} setOpenEditMember={setOpenEditMember} member={member} />}
-            {openEditMember && <EditMember setOpenEditMember={setOpenEditMember} member={member} />}
+            {openEditMember && <EditMember setOpenEditMember={setOpenEditMember} member={member} setOpenDetail={setOpenDetail} />}
         </>
     )
 }
