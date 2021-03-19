@@ -7,7 +7,7 @@ import { GroupContext } from "../groups/GroupProvider";
 import './EditMember.css'
 
 export const EditMember = ({ member, setOpenEditMember, setOpenDetail }) => {
-    const { updateMember, getMemberById } = useContext(MemberContext)
+    const { updateMember, getMemberById, deleteMember } = useContext(MemberContext)
     const { groups, getGroups } = useContext(GroupContext)
     const history = useHistory()
     let stateCounter = 0
@@ -60,6 +60,15 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail }) => {
         event.preventDefault()
         setOpenEditMember(false)
         setOpenDetail(true)
+    }
+
+    const handleDelete = (event) => {
+        event.preventDefault()
+        setIsLoading(true)
+        deleteMember(registerMember.id)
+            .then(() => {
+                setOpenEditMember(false)
+            })
     }
 
     useEffect(() => {
@@ -131,8 +140,9 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail }) => {
                         </select>
                     </fieldset>
                     <fieldset>
-                        <button disabled={isLoading} type="submit"> Submit Edit </button>
+                        <button onClick={handleDelete}> Delete Member </button>
                         <button onClick={handleCancel}> Cancel </button>
+                        <button disabled={isLoading} type="submit"> Submit Edit </button>
                     </fieldset>
                 </form>
             </section>
