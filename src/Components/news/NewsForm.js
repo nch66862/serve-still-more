@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react"
-import { useHistory } from "react-router-dom";
 import "./NewsForm.css"
 import { NewsContext } from "./NewsProvider";
 
@@ -12,7 +11,6 @@ export const NewsForm = ({ setOpenForm} ) => {
         date: new Date()
     })
     const { addNews } = useContext(NewsContext)
-    const history = useHistory()
     const handleInputChange = (event) => {
         const newNews = { ...news }
         newNews[event.target.id] = event.target.value
