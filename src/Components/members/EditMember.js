@@ -6,8 +6,8 @@ import { states } from "../Settings"
 import { GroupContext } from "../groups/GroupProvider";
 import './EditMember.css'
 
-export const EditMember = () => {
-    const { updateMember } = useContext(MemberContext)
+export const EditMember = ({ member }) => {
+    const { updateMember, getMemberById } = useContext(MemberContext)
     const { groups, getGroups } = useContext(GroupContext)
     const history = useHistory()
     let stateCounter = 0
@@ -29,6 +29,7 @@ export const EditMember = () => {
 
     const [conflictDialog, setConflictDialog] = useState(false)
     const [memberCreatedDialog, setMemberCreatedDialog] = useState(false)
+    const [isLoading, setIsLoading] = useState(true);
 
     const handleInputChange = (event) => {
         const newMember = { ...registerMember }
@@ -61,6 +62,13 @@ export const EditMember = () => {
 
     useEffect(() => {
         getGroups()
+            .then(() => {
+                getMemberById(member.id)
+                    .then(member => {
+                        setRegisterMember(member)
+                        setIsLoading(false)
+                    })
+            })
     }, [])
 
     return (
