@@ -44,28 +44,23 @@ export const EditMember = () => {
             .then(res => res.json())
     }
 
-    const nextPage = (event) => {
+    const handleRegisterMember = (event) => {
         event.preventDefault()
         existingMemberEmailCheck()
             .then((user) => {
                 if (!user[0] || user[0].email === "") {
-                    setCurrentPage("second")
-                }
+                    updateMember(registerMember)
+                    .then(() => history.push("/"))
+                        }
                 else {
                     setConflictDialog(true)
                 }
             })
     }
 
-    const handleRegisterMember = (event) => {
-        event.preventDefault()
-        addMember(registerMember)
-            .then(() => history.push("/"))
-    }
-
     useEffect(() => {
         getGroups()
-    })
+    }, [])
 
     return (
         <main style={{ textAlign: "center" }}>
@@ -74,8 +69,8 @@ export const EditMember = () => {
                 <button className="button--close" onClick={e => setConflictDialog(false)}>Close</button>
             </dialog>
             <h1>Lost River Call Center</h1>
-            <form className="form--login" onSubmit={nextPage}>
-                <h1 className="h3 mb-3 font-weight-normal">Register New Member</h1>
+            <form className="form--login" onSubmit={handleRegisterMember}>
+                <h1 className="h3 mb-3 font-weight-normal">Edit Member</h1>
                 <fieldset>
                     <label htmlFor="firstName"> First Name </label>
                     <input onChange={handleInputChange} type="text" name="firstName" className="form-control" placeholder="first name" value={registerMember.firstName} id="firstName" required />
@@ -88,18 +83,9 @@ export const EditMember = () => {
                     <label htmlFor="inputEmail"> Email address </label>
                     <input onChange={handleInputChange} type="email" name="email" className="form-control" placeholder="email address" value={registerMember.email} id="email" />
                 </fieldset>
-                <fieldset>
-                    <button type="submit"> Next </button>
-                </fieldset>
-            </form>
             <dialog className="dialog dialog--memberCreated" open={memberCreatedDialog}>
                 <div>new member has been saved</div>
-                <button className="button--close" onClick={e => setMemberCreatedDialog(false)}>Close</button>
             </dialog>
-            <h1>Lost River Call Center</h1>
-            <h3>A Little More Information Is Needed</h3>
-            <form className="form--login" onSubmit={handleRegisterMember}>
-                <h1 className="h3 mb-3 font-weight-normal">Register New Member</h1>
                 <fieldset>
                     <label htmlFor="groupNumber"> Group Number </label>
                     <select onChange={handleInputChange} value={registerMember.groupId} name="groupId" id="groupId" className="form-control" required >
@@ -132,7 +118,7 @@ export const EditMember = () => {
                     </select>
                 </fieldset>
                 <fieldset>
-                    <button type="submit"> Register </button>
+                    <button type="submit"> Submit Edit </button>
                 </fieldset>
             </form>
         </main>
