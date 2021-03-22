@@ -1,8 +1,9 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { HistoryContext } from "./HistoryProvider"
 
 export const CallForm = ({ member }) => {
-const { addHistory } = useContext(HistoryContext)
+    
+    const { addHistory } = useContext(HistoryContext)
 
     const [history, setHistory] = useState({
         note: "",
@@ -14,13 +15,16 @@ const { addHistory } = useContext(HistoryContext)
     const handleSaveHistory = (event) => {
         event.preventDefault()
         addHistory(history)
-        .then(() => setOpenForm(false))
+    }
+
+    const textBoxStyle = {
+        height: '200px',
     }
 
     const handleInputChange = (event) => {
         const newHistory = { ...history }
         newHistory[event.target.id] = event.target.value
-        setHistory(newNews)
+        setHistory(newHistory)
     }
 
     return (

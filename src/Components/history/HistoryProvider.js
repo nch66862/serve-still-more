@@ -4,7 +4,7 @@ import React, { useState, createContext } from "react"
 export const HistoryContext = createContext()
 
 // This component establishes what data can be used.
-export const NewsProvider = (props) => {
+export const HistoryProvider = (props) => {
     const [history, setHistory] = useState([])
 
     const getHistory = () => {

@@ -5,6 +5,7 @@ import { MemberForm } from "./members/MemberForm";
 import { MemberProvider } from "./members/MemberProvider";
 import { NewsProvider } from "./news/NewsProvider";
 import { RoleProvider } from "./roles/RoleProvider";
+import { HistoryProvider } from "./history/HistoryProvider";
 import { ElderDashboard } from "./users/ElderDashboard";
 import { DeaconDashboard } from "./users/DeaconDashboard";
 import { UserProvider } from "./users/UserProvider";
@@ -21,7 +22,9 @@ export const ApplicationViews = () => {
                                 <NewsProvider>
                                     <MemberProvider>
                                         {/* <ElderDashboard /> */}
-                                        <DeaconDashboard />
+                                        <HistoryProvider>
+                                            <DeaconDashboard />
+                                        </HistoryProvider>
                                     </MemberProvider>
                                 </NewsProvider>
                             </RoleProvider>
