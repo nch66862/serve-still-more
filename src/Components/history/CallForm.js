@@ -14,9 +14,7 @@ export const CallForm = ({ member }) => {
 
     const handleSaveHistory = (event) => {
         event.preventDefault()
-        const newHistory = { ...history }
-        newHistory.date = new Date()
-        setHistory(newHistory)
+        history.date = new Date()
         addHistory(history)
             .then(() => {
                 const newHistory = {
