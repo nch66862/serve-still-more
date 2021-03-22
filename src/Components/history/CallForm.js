@@ -9,7 +9,7 @@ export const CallForm = ({ member }) => {
         note: "",
         userId: parseInt(sessionStorage.getItem('Lost_River_User')),
         memberId: member.id,
-        date: new Date()
+        date: {}
     })
 
     const handleSaveHistory = (event) => {
@@ -23,7 +23,7 @@ export const CallForm = ({ member }) => {
                     note: "",
                     userId: parseInt(sessionStorage.getItem('Lost_River_User')),
                     memberId: member.id,
-                    date: new Date()
+                    date: {}
                 }
                 setHistory(newHistory)
             })
