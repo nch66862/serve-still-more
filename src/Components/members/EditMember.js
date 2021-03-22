@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
 import { MemberContext } from "./MemberProvider";
 import React, { useState } from "react"
-import { useHistory } from "react-router-dom"
 import { states } from "../Settings"
 import { GroupContext } from "../groups/GroupProvider";
 import './EditMember.css'
@@ -9,9 +8,8 @@ import './EditMember.css'
 export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMember }) => {
     const { updateMember, getMemberById, deleteMember } = useContext(MemberContext)
     const { groups, getGroups } = useContext(GroupContext)
-    const history = useHistory()
     let stateCounter = 0
-    const [registerMember, setRegisterMember] = useState({
+    const [updatedMemberObj, setUpdatedMemberObj] = useState({
         firstName: "",
         lastName: "",
         email: "",
@@ -32,24 +30,24 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
     const [isLoading, setIsLoading] = useState(true);
 
     const handleInputChange = (event) => {
-        const newMember = { ...registerMember }
+        const newMember = { ...updatedMemberObj }
         if (event.target.id.includes("Id")) {
             newMember[event.target.id] = parseInt(event.target.value)
         } else {
             newMember[event.target.id] = event.target.value
         }
-        setRegisterMember(newMember)
+        setUpdatedMemberObj(newMember)
     }
 
     const existingMemberEmailCheck = () => {
-        return fetch(`http://localhost:8088/members/?email=${registerMember.email}`)
+        return fetch(`http://localhost:8088/members/?email=${updatedMemberObj.email}`)
             .then(res => res.json())
     }
 
     const handleUpdateMember = (event) => {
         event.preventDefault()
         setIsLoading(true)
-        updateMember(registerMember)
+        updateMember(updatedMemberObj)
             .then(() => {
                 setOpenEditMember(false)
                 if (!callingMember) {
@@ -69,7 +67,7 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
     const handleDelete = (event) => {
         event.preventDefault()
         setIsLoading(true)
-        deleteMember(registerMember.id)
+        deleteMember(updatedMemberObj.id)
             .then(() => {
                 setOpenEditMember(false)
             })
@@ -80,7 +78,7 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
             .then(() => {
                 getMemberById(member.id)
                     .then(member => {
-                        setRegisterMember(member)
+                        setUpdatedMemberObj(member)
                         setIsLoading(false)
                     })
             })
@@ -99,22 +97,22 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
                     <h1 className="h3 mb-3 font-weight-normal">Edit Member</h1>
                     <fieldset>
                         <label htmlFor="firstName"> First Name </label>
-                        <input onChange={handleInputChange} type="text" name="firstName" className="form-control" placeholder="first name" value={registerMember.firstName} id="firstName" required />
+                        <input onChange={handleInputChange} type="text" name="firstName" className="form-control" placeholder="first name" value={updatedMemberObj.firstName} id="firstName" required />
                     </fieldset>
                     <fieldset>
                         <label htmlFor="lastName"> Last Name </label>
-                        <input onChange={handleInputChange} type="text" name="lastName" className="form-control" placeholder="last name" value={registerMember.lastName} id="lastName" required />
+                        <input onChange={handleInputChange} type="text" name="lastName" className="form-control" placeholder="last name" value={updatedMemberObj.lastName} id="lastName" required />
                     </fieldset>
                     <fieldset>
                         <label htmlFor="inputEmail"> Email address </label>
-                        <input onChange={handleInputChange} type="email" name="email" className="form-control" placeholder="email address" value={registerMember.email} id="email" />
+                        <input onChange={handleInputChange} type="email" name="email" className="form-control" placeholder="email address" value={updatedMemberObj.email} id="email" />
                     </fieldset>
                     <dialog className="dialog dialog--memberCreated" open={memberCreatedDialog}>
                         <div>new member has been saved</div>
                     </dialog>
                     <fieldset>
                         <label htmlFor="groupNumber"> Group Number </label>
-                        <select onChange={handleInputChange} value={registerMember.groupId} name="groupId" id="groupId" className="form-control" required >
+                        <select onChange={handleInputChange} value={updatedMemberObj.groupId} name="groupId" id="groupId" className="form-control" required >
                             <option value="0">Select a Group</option>
                             {groups.map(group => {
                                 return <option key={group.id} value={group.id}>{group.name}</option>
@@ -123,19 +121,19 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
                     </fieldset>
                     <fieldset>
                         <label htmlFor="inputPhone"> Phone Number </label>
-                        <input onChange={handleInputChange} value={registerMember.phone} id="phone" type="phone" name="phone" className="form-control" placeholder="(270) 555-2030" required />
+                        <input onChange={handleInputChange} value={updatedMemberObj.phone} id="phone" type="phone" name="phone" className="form-control" placeholder="(270) 555-2030" required />
                     </fieldset>
                     <fieldset>
                         <label htmlFor="inputAddress"> Address </label>
-                        <input onChange={handleInputChange} value={registerMember.address} id="address" type="address" name="address" className="form-control" placeholder="address" />
+                        <input onChange={handleInputChange} value={updatedMemberObj.address} id="address" type="address" name="address" className="form-control" placeholder="address" />
                     </fieldset>
                     <fieldset>
                         <label htmlFor="inputCity"> City </label>
-                        <input onChange={handleInputChange} value={registerMember.city} id="city" type="text" name="city" className="form-control" placeholder="city" />
+                        <input onChange={handleInputChange} value={updatedMemberObj.city} id="city" type="text" name="city" className="form-control" placeholder="city" />
                     </fieldset>
                     <fieldset>
                         <label htmlFor="inputState"> State </label>
-                        <select onChange={handleInputChange} value={registerMember.state} name="state" id="state" className="form-control" >
+                        <select onChange={handleInputChange} value={updatedMemberObj.state} name="state" id="state" className="form-control" >
                             <option value="0">Select a State</option>
                             {states.map(state => {
                                 stateCounter++
