@@ -1,5 +1,5 @@
 import './MemberDetail.css'
-export const MemberDetail = ({ member, setOpenDetail, setOpenEditMember }) => {
+export const MemberDetail = ({ member, setOpenDetail, setOpenEditMember, callingMember }) => {
     const handleClose = () => {
         setOpenDetail(false)
     }
@@ -8,9 +8,18 @@ export const MemberDetail = ({ member, setOpenDetail, setOpenEditMember }) => {
         setOpenEditMember(true)
     }
 
+    let memberDetailMainClass = "callingMember"
+    if (!callingMember) {
+        memberDetailMainClass = "modal--parent"
+    }
+    let memberDetailSectionClass = ""
+    if (!callingMember) {
+        memberDetailSectionClass = "modal--parent"
+    }
+
     return (
-        <main className="modal--parent">
-            <section className="modal--content">
+        <main className={memberDetailMainClass}>
+            <section className={memberDetailSectionClass}>
                 <h1>{member.firstName} {member.lastName}</h1>
                 <h3>{member.phone}</h3>
                 <h3>{member.email}</h3>

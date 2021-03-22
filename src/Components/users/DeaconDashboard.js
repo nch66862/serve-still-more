@@ -26,7 +26,7 @@ export const DeaconDashboard = () => {
     return (
         <main className="elderDashboard">
             <section className="leftContent">
-                <MemberDetail member={member}/>
+                <MemberDetail member={member} callingMember={true}/>
                 <CallForm member={member}/>
             </section>
             <section className="rightContent">
