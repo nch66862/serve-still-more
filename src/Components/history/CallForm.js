@@ -9,19 +9,16 @@ export const CallForm = ({ member }) => {
         note: "",
         userId: parseInt(sessionStorage.getItem('Lost_River_User')),
         memberId: member.id,
-        date: {}
     })
 
     const handleSaveHistory = (event) => {
         event.preventDefault()
-        history.date = new Date()
         addHistory(history)
             .then(() => {
                 const newHistory = {
                     note: "",
                     userId: parseInt(sessionStorage.getItem('Lost_River_User')),
                     memberId: member.id,
-                    date: {}
                 }
                 setHistory(newHistory)
             })

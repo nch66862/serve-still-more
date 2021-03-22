@@ -14,6 +14,7 @@ export const HistoryProvider = (props) => {
     }
 
     const addHistory = historyObj => {
+        historyObj.date = new Date()
         return fetch("http://localhost:8088/history", {
             method: "POST",
             headers: {
