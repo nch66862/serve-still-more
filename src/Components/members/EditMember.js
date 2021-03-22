@@ -6,7 +6,7 @@ import { states } from "../Settings"
 import { GroupContext } from "../groups/GroupProvider";
 import './EditMember.css'
 
-export const EditMember = ({ member, setOpenEditMember, setOpenDetail }) => {
+export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMember }) => {
     const { updateMember, getMemberById, deleteMember } = useContext(MemberContext)
     const { groups, getGroups } = useContext(GroupContext)
     const history = useHistory()
@@ -46,20 +46,24 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail }) => {
             .then(res => res.json())
     }
 
-    const handleRegisterMember = (event) => {
+    const handleUpdateMember = (event) => {
         event.preventDefault()
         setIsLoading(true)
         updateMember(registerMember)
             .then(() => {
                 setOpenEditMember(false)
-                setOpenDetail(true)
+                if (!callingMember) {
+                    setOpenDetail(true)
+                }
             })
     }
 
     const handleCancel = (event) => {
         event.preventDefault()
         setOpenEditMember(false)
-        setOpenDetail(true)
+        if (!callingMember) {
+            setOpenDetail(true)
+        }
     }
 
     const handleDelete = (event) => {
@@ -91,7 +95,7 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail }) => {
                     <button className="button--close" onClick={e => setConflictDialog(false)}>Close</button>
                 </dialog>
                 <h1>Lost River Call Center</h1>
-                <form className="form--login" onSubmit={handleRegisterMember}>
+                <form className="form--login" onSubmit={handleUpdateMember}>
                     <h1 className="h3 mb-3 font-weight-normal">Edit Member</h1>
                     <fieldset>
                         <label htmlFor="firstName"> First Name </label>

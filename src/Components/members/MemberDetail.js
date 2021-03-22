@@ -4,7 +4,9 @@ export const MemberDetail = ({ member, setOpenDetail, setOpenEditMember, calling
         setOpenDetail(false)
     }
     const handleEdit = () => {
-        setOpenDetail(false)
+        if (!callingMember) {
+            setOpenDetail(false)
+        }
         setOpenEditMember(true)
     }
 
@@ -21,14 +23,15 @@ export const MemberDetail = ({ member, setOpenDetail, setOpenEditMember, calling
         <main className={memberDetailMainClass}>
             <section className={memberDetailSectionClass}>
                 <h1>{member.firstName} {member.lastName}</h1>
+                { callingMember ? <button onClick={handleEdit}>edit member</button> : "" }
                 <h3>{member.phone}</h3>
                 <h3>{member.email}</h3>
                 <h3>{member.address}</h3>
                 <h3>{member.city}, {member.state}</h3>
                 <label htmlFor="bestTimeToTalk"> Best Time to Talk </label>
                 <h3>{member.callTime !== "" ? member.callTime : "no available time reported"}</h3>
-                <button onClick={handleClose}>close</button>
-                <button onClick={handleEdit}>edit</button>
+                { callingMember ? "" : <button onClick={handleClose}>close</button> }
+                { callingMember ? "" : <button onClick={handleEdit}>edit</button> }
             </section>
         </main>
     )

@@ -1,11 +1,13 @@
 import { useState } from "react"
 import { CallForm } from "../history/CallForm"
+import { EditMember } from "../members/EditMember"
 import { MemberDetail } from "../members/MemberDetail"
 import { News } from "../news/News"
 import './DeaconDashboard.css'
 
 export const DeaconDashboard = () => {
 
+    const [openEditMember, setOpenEditMember] = useState(false)
     const member = {
         "firstName": "Jeremy Boy",
         "lastName": "Jones",
@@ -26,8 +28,9 @@ export const DeaconDashboard = () => {
     return (
         <main className="elderDashboard">
             <section className="leftContent">
-                <MemberDetail member={member} callingMember={true}/>
+                <MemberDetail member={member} callingMember={true} setOpenEditMember={setOpenEditMember}/>
                 <CallForm member={member}/>
+                {openEditMember && <EditMember setOpenEditMember={setOpenEditMember} member={member} callingMember={true}/>}
             </section>
             <section className="rightContent">
                 <News />
