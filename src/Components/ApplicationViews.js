@@ -6,6 +6,7 @@ import { MemberProvider } from "./members/MemberProvider";
 import { NewsProvider } from "./news/NewsProvider";
 import { RoleProvider } from "./roles/RoleProvider";
 import { ElderDashboard } from "./users/ElderDashboard";
+import { DeaconDashboard } from "./users/DeaconDashboard";
 import { UserProvider } from "./users/UserProvider";
 
 export const ApplicationViews = () => {
@@ -19,7 +20,8 @@ export const ApplicationViews = () => {
                             <RoleProvider>
                                 <NewsProvider>
                                     <MemberProvider>
-                                        <ElderDashboard />
+                                        {/* <ElderDashboard /> */}
+                                        <DeaconDashboard />
                                     </MemberProvider>
                                 </NewsProvider>
                             </RoleProvider>
