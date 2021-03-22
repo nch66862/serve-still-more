@@ -1,29 +1,39 @@
-export const CallForm = () => {
+import { useContext } from "react"
+import { HistoryContext } from "./HistoryProvider"
 
-    const [note, setNote] = useState({
-        deaconNews: "",
-        memberNews: "",
+export const CallForm = ({ member }) => {
+const { addHistory } = useContext(HistoryContext)
+
+    const [history, setHistory] = useState({
+        note: "",
         userId: parseInt(sessionStorage.getItem('Lost_River_User')),
+        memberId: member.id,
         date: new Date()
     })
 
-    const handleSaveNote = (event) => {
+    const handleSaveHistory = (event) => {
         event.preventDefault()
-        addNews(news)
+        addHistory(history)
         .then(() => setOpenForm(false))
+    }
+
+    const handleInputChange = (event) => {
+        const newHistory = { ...history }
+        newHistory[event.target.id] = event.target.value
+        setHistory(newNews)
     }
 
     return (
         <>
-            <form className="form--login" onSubmit={handleSaveNote}>
+            <form className="form--login" onSubmit={handleSaveHistory}>
                 <fieldset>
-                    <label htmlFor="inputDeaconNews"> Message to the Deacons </label>
+                    <label htmlFor="inputHistory"> Call Note </label>
                     <textarea type="textArea"
-                        id="deaconNews"
+                        id="note"
                         className="form-control"
-                        placeholder="to the deacons of your group..."
+                        placeholder="we talked about..."
                         autoFocus
-                        value={news.deaconNews}
+                        value={history.note}
                         style={textBoxStyle}
                         onChange={handleInputChange} />
                 </fieldset>
@@ -33,7 +43,6 @@ export const CallForm = () => {
                         </button>
                 </fieldset>
             </form>
-
         </>
     )
 }
