@@ -15,10 +15,19 @@ export const CallForm = ({ member }) => {
     const handleSaveHistory = (event) => {
         event.preventDefault()
         addHistory(history)
+            .then(() => {
+                const newHistory = {
+                    note: "",
+                    userId: parseInt(sessionStorage.getItem('Lost_River_User')),
+                    memberId: member.id,
+                    date: new Date()
+                }
+                setHistory(newHistory)
+            })
     }
 
     const textBoxStyle = {
-        height: '200px',
+        height: '150px',
     }
 
     const handleInputChange = (event) => {
