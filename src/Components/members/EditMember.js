@@ -85,7 +85,6 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
     }, [])
 
     return (
-
         <main className="modal--parent" style={{ textAlign: "center" }}>
             <section className="modal--content">
                 <dialog className="dialog dialog--password" open={conflictDialog}>

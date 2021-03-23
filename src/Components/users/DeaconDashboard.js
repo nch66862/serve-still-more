@@ -4,6 +4,7 @@ import { EditMember } from "../members/EditMember"
 import { MemberDetail } from "../members/MemberDetail"
 import { News } from "../news/News"
 import './DeaconDashboard.css'
+import { MemberCallList } from "./MemberCallList"
 
 export const DeaconDashboard = () => {
 
@@ -28,6 +29,7 @@ export const DeaconDashboard = () => {
     return (
         <main className="elderDashboard">
             <section className="leftContent">
+                <MemberCallList />
                 <MemberDetail member={member} callingMember={true} setOpenEditMember={setOpenEditMember}/>
                 <CallForm member={member}/>
                 {openEditMember && <EditMember setOpenEditMember={setOpenEditMember} member={member} callingMember={true}/>}
