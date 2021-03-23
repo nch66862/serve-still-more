@@ -6,6 +6,7 @@ export const MemberContext = createContext()
 // This component establishes what data can be used.
 export const MemberProvider = (props) => {
     const [members, setMembers] = useState([])
+    const [memberToCall, setMemberToCall] = useState({})
 
     const getMembers = () => {
         return fetch("http://localhost:8088/members")
@@ -50,7 +51,7 @@ export const MemberProvider = (props) => {
 
     return (
         <MemberContext.Provider value={{
-            members, getMembers, addMember, getMemberById, updateMember, deleteMember
+            members, getMembers, addMember, getMemberById, updateMember, deleteMember, memberToCall, setMemberToCall
         }}>
             {props.children}
         </MemberContext.Provider>

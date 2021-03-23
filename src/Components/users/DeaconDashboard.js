@@ -1,38 +1,24 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { CallForm } from "../history/CallForm"
 import { EditMember } from "../members/EditMember"
 import { MemberDetail } from "../members/MemberDetail"
+import { MemberContext } from "../members/MemberProvider"
 import { News } from "../news/News"
 import './DeaconDashboard.css'
 import { MemberCallList } from "./MemberCallList"
 
 export const DeaconDashboard = () => {
 
+    const { memberToCall } = useContext(MemberContext)
     const [openEditMember, setOpenEditMember] = useState(false)
-    const member = {
-        "firstName": "Jeremy Boy",
-        "lastName": "Jones",
-        "email": "",
-        "groupId": 1,
-        "phone": "(270) 543-3086",
-        "address": "435 Main Street",
-        "city": "Nashville",
-        "state": "TN",
-        "photo": "",
-        "callTime": "",
-        "canCall": true,
-        "familyId": 0,
-        "primaryMember": false,
-        "id": 1
-    }
 
     return (
         <main className="elderDashboard">
             <section className="leftContent">
                 <MemberCallList />
-                <MemberDetail member={member} callingMember={true} setOpenEditMember={setOpenEditMember}/>
-                <CallForm member={member}/>
-                {openEditMember && <EditMember setOpenEditMember={setOpenEditMember} member={member} callingMember={true}/>}
+                <MemberDetail member={memberToCall} callingMember={true} setOpenEditMember={setOpenEditMember}/>
+                <CallForm member={memberToCall}/>
+                {openEditMember && <EditMember setOpenEditMember={setOpenEditMember} member={memberToCall} callingMember={true}/>}
             </section>
             <section className="rightContent">
                 <News />

@@ -3,6 +3,7 @@ import { MemberContext } from "../members/MemberProvider"
 import { UserContext } from "./UserProvider"
 import { RoleContext } from "../roles/RoleProvider"
 import { HistoryContext } from "../history/HistoryProvider"
+import { MemberInList } from "../members/MemberInList"
 
 export const MemberCallList = () => {
     const { users, getUsers } = useContext(UserContext)
@@ -63,7 +64,7 @@ export const MemberCallList = () => {
     return (
         <section>
             {membersToCall.length > 0 ? membersToCall.map(member => {
-                return <p key={member.id}>{member.firstName} {member.lastName}</p>
+                return <MemberInList key={member.id} member={member} />
             }) : ""}
         </section>
     )
