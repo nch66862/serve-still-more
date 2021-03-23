@@ -41,24 +41,16 @@ export const MemberCallList = () => {
         const matchingRole = roles.find(role => role.name.toLowerCase().includes("deacon"))
         const groupDeacons = groupUsers.filter(user => user.roleId === matchingRole.id)
         const membersPerDeacon = Math.ceil(membersThatHaveNotBeenCalled.length / groupDeacons.length)
-        let arrayPushCounter = 0
+        let newCallList = []
         membersThatUserDidNotCallLast.map(member => {
-            if (arrayPushCounter < membersPerDeacon) {
-                const newCallList = [...membersToCall]
+            if (newCallList.length < membersPerDeacon) {
                 newCallList.push(member)
-                setMembersToCall(newCallList)
-                arrayPushCounter++
             }
         })
-
+        if (membersToCall.length < membersPerDeacon) {
+            setMembersToCall(newCallList)
+        }
     }
-
-    // filter the members that have not been called this week based on history
-    // total the members
-    // total the deacons
-    // divide members/deacons
-    // round up
-    // push members to an array up to the number specified. if they were not called by that user last week
 
     useEffect(() => {
         getUsers()
@@ -69,10 +61,10 @@ export const MemberCallList = () => {
 
     console.log(membersToCall)
     return (
-        <>
+        <section>
             {membersToCall.length > 0 ? membersToCall.map(member => {
                 return <p key={member.id}>{member.firstName} {member.lastName}</p>
             }) : ""}
-        </>
+        </section>
     )
 }
