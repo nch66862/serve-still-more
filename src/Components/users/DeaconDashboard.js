@@ -14,11 +14,11 @@ export const DeaconDashboard = () => {
 
     return (
         <main className="elderDashboard">
+            <MemberCallList />
             <section className="leftContent">
-                <MemberCallList />
-                <MemberDetail member={memberToCall} callingMember={true} setOpenEditMember={setOpenEditMember}/>
-                <CallForm member={memberToCall}/>
-                {openEditMember && <EditMember setOpenEditMember={setOpenEditMember} member={memberToCall} callingMember={true}/>}
+                <MemberDetail member={memberToCall} callingMember={true} setOpenEditMember={setOpenEditMember} />
+                <CallForm member={memberToCall} />
+                {openEditMember && <EditMember setOpenEditMember={setOpenEditMember} member={memberToCall} callingMember={true} />}
             </section>
             <section className="rightContent">
                 <News />
