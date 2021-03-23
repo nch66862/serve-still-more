@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { MemberContext } from "../members/MemberProvider"
 import { UserContext } from "./UserProvider"
 import { RoleContext } from "../roles/RoleProvider"
@@ -12,8 +12,8 @@ export const MemberCallList = () => {
     const todaysDate = new Date()
     const dayOfTheWeek = todaysDate.getDay()
     const timeAtBeginningOfWeek = todaysDate.getTime() - dayOfTheWeek * 86400000
-    let groupDeacons = []
-    let latestHistoryPostForMember = {}
+    const [membersToCall, setMembersToCall] = useState([])
+    let membersThatUserDidNotCallLast = []
 
     const loggedInUserId = parseInt(sessionStorage.getItem("Lost_River_User"))
     if (users.length && members.length && roles.length) {
@@ -28,15 +28,29 @@ export const MemberCallList = () => {
                 b.date = bDate
                 return b.date - a.date
             })
-            latestHistoryPostForMember = sortedHistoryByDate[0]
-            if (latestHistoryPostForMember === undefined || latestHistoryPostForMember?.date.getTime() > timeAtBeginningOfWeek) {
+            const latestHistoryPostForMember = sortedHistoryByDate[0]
+            const dateOfLatestHistoryPost = Date.parse(latestHistoryPostForMember?.date)
+            if (latestHistoryPostForMember === undefined || dateOfLatestHistoryPost < timeAtBeginningOfWeek) {
+                if (latestHistoryPostForMember?.userId !== loggedInUserId) {
+                    membersThatUserDidNotCallLast.push(member)
+                }
                 return member
             }
         })
-        console.log(membersThatHaveNotBeenCalled)
         const groupUsers = users.filter(user => user.groupId === loggedInUserObj.groupId)
         const matchingRole = roles.find(role => role.name.toLowerCase().includes("deacon"))
-        groupDeacons = groupUsers.filter(user => user.roleId === matchingRole.id)
+        const groupDeacons = groupUsers.filter(user => user.roleId === matchingRole.id)
+        const membersPerDeacon = Math.ceil(membersThatHaveNotBeenCalled.length / groupDeacons.length)
+        let arrayPushCounter = 0
+        membersThatUserDidNotCallLast.map(member => {
+            if (arrayPushCounter < membersPerDeacon) {
+                const newCallList = [...membersToCall]
+                newCallList.push(member)
+                setMembersToCall(newCallList)
+                arrayPushCounter++
+            }
+        })
+
     }
 
     // filter the members that have not been called this week based on history
@@ -53,9 +67,12 @@ export const MemberCallList = () => {
             .then(getHistory)
     }, [])
 
+    console.log(membersToCall)
     return (
         <>
-            {console.log(latestHistoryPostForMember)}
+            {membersToCall.length > 0 ? membersToCall.map(member => {
+                return <p key={member.id}>{member.firstName} {member.lastName}</p>
+            }) : ""}
         </>
     )
 }
