@@ -8,3 +8,19 @@
     margin: 10px 10px 10px 0;
     padding: 5px 5px 5px 5px;
 }
+
+.navLogo {
+    justify-self: center;
+    width: 100%;
+}
+
+.nav-link {
+    align-self: center;
+    margin-left: 5px;
+    width: 10%;
+}
+
+.siteTitle {
+    color: whitesmoke;
+    margin: 5px;
+}
