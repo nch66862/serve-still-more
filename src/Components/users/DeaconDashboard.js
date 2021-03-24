@@ -19,7 +19,7 @@ export const DeaconDashboard = () => {
             <section className="leftContent">
                 <MemberDetail member={memberToCall} callingMember={true} setOpenEditMember={setOpenEditMember} />
                 <CallForm member={memberToCall} />
-                <History member={memberToCall}/>
+                <History member={memberToCall} />
                 {openEditMember && <EditMember setOpenEditMember={setOpenEditMember} member={memberToCall} callingMember={true} />}
             </section>
             <section className="rightContent">

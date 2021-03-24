@@ -42,7 +42,7 @@ export const CallForm = ({ member }) => {
 
     return (
         <>
-            <form className="form--login" onSubmit={handleSaveHistory}>
+            {Object.keys(member).length !== 0 ? <form className="form--login" onSubmit={handleSaveHistory}>
                 <fieldset>
                     <label htmlFor="inputHistory"> Call Note </label>
                     <textarea type="textArea"
@@ -56,6 +56,7 @@ export const CallForm = ({ member }) => {
                 </fieldset>
                 <button disabled={!member} type="submit">Submit</button>
             </form>
+            : "" }
         </>
     )
 }
