@@ -60,7 +60,6 @@ export const MemberCallList = () => {
             .then(getHistory)
     }, [])
 
-    console.log(membersToCall)
     return (
         <section>
             <h2>This Week</h2>

@@ -1,8 +1,8 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { HistoryContext } from "./HistoryProvider"
 
 export const CallForm = ({ member }) => {
-    
+
     const { addHistory } = useContext(HistoryContext)
 
     const [history, setHistory] = useState({
@@ -34,9 +34,15 @@ export const CallForm = ({ member }) => {
         setHistory(newHistory)
     }
 
+    useEffect(() => {
+        const newHistory = { ...history }
+        newHistory.memberId = member.id
+        setHistory(newHistory)
+    }, [member])
+
     return (
         <>
-            <form className="form--login" onSubmit={handleSaveHistory}>
+            {Object.keys(member).length !== 0 ? <form className="form--login" onSubmit={handleSaveHistory}>
                 <fieldset>
                     <label htmlFor="inputHistory"> Call Note </label>
                     <textarea type="textArea"
@@ -48,12 +54,9 @@ export const CallForm = ({ member }) => {
                         style={textBoxStyle}
                         onChange={handleInputChange} />
                 </fieldset>
-                <fieldset>
-                    <button type="submit">
-                        Submit
-                        </button>
-                </fieldset>
+                <button disabled={!member} type="submit">Submit</button>
             </form>
+            : "" }
         </>
     )
 }
