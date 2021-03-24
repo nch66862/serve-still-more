@@ -17,7 +17,7 @@ export const MemberDetail = ({ member, setOpenDetail, setOpenEditMember, calling
     }
     let memberDetailSectionClass = ""
     if (!callingMember) {
-        memberDetailSectionClass = "modal--parent"
+        memberDetailSectionClass = "modal--content"
     }
 
     return (
