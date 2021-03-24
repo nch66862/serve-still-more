@@ -5,7 +5,7 @@ import { states } from "../Settings"
 import { GroupContext } from "../groups/GroupProvider";
 import './EditMember.css'
 
-export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMember }) => {
+export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMember, setMemberToCall }) => {
     const { updateMember, getMemberById, deleteMember } = useContext(MemberContext)
     const { groups, getGroups } = useContext(GroupContext)
     let stateCounter = 0
@@ -47,6 +47,7 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
     const handleUpdateMember = (event) => {
         event.preventDefault()
         setIsLoading(true)
+        setMemberToCall(updatedMemberObj)
         updateMember(updatedMemberObj)
             .then(() => {
                 setOpenEditMember(false)
