@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Route } from "react-router-dom"
 import { GroupProvider } from "./groups/GroupProvider";
 import { MemberForm } from "./members/MemberForm";
@@ -14,15 +14,14 @@ import { getRoles } from "@testing-library/dom";
 export const ApplicationViews = () => {
 
     const loggedInUserId = parseInt(sessionStorage.getItem("Lost_River_User"))
+    const [loggedInUserObj, setLoggedInUserObj] = useState({})
     const { getUserById } = useContext(UserContext)
-    const loggedInUserObj = users?.find(user => user.roleId === loggedInUserId)
-    const matchingRole = roles.find(role => role.id === loggedInUserObj.roleId)
+    const matchingRole = roles?.find(role => role.id === loggedInUserObj.roleId)
 
     useEffect(() => {
-        getRoles()
-            .then(() => {
-                getUserById(loggedInUserId)
-            })
+        getUserById(loggedInUserId)
+            .then(setLoggedInUserObj)
+            .then(getRoles)
     })
 
     return (
