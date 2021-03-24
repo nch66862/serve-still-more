@@ -8,6 +8,7 @@ import { NavBar } from "./nav/NavBar";
 import { Footer } from "./footer/Footer";
 import { RoleProvider } from "./roles/RoleProvider";
 import "./ServeStillMore.css";
+import { UserProvider } from "./users/UserProvider";
 
 export const ServeStillMore = () => (
     <>
@@ -17,7 +18,11 @@ export const ServeStillMore = () => (
                     return (
                         <>
                             <NavBar />
-                            <ApplicationViews />
+                            <RoleProvider>
+                                <UserProvider>
+                                    <ApplicationViews />
+                                </UserProvider>
+                            </RoleProvider>
                             <Footer />
                         </>
                     );
