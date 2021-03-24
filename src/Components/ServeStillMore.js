@@ -17,12 +17,14 @@ export const ServeStillMore = () => (
                 if (sessionStorage.getItem("Lost_River_User")) {
                     return (
                         <>
-                            <NavBar />
-                            <RoleProvider>
-                                <UserProvider>
-                                    <ApplicationViews />
-                                </UserProvider>
-                            </RoleProvider>
+                            <body className="mainBody">
+                                <NavBar />
+                                <RoleProvider>
+                                    <UserProvider>
+                                        <ApplicationViews />
+                                    </UserProvider>
+                                </RoleProvider>
+                            </body>
                             <Footer />
                         </>
                     );

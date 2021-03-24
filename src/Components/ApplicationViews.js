@@ -27,21 +27,19 @@ export const ApplicationViews = () => {
     return (
         <>
             <Route exact path="/">
-                <>
-                    <GroupProvider>
-                        <UserProvider>
-                            <RoleProvider>
-                                <NewsProvider>
-                                    <MemberProvider>
-                                        <HistoryProvider>
-                                            {matchingRole?.name.toLowerCase() === "elder" ? <ElderDashboard /> : <DeaconDashboard />}
-                                        </HistoryProvider>
-                                    </MemberProvider>
-                                </NewsProvider>
-                            </RoleProvider>
-                        </UserProvider>
-                    </GroupProvider>
-                </>
+                <GroupProvider>
+                    <UserProvider>
+                        <RoleProvider>
+                            <NewsProvider>
+                                <MemberProvider>
+                                    <HistoryProvider>
+                                        {matchingRole?.name.toLowerCase() === "elder" ? <ElderDashboard /> : <DeaconDashboard />}
+                                    </HistoryProvider>
+                                </MemberProvider>
+                            </NewsProvider>
+                        </RoleProvider>
+                    </UserProvider>
+                </GroupProvider>
             </Route>
             <Route path="/members/create">
                 <MemberProvider>
