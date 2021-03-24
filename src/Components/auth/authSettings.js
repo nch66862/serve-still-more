@@ -1,7 +1,7 @@
-// If your json-server API URL or endpoint is different, please change it below!
+// json-server API URL and endpoint
 export const authApi = {
     localApiBaseUrl: "http://localhost:8088",
     endpoint: "users"
   }
-  // The user id is saved under the key app_user_id in session Storage. Change below if needed!
+  // The user id is saved under this key
   export const userStorageKey = "Lost_River_User"

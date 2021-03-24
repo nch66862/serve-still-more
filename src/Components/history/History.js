@@ -20,6 +20,7 @@ export const History = ({ member }) => {
 
     return (
         <section className="historyList">
+            <h3>Conversation History</h3>
             {sortedHistory.map(history => {
                 return (
                     <section key={history.id}>

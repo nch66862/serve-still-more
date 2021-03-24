@@ -5,13 +5,19 @@ import { RoleContext } from "../roles/RoleProvider"
 import { states } from "../Settings"
 import { authApi, userStorageKey } from "./authSettings"
 import "./Register.css"
-
+//This is a form to register a new user to the database
 export const Register = () => {
+    //useHistory keeps track of the URL visted in a URL stack
     const history = useHistory()
+    //gets data from the role provider
     const { roles, getRoles } = useContext(RoleContext)
+    //gets data from the group provider
     const { groups, getGroups } = useContext(GroupContext)
+    //initializes a variable so that the state dropdown will cycle through all of the states
     let stateCounter = 0
+    //initializes a state variable to keep track of which page of the form you are on, so react knows which one to render
     const [currentPage, setCurrentPage] = useState("first")
+    //the main state variable that will be saved to the database
     const [registerUser, setRegisterUser] = useState({
         firstName: "",
         lastName: "",
@@ -29,8 +35,9 @@ export const Register = () => {
         familyId: 0,
         primaryMember: false
     })
+    //state variable controls displaying the dialog box if the person registering has an email account that already exists in the database
     const [conflictDialog, setConflictDialog] = useState(false)
-
+    //modifies the state variable when changes are made to the inputs on the form
     const handleInputChange = (event) => {
         const newUser = { ...registerUser }
         if (event.target.id.includes("Id")){
@@ -40,13 +47,13 @@ export const Register = () => {
         }
         setRegisterUser(newUser)
     }
-
+    //function that finds a user object in the database that matches the email typed in the form
     const existingUserCheck = () => {
         return fetch(`${authApi.localApiBaseUrl}/${authApi.endpoint}?email=${registerUser.email}`)
             .then(res => res.json())
             .then(user => !!user.length)
     }
-
+    //if the email does not exist in the database, this function will allow the next page to be shown. If the email is already in the db, the dialog box is displayed
     const nextPage = (event) => {
         event.preventDefault()
         existingUserCheck()
@@ -59,7 +66,7 @@ export const Register = () => {
                 }
             })
     }
-
+    //performs a post to the database when registering a new memeber
     const handleRegister = (event) => {
         event.preventDefault()
         fetch(`${authApi.localApiBaseUrl}/${authApi.endpoint}`, {
@@ -79,12 +86,12 @@ export const Register = () => {
                 }
             })
     }
-
+    //gets data to populate the dropdowns in the form
     useEffect(() => {
         getRoles()
         .then(getGroups)
     }, [])
-
+    //a form split up into two pages with a ternary. Could not do two different return statements with a conditional because it would kick me out of an input box when typing.
     return (
         currentPage === "first" ? <main style={{ textAlign: "center" }}>
             <dialog className="dialog dialog--password" open={conflictDialog}>
