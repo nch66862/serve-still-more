@@ -26,7 +26,6 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
     })
 
     const [conflictDialog, setConflictDialog] = useState(false)
-    const [memberCreatedDialog, setMemberCreatedDialog] = useState(false)
     const [isLoading, setIsLoading] = useState(true);
 
     const handleInputChange = (event) => {
@@ -37,11 +36,6 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
             newMember[event.target.id] = event.target.value
         }
         setUpdatedMemberObj(newMember)
-    }
-
-    const existingMemberEmailCheck = () => {
-        return fetch(`http://localhost:8088/members/?email=${updatedMemberObj.email}`)
-            .then(res => res.json())
     }
 
     const handleUpdateMember = (event) => {
@@ -112,9 +106,6 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
                         <label htmlFor="inputEmail"> Email address </label>
                         <input onChange={handleInputChange} type="email" name="email" className="form-control" placeholder="email address" value={updatedMemberObj.email} id="email" />
                     </fieldset>
-                    <dialog className="dialog dialog--memberCreated" open={memberCreatedDialog}>
-                        <div>new member has been saved</div>
-                    </dialog>
                     <fieldset>
                         <label htmlFor="groupNumber"> Group Number </label>
                         <select onChange={handleInputChange} value={updatedMemberObj.groupId} name="groupId" id="groupId" className="form-control" required >
