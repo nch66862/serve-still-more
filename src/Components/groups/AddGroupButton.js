@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react"
 import { GroupContext } from "./GroupProvider"
+import './AddGroupButton.css'
 
 export const AddGroupButton = () => {
     const { addGroup, getGroups, groups } = useContext(GroupContext)
@@ -22,5 +23,5 @@ export const AddGroupButton = () => {
         addGroup(newGroup)
     }
 
-    return <button onClick={addAnotherGroup}>+ Group</button>
+    return <button className="btn addGroupButton" onClick={addAnotherGroup}>+ Group</button>
 }
