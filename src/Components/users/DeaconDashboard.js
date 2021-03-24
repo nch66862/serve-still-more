@@ -15,7 +15,7 @@ export const DeaconDashboard = () => {
 
     return (
         <main className="elderDashboard">
-            <MemberCallList />
+            <MemberCallList memberToCall={memberToCall} />
             <section className="leftContent">
                 <MemberDetail member={memberToCall} callingMember={true} setOpenEditMember={setOpenEditMember} />
                 <CallForm member={memberToCall} />

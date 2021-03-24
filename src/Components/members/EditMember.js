@@ -47,7 +47,7 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
     const handleUpdateMember = (event) => {
         event.preventDefault()
         setIsLoading(true)
-        if (!callingMember) {
+        if (callingMember) {
             setMemberToCall(updatedMemberObj)
         }
         updateMember(updatedMemberObj)
