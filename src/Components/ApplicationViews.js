@@ -12,6 +12,8 @@ import { UserProvider } from "./users/UserProvider";
 
 export const ApplicationViews = () => {
 
+    const loggedInUserId = sessionStorage.getItem("Lost_River_User")
+
     return (
         <>
             <Route exact path="/">

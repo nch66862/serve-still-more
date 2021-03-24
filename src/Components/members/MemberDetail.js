@@ -20,7 +20,6 @@ export const MemberDetail = ({ member, setOpenDetail, setOpenEditMember, calling
         memberDetailSectionClass = "modal--parent"
     }
 
-    console.log(member)
     return (
         <>
             { Object.keys(member).length !== 0 ? <main className={memberDetailMainClass}>
