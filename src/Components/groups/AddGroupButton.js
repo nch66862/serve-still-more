@@ -23,5 +23,5 @@ export const AddGroupButton = () => {
         addGroup(newGroup)
     }
 
-    return <button className="btn addGroupButton" onClick={addAnotherGroup}>+ Group</button>
+    return <button className="btn addGroupButton" onClick={addAnotherGroup}> + Group </button>
 }
