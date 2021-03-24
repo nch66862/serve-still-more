@@ -47,7 +47,9 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
     const handleUpdateMember = (event) => {
         event.preventDefault()
         setIsLoading(true)
-        setMemberToCall(updatedMemberObj)
+        if (!callingMember) {
+            setMemberToCall(updatedMemberObj)
+        }
         updateMember(updatedMemberObj)
             .then(() => {
                 setOpenEditMember(false)
@@ -70,7 +72,9 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
         setIsLoading(true)
         deleteMember(updatedMemberObj.id)
             .then(() => {
-                setMemberToCall({})
+                if (callingMember) {
+                    setMemberToCall({})
+                }
                 setOpenEditMember(false)
             })
     }
