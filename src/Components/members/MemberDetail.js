@@ -35,7 +35,7 @@ export const MemberDetail = ({ member, setOpenDetail, setOpenEditMember, calling
                     {callingMember ? "" : <button onClick={handleClose}>close</button>}
                     {callingMember ? "" : <button onClick={handleEdit}>edit</button>}
                 </section>
-            </main> : ""}
+            </main> : "" }
         </>
     )
 }

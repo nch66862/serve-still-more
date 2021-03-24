@@ -10,17 +10,17 @@ import { MemberCallList } from "./MemberCallList"
 
 export const DeaconDashboard = () => {
 
-    const { memberToCall } = useContext(MemberContext)
+    const { memberToCall, setMemberToCall } = useContext(MemberContext)
     const [openEditMember, setOpenEditMember] = useState(false)
 
     return (
         <main className="elderDashboard">
-            <MemberCallList />
+            <MemberCallList memberToCall={memberToCall} />
             <section className="leftContent">
                 <MemberDetail member={memberToCall} callingMember={true} setOpenEditMember={setOpenEditMember} />
                 <CallForm member={memberToCall} />
                 <History member={memberToCall} />
-                {openEditMember && <EditMember setOpenEditMember={setOpenEditMember} member={memberToCall} callingMember={true} />}
+                {openEditMember && <EditMember setOpenEditMember={setOpenEditMember} member={memberToCall} callingMember={true} setMemberToCall={setMemberToCall} />}
             </section>
             <section className="rightContent">
                 <News />

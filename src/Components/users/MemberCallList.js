@@ -5,7 +5,7 @@ import { RoleContext } from "../roles/RoleProvider"
 import { HistoryContext } from "../history/HistoryProvider"
 import { MemberInList } from "../members/MemberInList"
 
-export const MemberCallList = () => {
+export const MemberCallList = ({ memberToCall }) => {
     const { users, getUsers } = useContext(UserContext)
     const { members, getMembers } = useContext(MemberContext)
     const { roles, getRoles } = useContext(RoleContext)

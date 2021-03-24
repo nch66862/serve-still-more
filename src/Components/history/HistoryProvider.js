@@ -8,7 +8,7 @@ export const HistoryProvider = (props) => {
     const [history, setHistory] = useState([])
 
     const getHistory = () => {
-        return fetch("http://localhost:8088/history")
+        return fetch("http://localhost:8088/history?_expand=user")
             .then(res => res.json())
             .then(setHistory)
     }

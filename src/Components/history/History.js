@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect } from "react"
 import { HistoryContext } from "./HistoryProvider"
 import './History.css'
 
@@ -22,9 +22,12 @@ export const History = ({ member }) => {
         <section className="historyList">
             {sortedHistory.map(history => {
                 return (
-                    <article className="historyCard" key={history.id}>
-                        <label>{history.note}</label>
-                    </article>
+                    <section key={history.id}>
+                        <label>{history.date.toLocaleDateString('en-US', { timeZone: "CST" })} - {history.user.firstName} {history.user.lastName}</label>
+                        <article className="historyCard" >
+                            <label>{history.note}</label>
+                        </article>
+                    </section>
                 )
             })}
         </section>

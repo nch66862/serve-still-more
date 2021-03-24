@@ -41,9 +41,8 @@ export const News = ({ setOpenForm }) => {
 
     return (
         <aside className="newsAside">
-            <h3>News and Notes</h3>
-            <h6>Week of</h6>
-            <button onClick={handleEditButton}>edit</button>
+            <h3>Group {loggedInUser.groupId} News and Notes</h3>
+            {loggedInUser.roleId === 1 ? <button onClick={handleEditButton}> + New </button> : "" }
             <section>
                 <label htmlFor="deaconNews"> To the Deacons </label>
                 <article className="newsArticle">{latestGroupNewsPost?.deaconNews}</article>
