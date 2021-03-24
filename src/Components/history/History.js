@@ -23,7 +23,7 @@ export const History = ({ member }) => {
             {sortedHistory.map(history => {
                 return (
                     <section key={history.id}>
-                        <label>{history.date.toLocaleDateString('en-US', { timeZone: "CST" })}</label>
+                        <label>{history.date.toLocaleDateString('en-US', { timeZone: "CST" })} - {history.user.firstName} {history.user.lastName}</label>
                         <article className="historyCard" >
                             <label>{history.note}</label>
                         </article>
