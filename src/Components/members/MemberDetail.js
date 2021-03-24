@@ -17,10 +17,9 @@ export const MemberDetail = ({ member, setOpenDetail, setOpenEditMember, calling
     }
     let memberDetailSectionClass = ""
     if (!callingMember) {
-        memberDetailSectionClass = "modal--parent"
+        memberDetailSectionClass = "modal--content"
     }
 
-    console.log(member)
     return (
         <>
             { Object.keys(member).length !== 0 ? <main className={memberDetailMainClass}>

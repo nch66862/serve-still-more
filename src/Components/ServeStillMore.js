@@ -8,6 +8,7 @@ import { NavBar } from "./nav/NavBar";
 import { Footer } from "./footer/Footer";
 import { RoleProvider } from "./roles/RoleProvider";
 import "./ServeStillMore.css";
+import { UserProvider } from "./users/UserProvider";
 
 export const ServeStillMore = () => (
     <>
@@ -16,8 +17,14 @@ export const ServeStillMore = () => (
                 if (sessionStorage.getItem("Lost_River_User")) {
                     return (
                         <>
-                            <NavBar />
-                            <ApplicationViews />
+                            <body className="mainBody">
+                                <NavBar />
+                                <RoleProvider>
+                                    <UserProvider>
+                                        <ApplicationViews />
+                                    </UserProvider>
+                                </RoleProvider>
+                            </body>
                             <Footer />
                         </>
                     );
