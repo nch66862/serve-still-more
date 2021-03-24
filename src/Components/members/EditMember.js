@@ -70,6 +70,7 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
         setIsLoading(true)
         deleteMember(updatedMemberObj.id)
             .then(() => {
+                setMemberToCall({})
                 setOpenEditMember(false)
             })
     }
