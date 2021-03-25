@@ -1,7 +1,7 @@
 .footerCustom {
     background-color: rgb(2, 61, 110);
     height: 30px;
-    position: absolute;
+    position: sticky;
     bottom: 0;
     width: 100%;
 }

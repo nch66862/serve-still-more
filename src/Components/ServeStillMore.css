@@ -50,6 +50,5 @@ address {
 .mainBody {
     position: relative;
     height: 100%;
-    padding-bottom: 30px;
     overflow: auto;
 }
