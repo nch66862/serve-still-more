@@ -4,8 +4,8 @@ import { UserContext } from "./UserProvider"
 import { RoleContext } from "../roles/RoleProvider"
 import { HistoryContext } from "../history/HistoryProvider"
 import { MemberInList } from "../members/MemberInList"
-
-export const MemberCallList = ({ memberToCall }) => {
+//component that handles filtering and equally distributing the members and the deacons in a single group
+export const MemberCallList = () => {
     const { users, getUsers } = useContext(UserContext)
     const { members, getMembers } = useContext(MemberContext)
     const { roles, getRoles } = useContext(RoleContext)
