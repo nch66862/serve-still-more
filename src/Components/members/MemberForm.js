@@ -33,7 +33,7 @@ export const MemberForm = () => {
     })
     //state variable that controls the display state of an informational dialog box
     const [conflictDialog, setConflictDialog] = useState(false)
-
+    //function that updates the main state variables when changes occur in the form
     const handleInputChange = (event) => {
         const newMember = { ...registerMember }
         if (event.target.id.includes("Id")) {
@@ -43,12 +43,12 @@ export const MemberForm = () => {
         }
         setRegisterMember(newMember)
     }
-
+    //checks to see if there is an object with an email address already in the database that matches the address typed in the box
     const existingMemberEmailCheck = () => {
         return fetch(`http://localhost:8088/members/?email=${registerMember.email}`)
             .then(res => res.json())
     }
-
+    //checks for an already existing email address or no email address and goes to the next page. If there is an existing email address, an error dialog box is displayed
     const nextPage = (event) => {
         event.preventDefault()
         existingMemberEmailCheck()
@@ -60,18 +60,18 @@ export const MemberForm = () => {
                     setConflictDialog(true)
                 }
             })
-    }
-
+    }  
+    //adds the new member to the database and redirects the user back to their dashboard
     const handleRegisterMember = (event) => {
         event.preventDefault()
         addMember(registerMember)
             .then(() => history.push("/"))
     }
-
+    //gets the data for the dropdown in the form
     useEffect(() => {
         getGroups()
     }, [])
-
+    //two page form with a ternary to decide which part of the form to render.
     return (
         currentPage === "first" ? <main style={{ textAlign: "center" }}>
             <dialog className="dialog dialog--password" open={conflictDialog}>
