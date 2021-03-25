@@ -20,6 +20,7 @@ export const MemberCallList = () => {
     if (users.length && members.length && roles.length) {
         const loggedInUserObj = users.find(user => user.id === loggedInUserId)
         const groupMembers = members.filter(member => member.groupId === loggedInUserObj.groupId)
+        // eslint-disable-next-line
         const membersThatHaveNotBeenCalled = groupMembers.filter(member => {
             const historyForThisMember = history.filter(history => history.memberId === member.id)
             const sortedHistoryByDate = historyForThisMember.slice().sort((a, b) => {
@@ -43,6 +44,7 @@ export const MemberCallList = () => {
         const groupDeacons = groupUsers.filter(user => user.roleId === matchingRole.id)
         const membersPerDeacon = Math.ceil(membersThatHaveNotBeenCalled.length / groupDeacons.length)
         let newCallList = []
+        // eslint-disable-next-line
         membersThatUserDidNotCallLast.map(member => {
             if (newCallList.length < membersPerDeacon) {
                 newCallList.push(member)
