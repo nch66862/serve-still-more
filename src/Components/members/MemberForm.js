@@ -4,13 +4,18 @@ import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { states } from "../Settings"
 import { GroupContext } from "../groups/GroupProvider";
-
+//displays a form to create a new member
 export const MemberForm = () => {
+    //the contexts expose the data to use from the provider
     const { addMember } = useContext(MemberContext)
     const { groups, getGroups } = useContext(GroupContext)
+    //useHistory keeps a stack of visited URLs
     const history = useHistory()
+    //initializes a variables that increments through whenever the state dropdown is built on the form
     let stateCounter = 0
+    //initializes the state varible to keep track of which page of the form the user is on
     const [currentPage, setCurrentPage] = useState("first")
+    //the main state variable that keeps track of all the data for a member object
     const [registerMember, setRegisterMember] = useState({
         firstName: "",
         lastName: "",
@@ -26,9 +31,8 @@ export const MemberForm = () => {
         familyId: 0,
         primaryMember: false
     })
-
+    //state variable that controls the display state of an informational dialog box
     const [conflictDialog, setConflictDialog] = useState(false)
-    const [memberCreatedDialog, setMemberCreatedDialog] = useState(false)
 
     const handleInputChange = (event) => {
         const newMember = { ...registerMember }
@@ -94,10 +98,6 @@ export const MemberForm = () => {
                 </fieldset>
             </form>
         </main> : <main style={{ textAlign: "center" }}>
-            <dialog className="dialog dialog--memberCreated" open={memberCreatedDialog}>
-                <div>new member has been saved</div>
-                <button className="button--close" onClick={e => setMemberCreatedDialog(false)}>Close</button>
-            </dialog>
             <h1>Lost River Call Center</h1>
             <h3>A Little More Information Is Needed</h3>
             <form className="form--login" onSubmit={handleRegisterMember}>

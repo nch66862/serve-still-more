@@ -87,17 +87,18 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
                     })
             })
     }, [])
-
+    //returns the edit member form
     return (
         <main className="modal--parent" style={{ textAlign: "center" }}>
             <section className="modal--content">
+                {/* a pop up dialog box */}
                 <dialog className="dialog dialog--password" open={conflictDialog}>
                     <div>Member with that email address already exists</div>
                     <button className="button--close" onClick={e => setConflictDialog(false)}>Close</button>
                 </dialog>
                 <h1>Lost River Call Center</h1>
                 <form className="form--login" onSubmit={handleUpdateMember}>
-                    <h1 className="h3 mb-3 font-weight-normal">Edit Member</h1>
+                    <h2 className="h3 mb-3 font-weight-normal">Edit Member</h2>
                     <fieldset>
                         <label htmlFor="firstName"> First Name </label>
                         <input onChange={handleInputChange} type="text" name="firstName" className="form-control" placeholder="first name" value={updatedMemberObj.firstName} id="firstName" required />
@@ -150,5 +151,4 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
             </section>
         </main>
     )
-
 }
