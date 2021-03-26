@@ -41,7 +41,7 @@ export const MemberCallList = () => {
         </section>
     )
 }
-
+//handles getting all group members and calculates how many and which ones a logged in user should call
 const calculateMembersToCall = (users, members, roles, history, setMembersToCall) => {
     //initializes a current date object
     const todaysDate = new Date()
