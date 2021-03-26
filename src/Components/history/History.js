@@ -24,7 +24,7 @@ export const History = ({ member }) => {
         <>
             {Object.keys(member).length !== 0 && <section className="historyList">
                 <h3>Conversation History</h3>
-                {sortedHistory.map(history => {
+                {sortedHistory.length ? sortedHistory.map(history => {
                     return (
                         <section key={history.id}>
                             <label>{history?.date.toLocaleDateString('en-US', { timeZone: "CST" })} - {history.user.firstName} {history.user.lastName}</label>
@@ -33,7 +33,7 @@ export const History = ({ member }) => {
                             </article>
                         </section>
                     )
-                })}
+                }) : <p>no call history</p>}
             </section>}
         </>
     )
