@@ -11,14 +11,42 @@ export const MemberCallList = () => {
     const { members, getMembers } = useContext(MemberContext)
     const { roles, getRoles } = useContext(RoleContext)
     const { history, getHistory } = useContext(HistoryContext)
+    //specifies the state variable that contains an array of people to call that week
+    const [membersToCall, setMembersToCall] = useState([])
+    //get the data for all the calculations
+    useEffect(() => {
+        getUsers()
+            .then(getMembers)
+            .then(getRoles)
+            .then(getHistory)
+    }, [])
+    //updates what is seen in the call list when the history is submitted and  when a member is edited
+    useEffect(() => {
+        calculateMembersToCall(users, members, roles, history, setMembersToCall)
+    }, [history, members])
+    console.log("members to call", membersToCall)
+    //returns to be rendered if there is data in the state variable
+    return (
+        <section>
+            <h2>To Call This Week</h2>
+            {membersToCall.length > 0 && membersToCall.map(member => {
+                return <MemberInList key={member.id} member={member} />
+            })}
+        </section>
+    )
+}
+{/* <h2>All Group Members</h2>
+{groupMembers.length > 0 && groupMembers.map(member => {
+    return <MemberInList key={member.id} member={member} />
+})} */}
+
+const calculateMembersToCall = (users, members, roles, history, setMembersToCall) => {
     //initializes a current date object
     const todaysDate = new Date()
     //returns the day of the week as a number [0-6] for each day of the week. starting with Sunday.
     const dayOfTheWeek = todaysDate.getDay()
     //finds a number, in milliseconds from 1970, of the past sunday at the current time
     const timeAtBeginningOfWeek = todaysDate.getTime() - dayOfTheWeek * 86400000
-    //specifies the state variable that contains an array of people to call that week
-    const [membersToCall, setMembersToCall] = useState([])
     //specifies an empty array to store members that need to be called and were not last called by the currently logged in user
     let membersThatUserDidNotCallLast = []
     //gets the userId from the session storage
@@ -69,28 +97,7 @@ export const MemberCallList = () => {
             }
         })
         //set the state variable of the array that is to be rendered to the DOM if it is less than the amount of people they are to call that week.
-        if (membersToCall.length < membersPerDeacon) {
-            setMembersToCall(newCallList)
-        }
+        setMembersToCall(newCallList)
     }
-    //get the data for all the calculations
-    useEffect(() => {
-        getUsers()
-            .then(getMembers)
-            .then(getRoles)
-            .then(getHistory)
-    }, [])
-    //returns to be rendered if there is data in the state variable
-    return (
-        <section>
-            <h2>To Call This Week</h2>
-            {membersToCall.length > 0 && membersToCall.map(member => {
-                return <MemberInList key={member.id} member={member} />
-            })}
-            <h2>All Group Members</h2>
-            {groupMembers.length > 0 && groupMembers.map(member => {
-                return <MemberInList key={member.id} member={member} />
-            })}
-        </section>
-    )
+    return groupMembers
 }
