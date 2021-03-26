@@ -1,24 +1,22 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { HistoryContext } from "./HistoryProvider"
 import './History.css'
 //component that displays the call history for a certain user
 export const History = ({ member }) => {
     //allows access to functions and data in the history provider
     const { getHistory, history } = useContext(HistoryContext)
-    //finds the call logs that match the currently selected member to call
-    const historyForMember = history.filter(history => history.memberId === member?.id)
-    //sorts the call logs by date posted
-    const sortedHistory = historyForMember.slice().sort((a, b) => {
-        const aDate = new Date(a.date)
-        const bDate = new Date(b.date)
-        a.date = aDate
-        b.date = bDate
-        return b.date - a.date
-    })
+    //the variable that is to be rendered on the DOM
+    const [sortedHistory, setSortedHistory] = useState([])
     //does the fetch call to get the history log for all users
     useEffect(() => {
         getHistory()
     }, [])
+    //updates what is on the page when the history changes
+    useEffect(() => {
+        const newSortedHistory = sortedHistoryFunc(history, member)
+        setSortedHistory(newSortedHistory)
+    }, [history, member])
+    console.log(sortedHistory)
     //maps through the sorted history and builds out the date and who called them and the notes that were made
     return (
         <>
@@ -37,4 +35,18 @@ export const History = ({ member }) => {
             </section>}
         </>
     )
+}
+
+//sorts the call logs by date posted
+const sortedHistoryFunc = (history, member) => {
+    //finds the call logs that match the currently selected member to call
+    const historyForMember = history.filter(history => history.memberId === member?.id)
+    const sortedHistory = historyForMember.slice().sort((a, b) => {
+        const aDate = new Date(a.date)
+        const bDate = new Date(b.date)
+        a.date = aDate
+        b.date = bDate
+        return b.date - a.date
+    })
+    return sortedHistory
 }
