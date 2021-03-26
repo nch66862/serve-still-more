@@ -13,6 +13,8 @@ export const MemberCallList = () => {
     const { history, getHistory } = useContext(HistoryContext)
     //specifies the state variable that contains an array of people to call that week
     const [membersToCall, setMembersToCall] = useState([])
+    //specifies the state variable that contains an array of people to call that week
+    const [groupMembers, setGroupMembers] = useState([])
     //get the data for all the calculations
     useEffect(() => {
         getUsers()
@@ -22,9 +24,9 @@ export const MemberCallList = () => {
     }, [])
     //updates what is seen in the call list when the history is submitted and  when a member is edited
     useEffect(() => {
-        calculateMembersToCall(users, members, roles, history, setMembersToCall)
+        const newGroupMembers = calculateMembersToCall(users, members, roles, history, setMembersToCall)
+        setGroupMembers(newGroupMembers)
     }, [history, members])
-    console.log("members to call", membersToCall)
     //returns to be rendered if there is data in the state variable
     return (
         <section>
@@ -32,13 +34,13 @@ export const MemberCallList = () => {
             {membersToCall.length > 0 && membersToCall.map(member => {
                 return <MemberInList key={member.id} member={member} />
             })}
+            <h2>All Group Members</h2>
+            {groupMembers.length > 0 && groupMembers.map(member => {
+                return <MemberInList key={member.id} member={member} />
+            })}
         </section>
     )
 }
-{/* <h2>All Group Members</h2>
-{groupMembers.length > 0 && groupMembers.map(member => {
-    return <MemberInList key={member.id} member={member} />
-})} */}
 
 const calculateMembersToCall = (users, members, roles, history, setMembersToCall) => {
     //initializes a current date object
