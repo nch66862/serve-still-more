@@ -4,11 +4,14 @@ import React, { useState } from "react"
 import { states } from "../Settings"
 import { GroupContext } from "../groups/GroupProvider";
 import './EditMember.css'
-
+//component that pulls all of the data for a member into editable fields and allows the user to edit the data and submit the edit to the API
 export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMember, setMemberToCall }) => {
+    //context specifies what data you want access to from the providers
     const { updateMember, getMemberById, deleteMember } = useContext(MemberContext)
     const { groups, getGroups } = useContext(GroupContext)
+    //initializes a variable to loop through and populate all of the states in the state dropdown
     let stateCounter = 0
+    //the main state object that holds the data for the member you are editing
     const [updatedMemberObj, setUpdatedMemberObj] = useState({
         firstName: "",
         lastName: "",
@@ -24,10 +27,11 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
         familyId: 0,
         primaryMember: false
     })
-
+    //controls the visibility of the dialog box when it has error messages
     const [conflictDialog, setConflictDialog] = useState(false)
+    //controls if the submit edit button is enabled or disabled when waiting for data so code does not run multiple times
     const [isLoading, setIsLoading] = useState(true);
-
+    //updates the data on the state variable when a change occurs in the form
     const handleInputChange = (event) => {
         const newMember = { ...updatedMemberObj }
         if (event.target.id.includes("Id")) {
@@ -37,7 +41,7 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
         }
         setUpdatedMemberObj(newMember)
     }
-
+    //controls the state of the submit button, opens the detail modal when logged in as an elder, closes the edit member component, sets the new member object when the deacon is viewing the call screen
     const handleUpdateMember = (event) => {
         event.preventDefault()
         setIsLoading(true)
@@ -52,7 +56,7 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
                 }
             })
     }
-
+    //closes the edit member component when cancel is clicked. Will open the detail component when logged in as an elder
     const handleCancel = (event) => {
         event.preventDefault()
         setOpenEditMember(false)
@@ -60,7 +64,7 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
             setOpenDetail(true)
         }
     }
-
+    //disables the button on the form, deletes the member you are editing from the API, sets the calling member to an empty object if you are looking at the deacon dashboard, and closes the edit member component
     const handleDelete = (event) => {
         event.preventDefault()
         setIsLoading(true)
@@ -72,7 +76,7 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
                 setOpenEditMember(false)
             })
     }
-
+    //gets the data, sets the state variable for the form, and updates the disabled state of the button.
     useEffect(() => {
         getGroups()
             .then(() => {
@@ -83,17 +87,18 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
                     })
             })
     }, [])
-
+    //returns the edit member form
     return (
         <main className="modal--parent" style={{ textAlign: "center" }}>
             <section className="modal--content">
+                {/* a pop up dialog box */}
                 <dialog className="dialog dialog--password" open={conflictDialog}>
                     <div>Member with that email address already exists</div>
                     <button className="button--close" onClick={e => setConflictDialog(false)}>Close</button>
                 </dialog>
                 <h1>Lost River Call Center</h1>
                 <form className="form--login" onSubmit={handleUpdateMember}>
-                    <h1 className="h3 mb-3 font-weight-normal">Edit Member</h1>
+                    <h2 className="h3 mb-3 font-weight-normal">Edit Member</h2>
                     <fieldset>
                         <label htmlFor="firstName"> First Name </label>
                         <input onChange={handleInputChange} type="text" name="firstName" className="form-control" placeholder="first name" value={updatedMemberObj.firstName} id="firstName" required />
@@ -138,7 +143,7 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
                         </select>
                     </fieldset>
                     <fieldset>
-                        <button onClick={handleDelete}> Delete Member </button>
+                        <button disabled={isLoading} onClick={handleDelete}> Delete Member </button>
                         <button onClick={handleCancel}> Cancel </button>
                         <button disabled={isLoading} type="submit"> Submit Edit </button>
                     </fieldset>
@@ -146,5 +151,4 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
             </section>
         </main>
     )
-
 }

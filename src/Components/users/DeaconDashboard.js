@@ -7,12 +7,12 @@ import { MemberContext } from "../members/MemberProvider"
 import { News } from "../news/News"
 import './DeaconDashboard.css'
 import { MemberCallList } from "./MemberCallList"
-
+//component that shows all of the deacon specific components for a deacon
 export const DeaconDashboard = () => {
-
+    //context exposes what data needed from the provider (specifically the state variable that will show one member to call at a time)
     const { memberToCall, setMemberToCall } = useContext(MemberContext)
+    //state variable to toggle rendering of the edit member component
     const [openEditMember, setOpenEditMember] = useState(false)
-
     return (
         <main className="elderDashboard">
             <MemberCallList memberToCall={memberToCall} />

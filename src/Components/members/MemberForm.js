@@ -4,13 +4,18 @@ import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { states } from "../Settings"
 import { GroupContext } from "../groups/GroupProvider";
-
+//displays a form to create a new member
 export const MemberForm = () => {
+    //the contexts expose the data to use from the provider
     const { addMember } = useContext(MemberContext)
     const { groups, getGroups } = useContext(GroupContext)
+    //useHistory keeps a stack of visited URLs
     const history = useHistory()
+    //initializes a variables that increments through whenever the state dropdown is built on the form
     let stateCounter = 0
+    //initializes the state varible to keep track of which page of the form the user is on
     const [currentPage, setCurrentPage] = useState("first")
+    //the main state variable that keeps track of all the data for a member object
     const [registerMember, setRegisterMember] = useState({
         firstName: "",
         lastName: "",
@@ -26,10 +31,9 @@ export const MemberForm = () => {
         familyId: 0,
         primaryMember: false
     })
-
+    //state variable that controls the display state of an informational dialog box
     const [conflictDialog, setConflictDialog] = useState(false)
-    const [memberCreatedDialog, setMemberCreatedDialog] = useState(false)
-
+    //function that updates the main state variables when changes occur in the form
     const handleInputChange = (event) => {
         const newMember = { ...registerMember }
         if (event.target.id.includes("Id")) {
@@ -39,12 +43,12 @@ export const MemberForm = () => {
         }
         setRegisterMember(newMember)
     }
-
+    //checks to see if there is an object with an email address already in the database that matches the address typed in the box
     const existingMemberEmailCheck = () => {
         return fetch(`http://localhost:8088/members/?email=${registerMember.email}`)
             .then(res => res.json())
     }
-
+    //checks for an already existing email address or no email address and goes to the next page. If there is an existing email address, an error dialog box is displayed
     const nextPage = (event) => {
         event.preventDefault()
         existingMemberEmailCheck()
@@ -56,18 +60,18 @@ export const MemberForm = () => {
                     setConflictDialog(true)
                 }
             })
-    }
-
+    }  
+    //adds the new member to the database and redirects the user back to their dashboard
     const handleRegisterMember = (event) => {
         event.preventDefault()
         addMember(registerMember)
             .then(() => history.push("/"))
     }
-
+    //gets the data for the dropdown in the form
     useEffect(() => {
         getGroups()
     }, [])
-
+    //two page form with a ternary to decide which part of the form to render.
     return (
         currentPage === "first" ? <main style={{ textAlign: "center" }}>
             <dialog className="dialog dialog--password" open={conflictDialog}>
@@ -94,10 +98,6 @@ export const MemberForm = () => {
                 </fieldset>
             </form>
         </main> : <main style={{ textAlign: "center" }}>
-            <dialog className="dialog dialog--memberCreated" open={memberCreatedDialog}>
-                <div>new member has been saved</div>
-                <button className="button--close" onClick={e => setMemberCreatedDialog(false)}>Close</button>
-            </dialog>
             <h1>Lost River Call Center</h1>
             <h3>A Little More Information Is Needed</h3>
             <form className="form--login" onSubmit={handleRegisterMember}>
@@ -139,5 +139,4 @@ export const MemberForm = () => {
             </form>
         </main>
     )
-
 }

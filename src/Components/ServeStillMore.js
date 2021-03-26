@@ -9,7 +9,7 @@ import { Footer } from "./footer/Footer";
 import { RoleProvider } from "./roles/RoleProvider";
 import "./ServeStillMore.css";
 import { UserProvider } from "./users/UserProvider";
-
+//the application component. will handle routing to the application views if the user is logged in, or the login page if a user is not logged in
 export const ServeStillMore = () => (
     <>
         <Route
@@ -33,7 +33,6 @@ export const ServeStillMore = () => (
                 }
             }}
         />
-
         <Route path="/login">
             <Login />
         </Route>

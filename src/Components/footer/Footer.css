@@ -1,11 +1,7 @@
 .footerCustom {
-    display: flex;
-    justify-content: space-between;
     background-color: rgb(2, 61, 110);
-    position: relative;
     height: 30px;
+    position: sticky;
     bottom: 0;
     width: 100%;
-    margin-top: -30px;
-    clear: both;
 }
