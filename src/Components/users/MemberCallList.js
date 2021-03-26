@@ -23,12 +23,14 @@ export const MemberCallList = () => {
     let membersThatUserDidNotCallLast = []
     //gets the userId from the session storage
     const loggedInUserId = parseInt(sessionStorage.getItem("Lost_River_User"))
+    //All members in the users group
+    let groupMembers = []
     //waits until all of the provider state variables have data before doing the math
     if (users.length && members.length && roles.length) {
         //finds the logged in user object
         const loggedInUserObj = users.find(user => user.id === loggedInUserId)
         //gets all of the members in the logged in users group
-        const groupMembers = members.filter(member => member.groupId === loggedInUserObj.groupId)
+        groupMembers = members.filter(member => member.groupId === loggedInUserObj.groupId)
         //the next line disables a warning. the line is filtering the members to see if a specific member has already been called since this past sunday and returns it.
         // eslint-disable-next-line
         const membersThatHaveNotBeenCalled = groupMembers.filter(member => {
@@ -81,8 +83,12 @@ export const MemberCallList = () => {
     //returns to be rendered if there is data in the state variable
     return (
         <section>
-            <h2>This Week</h2>
+            <h2>To Call This Week</h2>
             {membersToCall.length > 0 && membersToCall.map(member => {
+                return <MemberInList key={member.id} member={member} />
+            })}
+            <h2>All Group Members</h2>
+            {groupMembers.length > 0 && groupMembers.map(member => {
                 return <MemberInList key={member.id} member={member} />
             })}
         </section>
