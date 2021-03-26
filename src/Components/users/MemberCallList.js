@@ -31,9 +31,9 @@ export const MemberCallList = () => {
     return (
         <section>
             <h2>To Call This Week</h2>
-            {membersToCall.length > 0 && membersToCall.map(member => {
+            {membersToCall.length > 0 ? membersToCall.map(member => {
                 return <MemberInList key={member.id} member={member} />
-            })}
+            }): <p>Everyone Has Been Called!</p>}
             <h2>All Group Members</h2>
             {groupMembers.length > 0 && groupMembers.map(member => {
                 return <MemberInList key={member.id} member={member} />

@@ -16,7 +16,6 @@ export const History = ({ member }) => {
         const newSortedHistory = sortedHistoryFunc(history, member)
         setSortedHistory(newSortedHistory)
     }, [history, member])
-    console.log(sortedHistory)
     //maps through the sorted history and builds out the date and who called them and the notes that were made
     return (
         <>
@@ -36,7 +35,6 @@ export const History = ({ member }) => {
         </>
     )
 }
-
 //sorts the call logs by date posted
 const sortedHistoryFunc = (history, member) => {
     //finds the call logs that match the currently selected member to call
