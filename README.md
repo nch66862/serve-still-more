@@ -38,10 +38,10 @@
 <p>Everything was styled using vanilla CSS styling by dedicated CSS files and in-line styling.</p>
 
 ### Other Resources
-
-<a  href="https://dbdiagram.io/d/604ee756fcdcb6230b2421e4">Entity Relationship Diagram</a>
-
-<a  href="https://www.figma.com/file/ju6MucGZdlFyUSQf3v9XTw/Serve-Still-More?node-id=0%3A1">Wireframe on Figma</a>
+<ul>
+<li><a  href="https://dbdiagram.io/d/604ee756fcdcb6230b2421e4">Entity Relationship Diagram</a></li>
+<li><a  href="https://www.figma.com/file/ju6MucGZdlFyUSQf3v9XTw/Serve-Still-More?node-id=0%3A1">Wireframe on Figma</a></li>
+</ul>
 
 ### Challenges
 <p>When declaring a state variable and assigning its value as a subset of data from the database, I struggled with updating the DOM with the latest data. This was overcome by updating the data inside a function and placing the function call in a useEffect that ran whenever the data in the database changed. Ex: <a href="https://github.com/nch66862/serve-still-more/blob/main/src/Components/users/MemberCallList.js">Call List Component</a>, <a href="https://github.com/nch66862/serve-still-more/blob/main/src/Components/history/History.js">History Component</a></p>
