@@ -1,4 +1,7 @@
 <h1 align="center">Serve-Still-More</h1>
+
+<img src="./images/ServeStillMore.jpg" alt="serve still more">
+
 <p align="center">**This project is inspired by the people of Lost River Church**</p>
 
 <h2 align="center"><a  href=#>Live Demo</a></h2>
@@ -34,10 +37,28 @@
 ### CSS
 <p>Everything was styled using vanilla CSS styling by dedicated CSS files and in-line styling.</p>
 
+### Other Resources
+
+<a  href="https://dbdiagram.io/d/604ee756fcdcb6230b2421e4">Entity Relationship Diagram</a>
+
+<a  href="https://www.figma.com/file/ju6MucGZdlFyUSQf3v9XTw/Serve-Still-More?node-id=0%3A1">Wireframe on Figma</a>
+
 ### Challenges
 <p>When declaring a state variable and assigning its value as a subset of data from the database, I struggled with updating the DOM with the latest data. This was overcome by updating the data inside a function and placing the function call in a useEffect that ran whenever the data in the database changed. Ex: <a href="https://github.com/nch66862/serve-still-more/blob/main/src/Components/users/MemberCallList.js">Call List Component</a>, <a href="https://github.com/nch66862/serve-still-more/blob/main/src/Components/history/History.js">History Component</a></p>
 
 ## Project setup
+
+<p>For the Database:</p>
+
+```
+git clone git@github.com:nch66862/serve-still-more-api.git
+```
+<p>Open the file in a code editor. Rename db.json.example to be db.json then save.</p>
+<p>In the same directory, use this command in the terminal to start the JSON server:</p>
+
+```
+json-server -p 8088 -w db.json
+```
 
 <p>For the Site:</p>
 
@@ -47,30 +68,6 @@ npm install
 npm start
 ```
 
-For the Database:
-```
-git clone git@github.com:nch66862/serve-still-more-api.git
-```
-<p>Open the file in a code editor. Rename the file db.json by removing .example</p>
 
 ## Future scope
 
-Link to ERD:
-
-https://dbdiagram.io/d/604ee756fcdcb6230b2421e4
-
-Link to Wireframe:
-
-https://www.figma.com/file/ju6MucGZdlFyUSQf3v9XTw/Serve-Still-More?node-id=0%3A1
-
-Title (A Title Image too if possible…Edit them on canva.com if you are not a graphic designer.)
-
-Description(Describe by words and images alike)
-
-Demo(Images, Video links, Live Demo links)
-
-Technologies Used
-
-Special Gotchas of your projects (Problems you faced, unique elements of your project)
-
-Technical Description of your project like- Installation, Setup, How to contribute.
