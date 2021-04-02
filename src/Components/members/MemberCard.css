@@ -2,3 +2,7 @@
     margin: 0px 5px;
     color: rgb(25,160,251);
 }
+
+.personCard:hover {
+    cursor: pointer;
+}

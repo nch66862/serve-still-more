@@ -30,6 +30,10 @@
     max-height: 30px;
 }
 
+.btn:hover {
+    cursor: pointer;
+}
+
 .logoutButton {
     background-color: white;
     color: rgb(25,160,251);

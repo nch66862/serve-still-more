@@ -89,4 +89,9 @@ fieldset {
     transform: translate(-50%, -50%);
     max-height: calc(100vh - 210px);
     overflow-y: auto;
+    border-radius: 5px;
+}
+
+.newsFormHeader {
+    margin: 0;
 }
