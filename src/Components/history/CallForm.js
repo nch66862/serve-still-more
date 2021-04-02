@@ -43,9 +43,9 @@ export const CallForm = ({ member }) => {
     //displays the form if a member object is selected (it has any keys)
     return (
         <>
-            {Object.keys(member).length !== 0 ? <form className="form--login" onSubmit={handleSaveHistory}>
+            {Object.keys(member).length !== 0 ? <form className="form--history" onSubmit={handleSaveHistory}>
                 <fieldset>
-                    <label htmlFor="inputHistory"> Call Note </label>
+                    <label htmlFor="inputHistory"> Notes about the conversation </label>
                     <textarea type="textArea"
                         id="note"
                         className="form-control"
@@ -55,7 +55,7 @@ export const CallForm = ({ member }) => {
                         style={textBoxStyle}
                         onChange={handleInputChange} />
                 </fieldset>
-                <button disabled={!member} type="submit">Submit</button>
+                <button className="btn submitHistoryButton" disabled={!member} type="submit">Submit</button>
             </form>
             : "" }
         </>

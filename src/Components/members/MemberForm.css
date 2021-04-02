@@ -66,3 +66,9 @@ fieldset {
     min-height: 5rem;
 }
 
+.cancelButton {
+    background-color: white;
+    color: black;
+    text-decoration: underline;
+    border: none;
+}

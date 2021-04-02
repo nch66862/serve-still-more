@@ -96,22 +96,21 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
                     <div>Member with that email address already exists</div>
                     <button className="button--close" onClick={e => setConflictDialog(false)}>Close</button>
                 </dialog>
-                <h1>Lost River Call Center</h1>
                 <form className="form--login" onSubmit={handleUpdateMember}>
                     <h2 className="h3 mb-3 font-weight-normal">Edit Member</h2>
-                    <fieldset>
+                    <fieldset className="editMemberfieldset">
                         <label htmlFor="firstName"> First Name </label>
                         <input onChange={handleInputChange} type="text" name="firstName" className="form-control" placeholder="first name" value={updatedMemberObj.firstName} id="firstName" required />
                     </fieldset>
-                    <fieldset>
+                    <fieldset className="editMemberfieldset">
                         <label htmlFor="lastName"> Last Name </label>
                         <input onChange={handleInputChange} type="text" name="lastName" className="form-control" placeholder="last name" value={updatedMemberObj.lastName} id="lastName" required />
                     </fieldset>
-                    <fieldset>
+                    <fieldset className="editMemberfieldset">
                         <label htmlFor="inputEmail"> Email address </label>
                         <input onChange={handleInputChange} type="email" name="email" className="form-control" placeholder="email address" value={updatedMemberObj.email} id="email" />
                     </fieldset>
-                    <fieldset>
+                    <fieldset className="editMemberfieldset">
                         <label htmlFor="groupNumber"> Group Number </label>
                         <select onChange={handleInputChange} value={updatedMemberObj.groupId} name="groupId" id="groupId" className="form-control" required >
                             <option value="0">Select a Group</option>
@@ -120,19 +119,19 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
                             })}
                         </select>
                     </fieldset>
-                    <fieldset>
+                    <fieldset className="editMemberfieldset">
                         <label htmlFor="inputPhone"> Phone Number </label>
                         <input onChange={handleInputChange} value={updatedMemberObj.phone} id="phone" type="phone" name="phone" className="form-control" placeholder="(270) 555-2030" required />
                     </fieldset>
-                    <fieldset>
+                    <fieldset className="editMemberfieldset">
                         <label htmlFor="inputAddress"> Address </label>
                         <input onChange={handleInputChange} value={updatedMemberObj.address} id="address" type="address" name="address" className="form-control" placeholder="address" />
                     </fieldset>
-                    <fieldset>
+                    <fieldset className="editMemberfieldset">
                         <label htmlFor="inputCity"> City </label>
                         <input onChange={handleInputChange} value={updatedMemberObj.city} id="city" type="text" name="city" className="form-control" placeholder="city" />
                     </fieldset>
-                    <fieldset>
+                    <fieldset className="editMemberfieldset">
                         <label htmlFor="inputState"> State </label>
                         <select onChange={handleInputChange} value={updatedMemberObj.state} name="state" id="state" className="form-control" >
                             <option value="0">Select a State</option>
@@ -142,10 +141,12 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
                             })}
                         </select>
                     </fieldset>
-                    <fieldset>
-                        <button disabled={isLoading} onClick={handleDelete}> Delete Member </button>
-                        <button onClick={handleCancel}> Cancel </button>
-                        <button disabled={isLoading} type="submit"> Submit Edit </button>
+                    <fieldset className="editMemberFormButtons">
+                        <button className="deleteButton" disabled={isLoading} onClick={handleDelete}> Delete Member </button>
+                        <div>
+                            <button className="cancelButton" onClick={handleCancel}> Cancel </button>
+                            <button className="btn" disabled={isLoading} type="submit"> Submit Edit </button>
+                        </div>
                     </fieldset>
                 </form>
             </section>

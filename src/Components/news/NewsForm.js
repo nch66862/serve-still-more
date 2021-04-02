@@ -22,6 +22,11 @@ export const NewsForm = ({ setOpenForm }) => {
     const textBoxStyle = {
         height: '200px',
     }
+    //takes the user back to the dashboard screen if they do not want to update the news
+    const handleCancel = (event) => {
+        event.preventDefault()
+        setOpenForm(false)
+    }
     //saves the news object and closes the form component
     const handleSaveNews = (event) => {
         event.preventDefault()
@@ -33,8 +38,7 @@ export const NewsForm = ({ setOpenForm }) => {
         <main className="modal--parent">
             <section className="modal--content">
                 <form className="form--login" onSubmit={handleSaveNews}>
-                    <h1>Lost River Call Center</h1>
-                    <h2>News and Notes</h2>
+                    <h2 className="newsFormHeader">Update to News and Notes</h2>
                     <fieldset>
                         <label htmlFor="inputDeaconNews"> Message to the Deacons </label>
                         <textarea type="textArea"
@@ -57,9 +61,8 @@ export const NewsForm = ({ setOpenForm }) => {
                             onChange={handleInputChange} />
                     </fieldset>
                     <fieldset>
-                        <button type="submit">
-                            Submit
-                        </button>
+                        <button className="btn" type="submit">Submit</button>
+                        <button className="cancelButton" type="cancel" onClick={handleCancel}> Cancel </button>
                     </fieldset>
                 </form>
             </section>

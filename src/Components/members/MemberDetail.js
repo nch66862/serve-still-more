@@ -26,18 +26,29 @@ export const MemberDetail = ({ member, setOpenDetail, setOpenEditMember, calling
         <>
             { Object.keys(member).length !== 0 ? <main className={memberDetailMainClass}>
                 <section className={memberDetailSectionClass}>
-                    <h1>{member.firstName} {member.lastName}</h1>
-                    {callingMember ? <button onClick={handleEdit}>edit member</button> : ""}
-                    <h3>{member.phone}</h3>
-                    <h3>{member.email}</h3>
-                    <h3>{member.address}</h3>
-                    <h3>{member.city}, {member.state}</h3>
+                    <h2 className="memberDetailName">{member.firstName} {member.lastName}</h2>
+                    <div className="memberInformation">
+                        <div className="leftInformation">
+                            <label htmlFor="phoneNumber"> Phone </label>
+                            <p className="memberPhoneNumber">{member.phone}</p>
+                            <label htmlFor="email"> Email </label>
+                            <p className="memberEmail">{member.email !== "" ? member.email : "No email on record"}</p>
+                        </div>
+                        <div className="rightInformation">
+                            <label htmlFor="address"> Address </label>
+                            <div className="memberAddressBox">
+                                <p className="memberAddress">{member.address}</p>
+                                <p className="memberCityState">{member.city}, {member.state}</p>
+                            </div>
+                        </div>
+                    </div>
                     <label htmlFor="bestTimeToTalk"> Best Time to Talk </label>
-                    <h3>{member.callTime !== "" ? member.callTime : "no available time reported"}</h3>
-                    {callingMember ? "" : <button onClick={handleClose}>close</button>}
-                    {callingMember ? "" : <button onClick={handleEdit}>edit</button>}
+                    <p className="memberCallTime">{member.callTime !== "" ? member.callTime : "No available time reported"}</p>
+                    {callingMember && <button className="editMemberButton" onClick={handleEdit}>edit information</button>}
+                    {!callingMember && <button className="btn" onClick={handleClose}>close</button>}
+                    {!callingMember && <button className="btn" onClick={handleEdit}>edit info</button>}
                 </section>
-            </main> : "" }
+            </main> : ""}
         </>
     )
 }

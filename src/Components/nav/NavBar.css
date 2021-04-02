@@ -1,12 +1,7 @@
 .navBarCustom {
     display: flex;
     justify-content: space-between;
-    background-color: rgb(2,61,110);
-}
-
-.newMemberButton {
-    margin: 10px 10px 10px 0;
-    padding: 5px 5px 5px 5px;
+    background-color: whitesmoke;
 }
 
 .navLogo {
@@ -21,6 +16,36 @@
 }
 
 .siteTitle {
-    color: whitesmoke;
+    color: black;
     margin: 5px;
+}
+
+.btn {
+    background-color: rgb(25,160,251);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin: 10px 10px 10px 0;
+    padding: 5px 15px;
+    max-height: 30px;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.logoutButton {
+    background-color: white;
+    color: rgb(25,160,251);
+    border: solid 1px rgb(25,160,251);
+}
+
+.userNavTools {
+    display: flex;
+    align-items: center;
+}
+
+.navBarUserName {
+    color: rgb(25,160,251);
+    margin: 0 10px 0 0;   
 }

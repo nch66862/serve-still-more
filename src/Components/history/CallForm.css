@@ -1,3 +1,12 @@
-.form--login {
+.form--history {
     height: auto;
+    min-width: 45rem;
+    background-color: hsla(0,0%,100%,0.40);
+    display: flex;
+    flex-direction: column;
+}
+
+.submitHistoryButton {
+    align-self: flex-end;
+    margin: 5px 15px 5px 5px;
 }

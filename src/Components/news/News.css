@@ -2,9 +2,11 @@
     border: solid 1px rgb(206,212,217);
     border-radius: 5px;
     height: 400px;
+    padding: 5px;
 }
 
 .newsAside {
     min-width: 300px;
+    max-width: 400px;
     margin: 0 5px 5px 0;
 }

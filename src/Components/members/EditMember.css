@@ -90,3 +90,23 @@ fieldset {
     max-height: calc(100vh - 210px);
     overflow-y: auto;
 }
+
+.editMemberFormButtons {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.deleteButton {
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin: 10px 10px 10px 0;
+    padding: 5px 15px;
+    max-height: 30px;
+}
+
+.editMemberfieldset {
+    padding: 0 0 5px 0;
+}

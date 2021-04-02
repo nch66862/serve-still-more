@@ -40,7 +40,7 @@ export const Register = () => {
     //modifies the state variable when changes are made to the inputs on the form
     const handleInputChange = (event) => {
         const newUser = { ...registerUser }
-        if (event.target.id.includes("Id")){
+        if (event.target.id.includes("Id")) {
             newUser[event.target.id] = parseInt(event.target.value)
         } else {
             newUser[event.target.id] = event.target.value
@@ -86,10 +86,15 @@ export const Register = () => {
                 }
             })
     }
+    //takes the user back to the dashboard screen if they do not want to register a new member
+    const handleCancelRegister = (event) => {
+        event.preventDefault()
+        history.push("/Login")
+    }
     //gets data to populate the dropdowns in the form
     useEffect(() => {
         getRoles()
-        .then(getGroups)
+            .then(getGroups)
     }, [])
     //a form split up into two pages with a ternary. Could not do two different return statements with a conditional because it would kick me out of an input box when typing.
     return (
@@ -118,7 +123,8 @@ export const Register = () => {
                     <input onChange={handleInputChange} type="password" name="email" className="form-control" placeholder="create password" value={registerUser.password} id="password" autoComplete="new-password" required />
                 </fieldset>
                 <fieldset>
-                    <button type="submit"> Next </button>
+                    <button className="btn" type="submit"> Next </button>
+                    <button className="cancelButton" type="cancel" onClick={handleCancelRegister}> Cancel </button>
                 </fieldset>
             </form>
         </main> : <main style={{ textAlign: "center" }}>
@@ -167,7 +173,8 @@ export const Register = () => {
                     </select>
                 </fieldset>
                 <fieldset>
-                    <button type="submit"> Register </button>
+                    <button className="btn" type="submit"> Register </button>
+                    <button className="cancelButton" type="cancel" onClick={handleCancelRegister}> Cancel </button>
                 </fieldset>
             </form>
         </main>

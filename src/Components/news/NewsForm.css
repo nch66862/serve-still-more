@@ -89,4 +89,20 @@ fieldset {
     transform: translate(-50%, -50%);
     max-height: calc(100vh - 210px);
     overflow-y: auto;
+    border-radius: 5px;
+}
+
+.newsFormHeader {
+    margin: 0;
+}
+
+.cancelButton {
+    background-color: white;
+    color: black;
+    text-decoration: underline;
+    border: none;
+}
+
+.cancelButton:hover {
+    cursor: pointer;
 }
