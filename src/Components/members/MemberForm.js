@@ -68,7 +68,7 @@ export const MemberForm = () => {
         addMember(registerMember)
             .then(() => history.push("/"))
     }
-    //takes the user back to the login screen if they do not want to register
+    //takes the user back to the dashboard screen if they do not want to register a new member
     const handleCancelRegister = (event) => {
         event.preventDefault()
         history.push("/")
