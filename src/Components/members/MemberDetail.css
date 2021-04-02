@@ -58,6 +58,10 @@
     border: none;
 }
 
+.editMemberButton:hover {
+    cursor: pointer;
+}
+
 .memberCallTime {
     border: rgb(206,212,217) 1px solid;
     border-radius: 5px;

@@ -95,3 +95,14 @@ fieldset {
 .newsFormHeader {
     margin: 0;
 }
+
+.cancelButton {
+    background-color: white;
+    color: black;
+    text-decoration: underline;
+    border: none;
+}
+
+.cancelButton:hover {
+    cursor: pointer;
+}

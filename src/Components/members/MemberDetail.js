@@ -44,9 +44,9 @@ export const MemberDetail = ({ member, setOpenDetail, setOpenEditMember, calling
                     </div>
                     <label htmlFor="bestTimeToTalk"> Best Time to Talk </label>
                     <p className="memberCallTime">{member.callTime !== "" ? member.callTime : "No available time reported"}</p>
-                    {callingMember && <button className="editMemberButton" onClick={handleEdit}>edit member</button>}
-                    {callingMember ? "" : <button onClick={handleClose}>close</button>}
-                    {callingMember ? "" : <button onClick={handleEdit}>edit</button>}
+                    {callingMember && <button className="editMemberButton" onClick={handleEdit}>edit information</button>}
+                    {!callingMember && <button className="btn" onClick={handleClose}>close</button>}
+                    {!callingMember && <button className="btn" onClick={handleEdit}>edit info</button>}
                 </section>
             </main> : ""}
         </>
