@@ -82,7 +82,7 @@ npm start
 
 <p>There are a few features that would greatly enhance the usability of the site for the leaders of the church. My plans to improve this application are:</p>
 <ul>
-<li>Create Families. Currently if a husband, wife, and kids are all in the database they would all show up on the call list. Grouping the together as a family and identifying one of them as a primary contact would allow everyone to stay in the database but only the primary contact of the family to show up under the list of members to call.</li>
+<li>Create Families. Currently if a husband, wife, and kids are all in the database they would all show up on the call list. Grouping them together as a family and identifying one of them as a primary contact would allow everyone to stay in the database but only the primary contact of the family to show up under the list of members to call.</li>
 <li>Reorganize the database structure so that members are a part of the user table. The information is redundant and making this change would open the door for a personalized page for members in the future.</li>
 <li>Add photos to the each member account</li>
 <li>Mark somoene as a person who does not want to be called. Sometimes people request that they not be contacted. So implementing a toggle in the member settings would keep them from showing up in the call list.</li>
