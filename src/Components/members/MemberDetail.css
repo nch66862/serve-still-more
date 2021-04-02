@@ -22,3 +22,71 @@
     max-height: calc(100vh - 210px);
     overflow-y: auto;
 }
+
+.memberAddress {
+    margin: 5px;
+    color: black;
+}
+
+.memberCityState {
+    margin: 5px;
+    color: black;
+}
+
+.memberEmail {
+    margin: 2px 10px 5px 0;
+    color: black;
+    border: rgb(206,212,217) 1px solid;
+    border-radius: 5px;
+    padding: 5px 5px;
+}
+
+.memberPhoneNumber {
+    margin: 2px 10px 5px 0;
+    color: black;
+    border: rgb(206,212,217) 1px solid;
+    border-radius: 5px;
+    padding: 5px 5px;
+}
+
+.editMemberButton {
+    background-color: white;
+    margin: 0;
+    color: black;
+    text-decoration: underline;
+    padding: 0;
+    border: none;
+}
+
+.memberCallTime {
+    border: rgb(206,212,217) 1px solid;
+    border-radius: 5px;
+    color: black;
+    margin: 2px 15px 5px 0;
+    padding: 5px 5px;
+}
+
+.memberDetailName {
+    font-size: 36px;
+    margin: 10px 0;
+}
+
+.memberAddressBox {
+    border: rgb(206,212,217) 1px solid;
+    border-radius: 5px;
+    color: black;
+    margin: 2px 10px 5px 0;
+    padding: 5px 5px;
+    height: auto;
+}
+
+.memberInformation {
+    display: flex;
+}
+
+.leftInformation {
+    width: 30%;
+}
+.rightInformation {
+    width: 30%;
+}

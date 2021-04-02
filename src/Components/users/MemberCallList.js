@@ -4,6 +4,7 @@ import { UserContext } from "./UserProvider"
 import { RoleContext } from "../roles/RoleProvider"
 import { HistoryContext } from "../history/HistoryProvider"
 import { MemberInList } from "../members/MemberInList"
+import './MemberCallList.css'
 //component that handles filtering and equally distributing the members and the deacons in a single group
 export const MemberCallList = () => {
     //the contexts use object deconstruction to gain access to the keys that relate to the data in the respective providers
@@ -29,7 +30,7 @@ export const MemberCallList = () => {
     }, [history, members])
     //returns to be rendered if there is data in the state variable
     return (
-        <section>
+        <section className="callList">
             <h2>To Call This Week</h2>
             {membersToCall.length > 0 ? membersToCall.map(member => {
                 return <MemberInList key={member.id} member={member} />

@@ -1,7 +1,7 @@
 .navBarCustom {
     display: flex;
     justify-content: space-between;
-    background-color: rgb(2,61,110);
+    background-color: white;
 }
 
 .newMemberButton {
@@ -21,6 +21,13 @@
 }
 
 .siteTitle {
-    color: whitesmoke;
+    color: black;
     margin: 5px;
+}
+
+.btn {
+    background-color: rgb(25,160,251);
+    border: none;
+    border-radius: 5px;
+    color: white;
 }
