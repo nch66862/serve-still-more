@@ -118,7 +118,7 @@ export const Register = () => {
                     <input onChange={handleInputChange} type="password" name="email" className="form-control" placeholder="create password" value={registerUser.password} id="password" autoComplete="new-password" required />
                 </fieldset>
                 <fieldset>
-                    <button type="submit"> Next </button>
+                    <button className="btn" type="submit"> Next </button>
                 </fieldset>
             </form>
         </main> : <main style={{ textAlign: "center" }}>
@@ -167,7 +167,7 @@ export const Register = () => {
                     </select>
                 </fieldset>
                 <fieldset>
-                    <button type="submit"> Register </button>
+                    <button className="btn" type="submit"> Register </button>
                 </fieldset>
             </form>
         </main>

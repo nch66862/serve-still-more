@@ -18,12 +18,12 @@ export const ServeStillMore = () => (
                     return (
                         <>
                             <section className="mainBody">
-                                <NavBar />
-                                <RoleProvider>
-                                    <UserProvider>
+                                <UserProvider>
+                                    <NavBar />
+                                    <RoleProvider>
                                         <ApplicationViews />
-                                    </UserProvider>
-                                </RoleProvider>
+                                    </RoleProvider>
+                                </UserProvider>
                             </section>
                             <Footer />
                         </>

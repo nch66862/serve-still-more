@@ -4,6 +4,7 @@ import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { states } from "../Settings"
 import { GroupContext } from "../groups/GroupProvider";
+import './MemberForm.css'
 //displays a form to create a new member
 export const MemberForm = () => {
     //the contexts expose the data to use from the provider
@@ -67,6 +68,11 @@ export const MemberForm = () => {
         addMember(registerMember)
             .then(() => history.push("/"))
     }
+    //takes the user back to the login screen if they do not want to register
+    const handleCancelRegister = (event) => {
+        event.preventDefault()
+        history.push("/")
+    }
     //gets the data for the dropdown in the form
     useEffect(() => {
         getGroups()
@@ -94,7 +100,8 @@ export const MemberForm = () => {
                     <input onChange={handleInputChange} type="email" name="email" className="form-control" placeholder="email address" value={registerMember.email} id="email" />
                 </fieldset>
                 <fieldset>
-                    <button type="submit"> Next </button>
+                    <button className="btn" type="submit"> Next </button>
+                    <button className="cancelButton" type="cancel" onClick={handleCancelRegister}> Cancel </button>
                 </fieldset>
             </form>
         </main> : <main style={{ textAlign: "center" }}>
@@ -134,7 +141,8 @@ export const MemberForm = () => {
                     </select>
                 </fieldset>
                 <fieldset>
-                    <button type="submit"> Register </button>
+                    <button className="btn" type="submit"> Register </button>
+                    <button className="cancelButton" type="cancel" onClick={handleCancelRegister}> Cancel </button>
                 </fieldset>
             </form>
         </main>

@@ -49,11 +49,11 @@ export const Login = () => {
         <main className="container--login">
             <dialog className="dialog dialog--auth" open={existDialog}>
                 <div>an account with this email address does not exist</div>
-                <button className="button--close" onClick={e => setExistDialog(false)}>Close</button>
+                <button className="btn button--close" onClick={e => setExistDialog(false)}>Close</button>
             </dialog>
             <dialog className="dialog dialog--auth" open={passExistDialog}>
                 <div>incorrect password</div>
-                <button className="button--close" onClick={e => setPassExistDialog(false)}>Close</button>
+                <button className="btn button--close" onClick={e => setPassExistDialog(false)}>Close</button>
             </dialog>
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
@@ -82,9 +82,7 @@ export const Login = () => {
                             onChange={handleInputChange} />
                     </fieldset>
                     <fieldset>
-                        <button type="submit">
-                            Sign in
-                        </button>
+                        <button className="btn" type="submit">Sign in</button>
                     </fieldset>
                 </form>
             </section>
