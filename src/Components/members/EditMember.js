@@ -129,7 +129,7 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
                     </div>
                     <fieldset className="editMemberfieldset">
                         <label htmlFor="inputTimeToCall"> Best Time To Contact </label>
-                        <input onChange={handleInputChange} value={updatedMemberObj.callTime} id="callTime" type="text" name="callTime" className="form-control" placeholder="Weekdays after 5pm..." required />
+                        <input onChange={handleInputChange} value={updatedMemberObj.callTime} id="callTime" type="text" name="callTime" className="form-control" placeholder="enter a time..." />
                     </fieldset>
                     <fieldset className="editMemberfieldset">
                         <label htmlFor="inputAddress"> Address </label>
