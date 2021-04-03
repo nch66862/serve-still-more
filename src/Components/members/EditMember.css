@@ -109,4 +109,11 @@ fieldset {
 
 .editMemberfieldset {
     padding: 0 0 5px 0;
+    margin: 0 10px;
+    min-width: 47%;
+}
+
+.editMemberFormDiv {
+    display: flex;
+    justify-content: space-between;
 }
