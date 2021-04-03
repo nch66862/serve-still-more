@@ -14,9 +14,11 @@ export const DeleteGroupButton = ({ group }) => {
     //checks to see if there are any users or members in the group to display the delete button
     useEffect(() => {
         let matchCounter = 0
+        // eslint-disable-next-line
         members.map(member => {
             if (member.groupId === group.id) matchCounter++
         })
+        // eslint-disable-next-line
         users.map(user => {
             if (user.groupId === group.id) matchCounter++
         })
