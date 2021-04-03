@@ -3,7 +3,7 @@ import { GroupContext } from "./GroupProvider"
 import './DeleteGroupButton.css'
 import { MemberContext } from "../members/MemberProvider"
 import { UserContext } from "../users/UserProvider"
-//a component that is only a button. But the button decides which group to add next
+//a component that is only a button. But the button shows only when nobody is in the group and deletes that group if clicked on.
 export const DeleteGroupButton = ({ group }) => {
     //allows access to things in the group, user, and member providers
     const { deleteGroup } = useContext(GroupContext)
@@ -23,7 +23,7 @@ export const DeleteGroupButton = ({ group }) => {
         if (matchCounter === 0) setShowDelete(true)
         else setShowDelete(false)
     }, [members, users])
-    //the function that sets the name property of the object and makes the fetch call
+    //the function that deletes the group from the database
     const deleteThisGroup = () => {
         deleteGroup(group.id)
     }
