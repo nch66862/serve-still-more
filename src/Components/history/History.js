@@ -30,7 +30,7 @@ export const History = ({ member }) => {
                             </article>
                         </section>
                     )
-                }) : <p>no call history</p>}
+                }) : <p className="noCallHistoryMessage">No call history</p>}
             </section>}
         </>
     )
