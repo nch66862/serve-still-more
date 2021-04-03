@@ -98,49 +98,59 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
                 </dialog>
                 <form className="form--login" onSubmit={handleUpdateMember}>
                     <h2 className="h3 mb-3 font-weight-normal">Edit Member</h2>
-                    <fieldset className="editMemberfieldset">
-                        <label htmlFor="firstName"> First Name </label>
-                        <input onChange={handleInputChange} type="text" name="firstName" className="form-control" placeholder="first name" value={updatedMemberObj.firstName} id="firstName" required />
-                    </fieldset>
-                    <fieldset className="editMemberfieldset">
-                        <label htmlFor="lastName"> Last Name </label>
-                        <input onChange={handleInputChange} type="text" name="lastName" className="form-control" placeholder="last name" value={updatedMemberObj.lastName} id="lastName" required />
-                    </fieldset>
+                    <div className="editMemberFormDiv">
+                        <fieldset className="editMemberfieldset">
+                            <label htmlFor="firstName"> First Name </label>
+                            <input onChange={handleInputChange} type="text" name="firstName" className="form-control" placeholder="first name" value={updatedMemberObj.firstName} id="firstName" required />
+                        </fieldset>
+                        <fieldset className="editMemberfieldset">
+                            <label htmlFor="lastName"> Last Name </label>
+                            <input onChange={handleInputChange} type="text" name="lastName" className="form-control" placeholder="last name" value={updatedMemberObj.lastName} id="lastName" required />
+                        </fieldset>
+                    </div>
                     <fieldset className="editMemberfieldset">
                         <label htmlFor="inputEmail"> Email address </label>
                         <input onChange={handleInputChange} type="email" name="email" className="form-control" placeholder="email address" value={updatedMemberObj.email} id="email" />
                     </fieldset>
+                    <div className="editMemberFormDiv">
+                        <fieldset className="editMemberfieldset">
+                            <label htmlFor="groupNumber"> Group Number </label>
+                            <select onChange={handleInputChange} value={updatedMemberObj.groupId} name="groupId" id="groupId" className="form-control" required >
+                                <option value="0">Select a Group</option>
+                                {groups.map(group => {
+                                    return <option key={group.id} value={group.id}>{group.name}</option>
+                                })}
+                            </select>
+                        </fieldset>
+                        <fieldset className="editMemberfieldset">
+                            <label htmlFor="inputPhone"> Phone Number </label>
+                            <input onChange={handleInputChange} value={updatedMemberObj.phone} id="phone" type="phone" name="phone" className="form-control" placeholder="(270) 555-2030" required />
+                        </fieldset>
+                    </div>
                     <fieldset className="editMemberfieldset">
-                        <label htmlFor="groupNumber"> Group Number </label>
-                        <select onChange={handleInputChange} value={updatedMemberObj.groupId} name="groupId" id="groupId" className="form-control" required >
-                            <option value="0">Select a Group</option>
-                            {groups.map(group => {
-                                return <option key={group.id} value={group.id}>{group.name}</option>
-                            })}
-                        </select>
-                    </fieldset>
-                    <fieldset className="editMemberfieldset">
-                        <label htmlFor="inputPhone"> Phone Number </label>
-                        <input onChange={handleInputChange} value={updatedMemberObj.phone} id="phone" type="phone" name="phone" className="form-control" placeholder="(270) 555-2030" required />
+                        <label htmlFor="inputTimeToCall"> Best Time To Contact </label>
+                        <input onChange={handleInputChange} value={updatedMemberObj.callTime} id="callTime" type="text" name="callTime" className="form-control" placeholder="Weekdays after 5pm..." required />
                     </fieldset>
                     <fieldset className="editMemberfieldset">
                         <label htmlFor="inputAddress"> Address </label>
                         <input onChange={handleInputChange} value={updatedMemberObj.address} id="address" type="address" name="address" className="form-control" placeholder="address" />
                     </fieldset>
-                    <fieldset className="editMemberfieldset">
-                        <label htmlFor="inputCity"> City </label>
-                        <input onChange={handleInputChange} value={updatedMemberObj.city} id="city" type="text" name="city" className="form-control" placeholder="city" />
-                    </fieldset>
-                    <fieldset className="editMemberfieldset">
-                        <label htmlFor="inputState"> State </label>
-                        <select onChange={handleInputChange} value={updatedMemberObj.state} name="state" id="state" className="form-control" >
-                            <option value="0">Select a State</option>
-                            {states.map(state => {
-                                stateCounter++
-                                return <option key={stateCounter} value={state}>{state}</option>
-                            })}
-                        </select>
-                    </fieldset>
+                    <div className="editMemberFormDiv">
+                        <fieldset className="editMemberfieldset">
+                            <label htmlFor="inputCity"> City </label>
+                            <input onChange={handleInputChange} value={updatedMemberObj.city} id="city" type="text" name="city" className="form-control" placeholder="city" />
+                        </fieldset>
+                        <fieldset className="editMemberfieldset">
+                            <label htmlFor="inputState"> State </label>
+                            <select onChange={handleInputChange} value={updatedMemberObj.state} name="state" id="state" className="form-control" >
+                                <option value="0">Select a State</option>
+                                {states.map(state => {
+                                    stateCounter++
+                                    return <option key={stateCounter} value={state}>{state}</option>
+                                })}
+                            </select>
+                        </fieldset>
+                    </div>
                     <fieldset className="editMemberFormButtons">
                         <button className="deleteButton" disabled={isLoading} onClick={handleDelete}> Delete Member </button>
                         <div>
