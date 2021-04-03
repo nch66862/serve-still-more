@@ -124,6 +124,10 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
                         <input onChange={handleInputChange} value={updatedMemberObj.phone} id="phone" type="phone" name="phone" className="form-control" placeholder="(270) 555-2030" required />
                     </fieldset>
                     <fieldset className="editMemberfieldset">
+                        <label htmlFor="inputTimeToCall"> Best Time To Contact </label>
+                        <input onChange={handleInputChange} value={updatedMemberObj.callTime} id="callTime" type="text" name="callTime" className="form-control" placeholder="Weekdays after 5pm" required />
+                    </fieldset>
+                    <fieldset className="editMemberfieldset">
                         <label htmlFor="inputAddress"> Address </label>
                         <input onChange={handleInputChange} value={updatedMemberObj.address} id="address" type="address" name="address" className="form-control" placeholder="address" />
                     </fieldset>
