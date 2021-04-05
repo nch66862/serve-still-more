@@ -27,6 +27,7 @@ export const NavBar = () => {
         sessionStorage.removeItem("Lost_River_User")
         history.push("/Login")
     }
+    //handles grabbing the logged in user for a name in the nav bar
     useEffect(() => {
         getUserById(parseInt(sessionStorage.getItem("Lost_River_User")))
             .then(setLoggedInUser)

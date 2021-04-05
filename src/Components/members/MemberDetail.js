@@ -1,6 +1,10 @@
+import { useEffect, useState } from 'react'
+import { Image } from 'cloudinary-react'
 import './MemberDetail.css'
 //component that accepts a member object and displays the information for it
 export const MemberDetail = ({ member, setOpenDetail, setOpenEditMember, callingMember }) => {
+    //a state variable to store the return address of the image
+    const [imagePublicId, setImagePublicId] = useState("")
     //sets the state variable to close the component when the close button is clicked
     const handleClose = () => {
         setOpenDetail(false)
@@ -21,12 +25,24 @@ export const MemberDetail = ({ member, setOpenDetail, setOpenEditMember, calling
     if (!callingMember) {
         memberDetailSectionClass = "modal--content"
     }
+    //crops the user image for the nav bar and sets the state variable of the photo that is to be displayed
+    useEffect(() => {
+        if (member.photo) {
+            const [prefix, suffix] = member.photo.split("/upload/")
+            const cropSection = "/upload/w_400,h_400,c_crop,g_face,r_max/w_120/"
+            const croppedURLPhoto = prefix.concat(cropSection, suffix)
+            setImagePublicId(croppedURLPhoto)
+        }
+    }, [member])
     //checks to see if the member object has any keys before it tries to render the html
     return (
         <>
             { Object.keys(member).length !== 0 ? <main className={memberDetailMainClass}>
                 <section className={memberDetailSectionClass}>
-                    <h2 className="memberDetailName">{member.firstName} {member.lastName}</h2>
+                    <div className="memberDetailHeader">
+                        <Image style={{ borderRadius: "60px", marginRight: "10px", marginTop: "10px", marginBottom: "10px" }} cloudName="nch66862" publicId={imagePublicId} />
+                        <h2 className="memberDetailName">{member.firstName} {member.lastName}</h2>
+                    </div>
                     <div className="memberInformation">
                         <div className="leftInformation">
                             <label htmlFor="phoneNumber"> Phone </label>
