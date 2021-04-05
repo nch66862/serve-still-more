@@ -6,12 +6,13 @@ import { states } from "../Settings"
 import { GroupContext } from "../groups/GroupProvider";
 import './MemberForm.css'
 import { ImageContext } from "../images/ImageProvider";
+import { Image, Placeholder, Transformation } from 'cloudinary-react'
 //displays a form to create a new member
 export const MemberForm = () => {
     //the contexts expose the data to use from the provider
     const { addMember } = useContext(MemberContext)
     const { groups, getGroups } = useContext(GroupContext)
-    const { upLoadImage } = useContext(ImageContext)
+    const { upLoadImage, imagePublicId } = useContext(ImageContext)
     //useHistory keeps a stack of visited URLs
     const history = useHistory()
     //initializes a variables that increments through whenever the state dropdown is built on the form
@@ -102,6 +103,13 @@ export const MemberForm = () => {
                 <fieldset>
                     <label htmlFor="lastName"> Last Name </label>
                     <input onChange={handleInputChange} type="text" name="lastName" className="form-control" placeholder="last name" value={registerMember.lastName} id="lastName" required />
+                </fieldset>
+                <fieldset>
+                    <Image cloudName="nch66862" publicId={imagePublicId}>
+                        <Placeholder />
+                        <Transformation width="400" height="400" gravity="face" radius="max" crop="crop" />
+                        <Transformation width="200" crop="scale" />
+                    </Image>
                 </fieldset>
                 <fieldset>
                     <input onChange={handlePhotoChange} type="file" name="photo" className="photoInput" id="photo" />
