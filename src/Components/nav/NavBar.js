@@ -25,7 +25,7 @@ export const NavBar = () => {
                 <Link className="nav-link" to="/"><img className="navLogo" src='../LostRiverLogo.png' alt="the church logo" /></Link>
                 <h1 className="siteTitle">Lost River Call Center</h1>
                 <article className="userNavTools">
-                    <button className="btn newMemberButton" onClick={() => history.push("/members/create")}>+ Member</button>
+                    {!history.location.pathname.includes("/members/create") && <button className="btn newMemberButton" onClick={() => history.push("/members/create")}>+ Member</button>}
                     <p className="navBarUserName">Welcome, {loggedInUser?.firstName} {loggedInUser?.lastName}</p>
                     <button className="btn logoutButton" onClick={handleLogout}>Log Out</button>
                 </article>
