@@ -9,6 +9,7 @@ import { HistoryProvider } from "./history/HistoryProvider";
 import { ElderDashboard } from "./users/ElderDashboard";
 import { DeaconDashboard } from "./users/DeaconDashboard";
 import { UserContext, UserProvider } from "./users/UserProvider";
+import { ImageProvider } from "./images/ImageProvider";
 //this component handles which component to display based on the URL route
 export const ApplicationViews = () => {
     //gets the current logged in user id
@@ -33,8 +34,10 @@ export const ApplicationViews = () => {
                             <NewsProvider>
                                 <MemberProvider>
                                     <HistoryProvider>
-                                        {/* renders a dashboard based on if the user is an elder or not */}
-                                        {matchingRole?.name.toLowerCase() === "elder" ? <ElderDashboard /> : <DeaconDashboard />}
+                                        <ImageProvider>
+                                            {/* renders a dashboard based on if the user is an elder or not */}
+                                            {matchingRole?.name.toLowerCase() === "elder" ? <ElderDashboard /> : <DeaconDashboard />}
+                                        </ImageProvider>
                                     </HistoryProvider>
                                 </MemberProvider>
                             </NewsProvider>
@@ -45,7 +48,9 @@ export const ApplicationViews = () => {
             <Route path="/members/create">
                 <MemberProvider>
                     <GroupProvider>
-                        <MemberForm />
+                        <ImageProvider>
+                            <MemberForm />
+                        </ImageProvider>
                     </GroupProvider>
                 </MemberProvider>
             </Route>
