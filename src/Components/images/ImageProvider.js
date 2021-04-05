@@ -15,7 +15,7 @@ export const ImageProvider = (props) => {
     //exposes all of the functions and data from the provider in the context
     return (
         <ImageContext.Provider value={{
-            upLoadImage, imagePublicId
+            upLoadImage, imagePublicId, setImagePublicId
         }}>
             {props.children}
         </ImageContext.Provider>

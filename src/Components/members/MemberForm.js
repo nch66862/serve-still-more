@@ -12,7 +12,7 @@ export const MemberForm = () => {
     //the contexts expose the data to use from the provider
     const { addMember } = useContext(MemberContext)
     const { groups, getGroups } = useContext(GroupContext)
-    const { upLoadImage, imagePublicId } = useContext(ImageContext)
+    const { upLoadImage, imagePublicId, setImagePublicId } = useContext(ImageContext)
     //useHistory keeps a stack of visited URLs
     const history = useHistory()
     //initializes a variables that increments through whenever the state dropdown is built on the form
@@ -29,7 +29,7 @@ export const MemberForm = () => {
         address: "",
         city: "",
         state: "",
-        photo: "",
+        photo: "https://res.cloudinary.com/nch66862/image/upload/w_400,h_400,c_crop,g_face,r_max/w_200/v1617635031/qsbq2vmsdtotzvznadv5.jpg",
         callTime: "",
         canCall: true,
         familyId: 0,
@@ -86,6 +86,7 @@ export const MemberForm = () => {
     //gets the data for the dropdown in the form
     useEffect(() => {
         getGroups()
+        setImagePublicId(registerMember.photo)
     }, [])
     //two page form with a ternary to decide which part of the form to render.
     return (
@@ -105,10 +106,11 @@ export const MemberForm = () => {
                     <input onChange={handleInputChange} type="text" name="lastName" className="form-control" placeholder="last name" value={registerMember.lastName} id="lastName" required />
                 </fieldset>
                 <fieldset>
-                    <Image cloudName="nch66862" publicId={imagePublicId}>
+                    <Image cloudName="nch66862" publicId={imagePublicId} >
                         <Placeholder />
-                        <Transformation width="400" height="400" gravity="face" radius="max" crop="crop" />
-                        <Transformation width="200" crop="scale" />
+                        {/* <Transformation width="400" height="400" radius="max" crop="crop" /> */}
+                        {/* <Transformation width="400" height="400" gravity="face" radius="max" crop="crop" /> */}
+                        {/* <Transformation width="200" crop="scale" /> */}
                     </Image>
                 </fieldset>
                 <fieldset>
