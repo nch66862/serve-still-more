@@ -89,7 +89,10 @@ export const MemberForm = () => {
                 newMember.photo = response.data.secure_url
                 setRegisterMember(newMember)
                 //crop the image using the URL and update the image on the member form
-                setImagePublicId(response.data.secure_url)
+                const [prefix, suffix] = response.data.secure_url.split("/upload/")
+                const cropSection = "/upload/w_400,h_400,c_crop,g_face,r_max/w_200/"
+                const croppedURLPhoto = prefix.concat(cropSection, suffix)
+                setImagePublicId(croppedURLPhoto)
             })
     }
     //gets the data for the dropdown in the form
