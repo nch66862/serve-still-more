@@ -6,3 +6,15 @@
 .personCard:hover {
     cursor: pointer;
 }
+
+.memberCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.memberCard:hover {
+    cursor: pointer;
+}
