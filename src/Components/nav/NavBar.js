@@ -22,7 +22,7 @@ export const NavBar = () => {
     return (
         <nav className="nav" >
             <div className="navBarCustom">
-                <Link className="nav-link" to="/"><img className="navLogo" src='./LostRiverLogo.png' alt="the church logo" /></Link>
+                <Link className="nav-link" to="/"><img className="navLogo" src='../LostRiverLogo.png' alt="the church logo" /></Link>
                 <h1 className="siteTitle">Lost River Call Center</h1>
                 <article className="userNavTools">
                     <button className="btn newMemberButton" onClick={() => history.push("/members/create")}>+ Member</button>

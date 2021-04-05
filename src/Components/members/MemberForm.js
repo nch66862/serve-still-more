@@ -6,13 +6,15 @@ import { states } from "../Settings"
 import { GroupContext } from "../groups/GroupProvider";
 import './MemberForm.css'
 import { ImageContext } from "../images/ImageProvider";
-import { Image, Placeholder, Transformation } from 'cloudinary-react'
+import { Image, Placeholder } from 'cloudinary-react'
 //displays a form to create a new member
 export const MemberForm = () => {
     //the contexts expose the data to use from the provider
     const { addMember } = useContext(MemberContext)
     const { groups, getGroups } = useContext(GroupContext)
-    const { upLoadImage, imagePublicId, setImagePublicId } = useContext(ImageContext)
+    const { upLoadImage } = useContext(ImageContext)
+    //a state variable to store the return address of the image
+    const [imagePublicId, setImagePublicId] = useState("")
     //useHistory keeps a stack of visited URLs
     const history = useHistory()
     //initializes a variables that increments through whenever the state dropdown is built on the form
@@ -82,6 +84,13 @@ export const MemberForm = () => {
         formData.append("file", event.target.files[0])
         formData.append("upload_preset", "freovxhb")
         upLoadImage(formData)
+            .then(response => {
+                const newMember = { ...registerMember }
+                newMember.photo = response.data.secure_url
+                setRegisterMember(newMember)
+                //crop the image using the URL and update the image on the member form
+                setImagePublicId(response.data.secure_url)
+            })
     }
     //gets the data for the dropdown in the form
     useEffect(() => {
@@ -108,9 +117,6 @@ export const MemberForm = () => {
                 <fieldset>
                     <Image cloudName="nch66862" publicId={imagePublicId} >
                         <Placeholder />
-                        {/* <Transformation width="400" height="400" radius="max" crop="crop" /> */}
-                        {/* <Transformation width="400" height="400" gravity="face" radius="max" crop="crop" /> */}
-                        {/* <Transformation width="200" crop="scale" /> */}
                     </Image>
                 </fieldset>
                 <fieldset>
