@@ -3,12 +3,15 @@ import { MemberContext } from "./MemberProvider";
 import React, { useState } from "react"
 import { states } from "../Settings"
 import { GroupContext } from "../groups/GroupProvider";
+import { Image, Placeholder } from 'cloudinary-react'
 import './EditMember.css'
+import { ImageContext } from "../images/ImageProvider";
 //component that pulls all of the data for a member into editable fields and allows the user to edit the data and submit the edit to the API
 export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMember, setMemberToCall }) => {
     //context specifies what data you want access to from the providers
     const { updateMember, getMemberById, deleteMember } = useContext(MemberContext)
     const { groups, getGroups } = useContext(GroupContext)
+    const { upLoadImage } = useContext(ImageContext)
     //initializes a variable to loop through and populate all of the states in the state dropdown
     let stateCounter = 0
     //the main state object that holds the data for the member you are editing
@@ -31,6 +34,8 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
     const [conflictDialog, setConflictDialog] = useState(false)
     //controls if the submit edit button is enabled or disabled when waiting for data so code does not run multiple times
     const [isLoading, setIsLoading] = useState(true);
+    //a state variable to store the return address of the image
+    const [imagePublicId, setImagePublicId] = useState("")
     //updates the data on the state variable when a change occurs in the form
     const handleInputChange = (event) => {
         const newMember = { ...updatedMemberObj }
@@ -76,6 +81,23 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
                 setOpenEditMember(false)
             })
     }
+    //updates the link that the image tag references
+    const handlePhotoChange = (event) => {
+        const formData = new FormData()
+        formData.append("file", event.target.files[0])
+        formData.append("upload_preset", "freovxhb")
+        upLoadImage(formData)
+            .then(response => {
+                const updatedMember = { ...updatedMemberObj }
+                updatedMember.photo = response.data.secure_url
+                setUpdatedMemberObj(updatedMember)
+                //crop the image using the URL and update the image on the member form
+                const [prefix, suffix] = response.data.secure_url.split("/upload/")
+                const cropSection = "/upload/w_400,h_400,c_crop,g_face,r_max/w_200/"
+                const croppedURLPhoto = prefix.concat(cropSection, suffix)
+                setImagePublicId(croppedURLPhoto)
+            })
+    }
     //gets the data, sets the state variable for the form, and updates the disabled state of the button.
     useEffect(() => {
         getGroups()
@@ -83,6 +105,11 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
                 getMemberById(member.id)
                     .then(member => {
                         setUpdatedMemberObj(member)
+                        //crop the image using the URL and update the image on the member form
+                        const [prefix, suffix] = member.photo.split("/upload/")
+                        const cropSection = "/upload/w_400,h_400,c_crop,g_face,r_max/w_200/"
+                        const croppedURLPhoto = prefix.concat(cropSection, suffix)
+                        setImagePublicId(croppedURLPhoto)
                         setIsLoading(false)
                     })
             })
@@ -98,6 +125,12 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
                 </dialog>
                 <form className="form--login" onSubmit={handleUpdateMember}>
                     <h2 className="h3 mb-3 font-weight-normal">Edit Member</h2>
+                    <Image cloudName="nch66862" publicId={imagePublicId} >
+                        <Placeholder />
+                    </Image>
+                    <fieldset>
+                        <input onChange={handlePhotoChange} type="file" name="photo" className="photoInput" id="photo" />
+                    </fieldset>
                     <div className="editMemberFormDiv">
                         <fieldset className="editMemberfieldset">
                             <label htmlFor="firstName"> First Name </label>
