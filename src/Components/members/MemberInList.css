@@ -3,6 +3,11 @@
     font-weight: 200;
 }
 
-.personInList:hover {
+.memberInList:hover {
     cursor: pointer;
+}
+
+.memberInList {
+    display: flex;
+    align-items: center;
 }

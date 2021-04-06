@@ -1,5 +1,6 @@
 import './UserCard.css'
 import { Image } from 'cloudinary-react'
+import { cloudinaryKeys } from '../Settings'
 
 //component that shows the basic information for a single elder
 export const ElderCard = ({ user }) => {
@@ -11,7 +12,7 @@ export const ElderCard = ({ user }) => {
     }
     return (
         <article className="deaconCard">
-            <Image style={{ borderRadius: "50px", marginRight: "10px", marginLeft: "10px", marginBottom: "5px" }} cloudName="nch66862" publicId={croppedURLPhoto} />
+            <Image style={{ borderRadius: "50px", marginRight: "10px", marginLeft: "10px", marginBottom: "5px" }} cloudName={cloudinaryKeys.cloudName} publicId={croppedURLPhoto} />
             <h5 className="userCard">{user.firstName} {user.lastName}</h5>
         </article>
     )

@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom"
 import { UserContext } from "../users/UserProvider"
 import { Image } from 'cloudinary-react'
 import './NavBar.css'
+import { cloudinaryKeys } from "../Settings"
 //component that shows the logo and different navigational elements and lives at the top of the website after logging in
 export const NavBar = () => {
     //allows access to data in the provider
@@ -39,7 +40,7 @@ export const NavBar = () => {
                 <h1 className="siteTitle">Lost River Call Center</h1>
                 <article className="userNavTools">
                     {!history.location.pathname.includes("/members/create") && <button className="btn newMemberButton" onClick={() => history.push("/members/create")}>+ Member</button>}
-                    <Image style={{borderRadius: "30px", marginRight: "10px"}} cloudName="nch66862" publicId={imagePublicId} />
+                    <Image style={{borderRadius: "30px", marginRight: "10px"}} cloudName={cloudinaryKeys.cloudName} publicId={imagePublicId} />
                     <p className="navBarUserName">{loggedInUser?.firstName} {loggedInUser?.lastName}</p>
                     <button className="btn logoutButton" onClick={handleLogout}>Log Out</button>
                 </article>
