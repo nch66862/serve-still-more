@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { MemberContext } from "./MemberProvider";
 import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
-import { states } from "../Settings"
+import { cloudinaryKeys, states } from "../Settings"
 import { GroupContext } from "../groups/GroupProvider";
 import './MemberForm.css'
 import { ImageContext } from "../images/ImageProvider";
@@ -82,7 +82,7 @@ export const MemberForm = () => {
     const handlePhotoChange = (event) => {
         const formData = new FormData()
         formData.append("file", event.target.files[0])
-        formData.append("upload_preset", "freovxhb")
+        formData.append("upload_preset", cloudinaryKeys.upload_preset)
         upLoadImage(formData)
             .then(response => {
                 const newMember = { ...registerMember }

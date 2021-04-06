@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { MemberContext } from "./MemberProvider";
 import React, { useState } from "react"
-import { states } from "../Settings"
+import { cloudinaryKeys, states } from "../Settings"
 import { GroupContext } from "../groups/GroupProvider";
 import { Image, Placeholder } from 'cloudinary-react'
 import './EditMember.css'
@@ -24,7 +24,7 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
         address: "",
         city: "",
         state: "",
-        photo: "",
+        photo: "https://res.cloudinary.com/nch66862/image/upload/w_400,h_400,c_crop,g_face,r_max/w_200/v1617635031/qsbq2vmsdtotzvznadv5.jpg",
         callTime: "",
         canCall: true,
         familyId: 0,
@@ -85,7 +85,7 @@ export const EditMember = ({ member, setOpenEditMember, setOpenDetail, callingMe
     const handlePhotoChange = (event) => {
         const formData = new FormData()
         formData.append("file", event.target.files[0])
-        formData.append("upload_preset", "freovxhb")
+        formData.append("upload_preset", cloudinaryKeys.upload_preset)
         upLoadImage(formData)
             .then(response => {
                 const updatedMember = { ...updatedMemberObj }

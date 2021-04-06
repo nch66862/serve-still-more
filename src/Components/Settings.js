@@ -4,3 +4,8 @@ export const states = ['AL','AK','AS','AZ','AR','CA','CO','CT','DE','DC','FM','F
 'MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND',
 'MP','OH','OK','OR','PW','PA','PR','RI','SC','SD','TN','TX','UT',
 'VT','VI','VA','WA','WV','WI','WY']
+
+export const cloudinaryKeys = {
+    cloudName: "nch66862",
+    upload_preset: "freovxhb"
+}
