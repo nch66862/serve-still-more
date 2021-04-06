@@ -94,3 +94,8 @@
 .rightInformation {
     width: 40%;
 }
+
+.memberDetailHeader {
+    display: flex;
+    align-items: center;
+}

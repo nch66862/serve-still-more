@@ -1,3 +1,10 @@
 .userCard {
     margin: 0px 5px;
 }
+
+.deaconCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

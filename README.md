@@ -51,6 +51,7 @@
 <ul>
 <li><a  href="https://dbdiagram.io/d/604ee756fcdcb6230b2421e4">Entity Relationship Diagram</a></li>
 <li><a  href="https://www.figma.com/file/ju6MucGZdlFyUSQf3v9XTw/Serve-Still-More?node-id=0%3A1">Wireframe on Figma</a></li>
+<li><a  href="https://prezi.com/p/edit/xkoybewez6dn/">Presentation</a></li>
 </ul>
 
 ### Challenges
