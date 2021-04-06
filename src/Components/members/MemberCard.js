@@ -17,7 +17,7 @@ export const MemberCard = ({ member }) => {
     let croppedURLPhoto = ""
     if (member.photo) {
         const [prefix, suffix] = member.photo.split("/upload/")
-        const cropSection = "/upload/w_400,h_400,c_crop,g_face,r_max/w_100/"
+        const cropSection = "/upload/w_300,h_300,c_crop,g_face,r_max/w_100/"
         croppedURLPhoto = prefix.concat(cropSection, suffix)
     }
     return (
