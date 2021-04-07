@@ -2,7 +2,8 @@ import { useContext, useEffect } from "react";
 import { MemberContext } from "./MemberProvider";
 import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
-import { cloudinaryKeys, states } from "../settings"
+import { cloudinaryKeys } from "../settings"
+import { states } from "../StaticData"
 import { GroupContext } from "../groups/GroupProvider";
 import './MemberForm.css'
 import { ImageContext } from "../images/ImageProvider";

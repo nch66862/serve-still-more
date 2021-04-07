@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import { GroupContext } from "../groups/GroupProvider"
 import { RoleContext } from "../roles/RoleProvider"
-import { states } from "../settings"
+import { states } from "../StaticData"
 import { authApi, userStorageKey } from "./authSettings"
 import "./Register.css"
 //This is a form to register a new user to the database
