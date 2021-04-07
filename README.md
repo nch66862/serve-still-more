@@ -17,20 +17,19 @@
 ### REACT
 <h4>The entire application was built on React version 17.0.2</h4>
 <p>When visiting the site, the user is immediately met with a login screen where they can log in or register as a new user.</p>
-<img src="./images/Login.png" alt="login screen">
+<img src="./images/loggingIn.gif" alt="login screen">
 <p>Logging in is not true authentication as it only checks the data in the database to see if the user exists and stores that uses specific key in the session storage of the browser.</p>
-<img src="./images/SessionStorage.png" alt="Session Storage">
+<img src="./images/sessionStorageDevTools.gif" alt="Session Storage">
 <p>Depending on if the user specified thier role as an elder or a deacon upon registration, they will be presented with one of two dashboards.</p>
 <p>The people in the church were equally put into groups to provide smaller groups of people to keep up with</p>
 <p>The elder dashboard displays all of the groups and the role of each person in the group</p>
-<img src="./images/ElderDashboard.png" alt="Elder Dashboard">
+<img src="./images/elderDashboard.png" alt="Elder Dashboard">
 <p>The elder can click on any member in any group to view thier information, edit their information, or delete them from the database.</p>
-<img src="./images/MemberInformation.png" alt="Member Detail Screen">
+<img src="./images/editingAndDeletingMember.gif" alt="Member Detail Screen">
 <p>On the right hand side of the page, the elder can view messages in their assigned group that are to be shared to the deacons specifically (ie., tasks and events that need to be resolved or arranged) and also to the members (ie., information the deacons can share with the members when they call them). The elder can create a new news and notes for their group.</p>
-<img src="./images/NewsForm.png" alt="News Form">
+<img src="./images/updatingNewsAndNotes.gif" alt="News Form">
 <p>If a new member joins the church, they can be added to the member database and assigned to a group through the new member form. The form is accessed in the nav bar.</p>
-<img src="./images/NewMemberForm1.png" alt="First Member Form Screen">
-<img src="./images/NewMemberForm2.png" alt="Second Member Form Screen">
+<img src="./images/creatingMember.gif" alt="First Member Form Screen">
 <p>The deacon dashboard displays a list of members in your group. It also has a section that displays the members that:</p>
 <ul>
 <li>You, as a deacon, did not call previously</li>
@@ -39,10 +38,10 @@
 </ul>
 <img src="./images/DeaconDashboard.png" alt="Deacon Dashboard">
 <p>The deacon can click on any member in the list to view thier information, edit their information, or delete them from the database.</p>
-<img src="./images/DeaconEditMember.png" alt="Edit Member Screen">
+<img src="./images/editingAndDeletingMemberAsDeacon.gif" alt="Edit Member Screen">
 <p>There is a text input box to record any conversations for the phone call that may be useful to pick up on the next time the member is called. The submission of the text marks the member as called and they disappear from the members to be called.</p>
 <p>Below the text input there is a history section that displays all of the past records of phone conversations, when they occured, and who the conversation was with.</p>
-<img src="./images/ConversationHistory.png" alt="Conversation History">
+<img src="./images/addingConversationHistory.gif" alt="Conversation History">
 <p>On the right hand side of the page, the deacon can view messages in their assigned group that was written to them specifically (ie., tasks and events that need to be resolved or arranged) and also to the members (ie., information to share with the members when they call them).</p>
 <p>If a new member joins the church, they can be added to the member database and assigned to a group through the new member form. The form is accessed in the nav bar.</p>
 
