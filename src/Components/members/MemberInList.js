@@ -2,7 +2,6 @@ import { useContext } from 'react'
 import './MemberInList.css'
 import { MemberContext } from './MemberProvider'
 import { Image } from 'cloudinary-react'
-import { cloudinaryKeys } from '../Settings'
 //component that represents a single member and will update the chosen member if it is clicked on
 export const MemberInList = ({ member }) => {
     //allows access to a state variable in the member provider
@@ -20,7 +19,7 @@ export const MemberInList = ({ member }) => {
     }
     return (
         <article onClick={handleClickMember} className="memberInList">
-            <Image style={{ borderRadius: "25px", marginRight: "10px", marginLeft: "10px", marginBottom: "5px" }} cloudName={cloudinaryKeys.cloudName} publicId={croppedURLPhoto} />
+            <Image style={{ borderRadius: "25px", marginRight: "10px", marginLeft: "10px", marginBottom: "5px" }} cloudName="nch66862" publicId={croppedURLPhoto} />
             <h5 className="personInList">{member.firstName} {member.lastName}</h5>
         </article>
     )

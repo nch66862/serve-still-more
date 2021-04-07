@@ -8,13 +8,13 @@ export const RoleProvider = (props) => {
     const [roles, setRoles] = useState([])
     //gets all of the role objects from the database
     const getRoles = () => {
-        return fetch("http://localhost:8088/roles")
+        return fetch("https://serve-still-more-api.herokuapp.com/roles")
             .then(res => res.json())
             .then(setRoles)
     }
     //adds a single role object to the database
     const addRole = roleObj => {
-        return fetch("http://localhost:8088/roles", {
+        return fetch("https://serve-still-more-api.herokuapp.com/roles", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -25,12 +25,12 @@ export const RoleProvider = (props) => {
     }
     //return a single role object from the database
     const getRoleById = (id) => {
-        return fetch(`http://localhost:8088/roles/${id}`)
+        return fetch(`https://serve-still-more-api.herokuapp.com/roles/${id}`)
             .then(res => res.json())
     }
     //updates a single role object in the database
     const updateRole = roleObj => {
-        return fetch(`http://localhost:8088/roles/${roleObj.id}`, {
+        return fetch(`https://serve-still-more-api.herokuapp.com/roles/${roleObj.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -41,7 +41,7 @@ export const RoleProvider = (props) => {
     }
     //deletes a single role object from the database
     const deleteRole = groupId => {
-        return fetch(`http://localhost:8088/roles/${groupId}`, {
+        return fetch(`https://serve-still-more-api.herokuapp.com/roles/${groupId}`, {
             method: "DELETE",
         })
             .then(getRoles)

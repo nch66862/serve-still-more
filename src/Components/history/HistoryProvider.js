@@ -9,14 +9,14 @@ export const HistoryProvider = (props) => {
     const [history, setHistory] = useState([])
     //fetches all of the history data and stores it in the state variable
     const getHistory = () => {
-        return fetch("http://localhost:8088/history?_expand=user")
+        return fetch("https://serve-still-more-api.herokuapp.com/history?_expand=user")
             .then(res => res.json())
             .then(setHistory)
     }
     //adds a date ket to the object and saves it as a new history object in the API
     const addHistory = historyObj => {
         historyObj.date = new Date()
-        return fetch("http://localhost:8088/history", {
+        return fetch("https://serve-still-more-api.herokuapp.com/history", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -27,12 +27,12 @@ export const HistoryProvider = (props) => {
     }
     //gets a sinlge  history object specified by its primary key
     const getHistoryById = (id) => {
-        return fetch(`http://localhost:8088/history/${id}`)
+        return fetch(`https://serve-still-more-api.herokuapp.com/history/${id}`)
             .then(res => res.json())
     }
     //changes the data inside an existing history object given a primary key
     const updateHistory = historyObj => {
-        return fetch(`http://localhost:8088/history/${historyObj.id}`, {
+        return fetch(`https://serve-still-more-api.herokuapp.com/history/${historyObj.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -43,7 +43,7 @@ export const HistoryProvider = (props) => {
     }
     //deletes a history object given its primary key
     const deleteHistory = historyId => {
-        return fetch(`http://localhost:8088/history/${historyId}`, {
+        return fetch(`https://serve-still-more-api.herokuapp.com/history/${historyId}`, {
             method: "DELETE",
         })
             .then(getHistory)

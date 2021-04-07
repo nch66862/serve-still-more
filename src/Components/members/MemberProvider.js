@@ -10,13 +10,13 @@ export const MemberProvider = (props) => {
     const [memberToCall, setMemberToCall] = useState({})
     //gets all of the members from the database
     const getMembers = () => {
-        return fetch("http://localhost:8088/members")
+        return fetch("https://serve-still-more-api.herokuapp.com/members")
             .then(res => res.json())
             .then(setMembers)
     }
     //adds a member to the database
     const addMember = memberObj => {
-        return fetch("http://localhost:8088/members", {
+        return fetch("https://serve-still-more-api.herokuapp.com/members", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -27,12 +27,12 @@ export const MemberProvider = (props) => {
     }
     //fetches a single member in the database given its primary key
     const getMemberById = (id) => {
-        return fetch(`http://localhost:8088/members/${id}`)
+        return fetch(`https://serve-still-more-api.herokuapp.com/members/${id}`)
             .then(res => res.json())
     }
     //changes a single member object in the database with new data given its primary key
     const updateMember = member => {
-        return fetch(`http://localhost:8088/members/${member.id}`, {
+        return fetch(`https://serve-still-more-api.herokuapp.com/members/${member.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -43,7 +43,7 @@ export const MemberProvider = (props) => {
     }
     //deletes a member object in the database given its primary key
     const deleteMember = memberId => {
-        return fetch(`http://localhost:8088/members/${memberId}`, {
+        return fetch(`https://serve-still-more-api.herokuapp.com/members/${memberId}`, {
             method: "DELETE",
         })
             .then(getMembers)
