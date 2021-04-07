@@ -7,13 +7,13 @@ export const GroupProvider = (props) => {
     const [groups, setGroups] = useState([])
     //returns all group objects
     const getGroups = () => {
-        return fetch("http://localhost:8088/groups")
+        return fetch("https://serve-still-more-api.herokuapp.com/groups")
             .then(res => res.json())
             .then(setGroups)
     }
     //creates
     const addGroup = groupObj => {
-        return fetch("http://localhost:8088/groups", {
+        return fetch("https://serve-still-more-api.herokuapp.com/groups", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -24,12 +24,12 @@ export const GroupProvider = (props) => {
     }
     //finds one group object by its primary key
     const getGroupById = (id) => {
-        return fetch(`http://localhost:8088/groups/${id}`)
+        return fetch(`https://serve-still-more-api.herokuapp.com/groups/${id}`)
             .then(res => res.json())
     }
     //edits
     const updateGroup = groupObj => {
-        return fetch(`http://localhost:8088/groups/${groupObj.id}`, {
+        return fetch(`https://serve-still-more-api.herokuapp.com/groups/${groupObj.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -40,7 +40,7 @@ export const GroupProvider = (props) => {
     }
     //deletes
     const deleteGroup = groupId => {
-        return fetch(`http://localhost:8088/groups/${groupId}`, {
+        return fetch(`https://serve-still-more-api.herokuapp.com/groups/${groupId}`, {
             method: "DELETE",
         })
             .then(getGroups)

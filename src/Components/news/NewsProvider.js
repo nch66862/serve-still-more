@@ -8,13 +8,13 @@ export const NewsProvider = (props) => {
     const [news, setNews] = useState([])
     //gets all of the news objects from the database
     const getNews = () => {
-        return fetch("http://localhost:8088/news?_expand=user")
+        return fetch("https://serve-still-more-api.herokuapp.com/news?_expand=user")
             .then(res => res.json())
             .then(setNews)
     }
     //adds a new news object to the database
     const addNews = newsObj => {
-        return fetch("http://localhost:8088/news", {
+        return fetch("https://serve-still-more-api.herokuapp.com/news", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -25,12 +25,12 @@ export const NewsProvider = (props) => {
     }
     //gets a single news object from the database given its primary key
     const getNewsById = (id) => {
-        return fetch(`http://localhost:8088/news/${id}`)
+        return fetch(`https://serve-still-more-api.herokuapp.com/news/${id}`)
             .then(res => res.json())
     }
     //updates the data on a single news object in the database given its primary key
     const updateNews = newsObj => {
-        return fetch(`http://localhost:8088/news/${newsObj.id}`, {
+        return fetch(`https://serve-still-more-api.herokuapp.com/news/${newsObj.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -41,7 +41,7 @@ export const NewsProvider = (props) => {
     }
     //delets a single news object from the database given its primary key
     const deleteNews = newsId => {
-        return fetch(`http://localhost:8088/news/${newsId}`, {
+        return fetch(`https://serve-still-more-api.herokuapp.com/news/${newsId}`, {
             method: "DELETE",
         })
             .then(getNews)

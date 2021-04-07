@@ -51,7 +51,7 @@ export const MemberForm = () => {
     }
     //checks to see if there is an object with an email address already in the database that matches the address typed in the box
     const existingMemberEmailCheck = () => {
-        return fetch(`http://localhost:8088/members/?email=${registerMember.email}`)
+        return fetch(`https://serve-still-more-api.herokuapp.com/members/?email=${registerMember.email}`)
             .then(res => res.json())
     }
     //checks for an already existing email address or no email address and goes to the next page. If there is an existing email address, an error dialog box is displayed

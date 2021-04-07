@@ -8,13 +8,13 @@ export const UserProvider = (props) => {
     const [users, setUsers] = useState([])
     //gets all of the user objects
     const getUsers = () => {
-        return fetch("http://localhost:8088/users")
+        return fetch("https://serve-still-more-api.herokuapp.com/users")
             .then(res => res.json())
             .then(setUsers)
     }
     //creates a user obj in the database
     const addUser = userObj => {
-        return fetch("http://localhost:8088/users", {
+        return fetch("https://serve-still-more-api.herokuapp.com/users", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -25,12 +25,12 @@ export const UserProvider = (props) => {
     }
     //fetches a single user object from the database
     const getUserById = (id) => {
-        return fetch(`http://localhost:8088/users/${id}`)
+        return fetch(`https://serve-still-more-api.herokuapp.com/users/${id}`)
             .then(res => res.json())
     }
     //replaces the infomation in an object with different information
     const updateUser = userObj => {
-        return fetch(`http://localhost:8088/users/${userObj.id}`, {
+        return fetch(`https://serve-still-more-api.herokuapp.com/users/${userObj.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -41,7 +41,7 @@ export const UserProvider = (props) => {
     }
     //deletes a user object in the database
     const deleteUser = userId => {
-        return fetch(`http://localhost:8088/users/${userId}`, {
+        return fetch(`https://serve-still-more-api.herokuapp.com/users/${userId}`, {
             method: "DELETE",
         })
             .then(getUsers)
