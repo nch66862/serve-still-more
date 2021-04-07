@@ -11,7 +11,7 @@
 ## Description
 <p>In the Spring of 2020, the pandemic forced everyone to stay home. Church attendance was no exception. Having the ability to live stream a worship service was an excellent way to continue to give glory to God along with other members of the church. However, virtual church was no substitute for seeing familiar faces and keeping up with one another's lives the same as worshipping next to someone.</p>
 <p>The Elders of Lost River Church set out to stay connected with all of the church members by calling everyone on a regular schedule. This ensured everyone's needs were heard and helped, specific prayers could be made, and everyone could maintain some sense of feeling like they were not alone.</p>
-<p>The system for keeping up with how everyone was to be contacted involved a lot of manual data entry and a single excel spreadsheet. This app sets out to make the process automated, streamlined, and undoubtedly impove the process.</p>
+<p>The system for keeping up with how everyone was to be contacted involved a lot of manual data entry and a single excel spreadsheet. This app sets out to make the process automated, streamlined, and undoubtedly improve the process.</p>
 
 ## About the Project
 ### REACT
