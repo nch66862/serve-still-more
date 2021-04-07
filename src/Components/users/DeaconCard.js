@@ -1,6 +1,5 @@
 import './UserCard.css'
 import { Image } from 'cloudinary-react'
-import { cloudinaryKeys } from '../Settings'
 
 //component that shows the basic information for a single deacon
 export const DeaconCard = ({ user }) => {

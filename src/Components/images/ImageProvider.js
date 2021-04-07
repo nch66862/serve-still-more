@@ -1,6 +1,6 @@
 import React, { createContext } from "react"
 import Axios from 'axios'
-import { cloudinaryKeys } from "../Settings"
+import { cloudinaryKeys } from "../settings"
 
 // The context is imported and used by individual components that need data
 export const ImageContext = createContext()

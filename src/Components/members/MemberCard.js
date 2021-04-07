@@ -3,7 +3,6 @@ import { EditMember } from './EditMember'
 import './MemberCard.css'
 import { MemberDetail } from './MemberDetail'
 import { Image } from 'cloudinary-react'
-import { cloudinaryKeys } from '../Settings'
 
 //component that represents a single member. Allows showing more details and editing
 export const MemberCard = ({ member }) => {

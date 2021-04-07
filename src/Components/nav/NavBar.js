@@ -3,7 +3,6 @@ import { Link, useHistory } from "react-router-dom"
 import { UserContext } from "../users/UserProvider"
 import { Image } from 'cloudinary-react'
 import './NavBar.css'
-import { cloudinaryKeys } from "../Settings"
 //component that shows the logo and different navigational elements and lives at the top of the website after logging in
 export const NavBar = () => {
     //allows access to data in the provider

@@ -2,7 +2,6 @@ import { useContext } from 'react'
 import './MemberInList.css'
 import { MemberContext } from './MemberProvider'
 import { Image } from 'cloudinary-react'
-import { cloudinaryKeys } from '../Settings'
 //component that represents a single member and will update the chosen member if it is clicked on
 export const MemberInList = ({ member }) => {
     //allows access to a state variable in the member provider
