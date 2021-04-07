@@ -40,7 +40,7 @@ export const NavBar = () => {
                 <h1 className="siteTitle">Lost River Call Center</h1>
                 <article className="userNavTools">
                     {!history.location.pathname.includes("/members/create") && <button className="btn newMemberButton" onClick={() => history.push("/members/create")}>+ Member</button>}
-                    <Image style={{borderRadius: "30px", marginRight: "10px"}} cloudName={cloudinaryKeys.cloudName} publicId={imagePublicId} />
+                    <Image style={{borderRadius: "30px", marginRight: "10px"}} cloudName="nch66862" publicId={imagePublicId} />
                     <p className="navBarUserName">{loggedInUser?.firstName} {loggedInUser?.lastName}</p>
                     <button className="btn logoutButton" onClick={handleLogout}>Log Out</button>
                 </article>

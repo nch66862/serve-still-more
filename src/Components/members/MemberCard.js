@@ -24,7 +24,7 @@ export const MemberCard = ({ member }) => {
     return (
         <>
             <article className="memberCard">
-                <Image onClick={handleClickMember} style={{ borderRadius: "50px", marginRight: "10px", marginLeft: "10px", marginBottom: "5px" }} cloudName={cloudinaryKeys.cloudName} publicId={croppedURLPhoto} />
+                <Image onClick={handleClickMember} style={{ borderRadius: "50px", marginRight: "10px", marginLeft: "10px", marginBottom: "5px" }} cloudName="nch66862" publicId={croppedURLPhoto} />
                 <h5 onClick={handleClickMember} className="personCard">{member.firstName} {member.lastName}</h5>
             </article>
             {openDetail && <MemberDetail setOpenDetail={setOpenDetail} setOpenEditMember={setOpenEditMember} member={member} />}

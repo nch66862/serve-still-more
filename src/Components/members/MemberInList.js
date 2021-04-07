@@ -20,7 +20,7 @@ export const MemberInList = ({ member }) => {
     }
     return (
         <article onClick={handleClickMember} className="memberInList">
-            <Image style={{ borderRadius: "25px", marginRight: "10px", marginLeft: "10px", marginBottom: "5px" }} cloudName={cloudinaryKeys.cloudName} publicId={croppedURLPhoto} />
+            <Image style={{ borderRadius: "25px", marginRight: "10px", marginLeft: "10px", marginBottom: "5px" }} cloudName="nch66862" publicId={croppedURLPhoto} />
             <h5 className="personInList">{member.firstName} {member.lastName}</h5>
         </article>
     )
