@@ -4,6 +4,8 @@
 
 <p align="center">**This project is inspired by the people of Lost River Church**</p>
 
+**Live demo is not yet live**
+
 <h2 align="center"><a  href=#>Live Demo</a></h2>
 
 ## Description
