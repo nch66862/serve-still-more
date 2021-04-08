@@ -6,6 +6,8 @@
 
 <h2 align="center"><a  href="https://nac-serve-still-more.netlify.app/">Live Demo</a></h2>
 
+<p align="center">The sister database repo can be found <a href="https://github.com/nch66862/serveStillMoreHostingAPI">here</a></p>
+
 ## Description
 <p>In the Spring of 2020, the pandemic forced everyone to stay home. Church attendance was no exception. Having the ability to live stream a worship service was an excellent way to continue to give glory to God along with other members of the church. However, virtual church was no substitute for seeing familiar faces and keeping up with one another's lives the same as worshipping next to someone.</p>
 <p>The Elders of Lost River Church set out to stay connected with all of the church members by calling everyone on a regular schedule. This ensured everyone's needs were heard and helped, specific prayers could be made, and everyone could maintain some sense of feeling like they were not alone.</p>
@@ -21,7 +23,7 @@
 <p>Depending on if the user specified thier role as an elder or a deacon upon registration, they will be presented with one of two dashboards.</p>
 <p>The people in the church were equally put into groups to provide smaller groups of people to keep up with</p>
 <p>The elder dashboard displays all of the groups and the role of each person in the group</p>
-<img src="./images/elderDashboard.png" alt="Elder Dashboard">
+<img src="./images/ElderDashboard.png" alt="Elder Dashboard">
 <p>The elder can click on any member in any group to view thier information, edit their information, or delete them from the database.</p>
 <img src="./images/editingAndDeletingMember.gif" alt="Member Detail Screen">
 <p>On the right hand side of the page, the elder can view messages in their assigned group that are to be shared to the deacons specifically (ie., tasks and events that need to be resolved or arranged) and also to the members (ie., information the deacons can share with the members when they call them). The elder can create a new news and notes for their group.</p>
