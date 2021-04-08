@@ -2,12 +2,12 @@ import { useContext, useEffect } from "react";
 import { MemberContext } from "./MemberProvider";
 import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
-import { cloudinaryKeys } from "../settings"
 import { states } from "../StaticData"
 import { GroupContext } from "../groups/GroupProvider";
 import './MemberForm.css'
 import { ImageContext } from "../images/ImageProvider";
 import { Image, Placeholder } from 'cloudinary-react'
+import { cloudinaryKeys } from "../settings";
 //displays a form to create a new member
 export const MemberForm = () => {
     //the contexts expose the data to use from the provider
@@ -20,7 +20,7 @@ export const MemberForm = () => {
     const history = useHistory()
     //initializes a variables that increments through whenever the state dropdown is built on the form
     let stateCounter = 0
-    //initializes the state varible to keep track of which page of the form the user is on
+    //initializes the state variable to keep track of which page of the form the user is on
     const [currentPage, setCurrentPage] = useState("first")
     //the main state variable that keeps track of all the data for a member object
     const [registerMember, setRegisterMember] = useState({

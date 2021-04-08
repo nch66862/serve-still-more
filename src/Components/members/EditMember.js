@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { MemberContext } from "./MemberProvider";
 import React, { useState } from "react"
-import { cloudinaryKeys } from "../settings"
+import { cloudinaryKeys } from "../settings.js"
 import { states } from "../StaticData"
 import { GroupContext } from "../groups/GroupProvider";
 import { Image, Placeholder } from 'cloudinary-react'

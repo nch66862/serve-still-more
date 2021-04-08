@@ -1,6 +1,5 @@
 import React, { createContext } from "react"
 import Axios from 'axios'
-import { cloudinaryKeys } from "../settings"
 
 // The context is imported and used by individual components that need data
 export const ImageContext = createContext()
@@ -8,7 +7,7 @@ export const ImageContext = createContext()
 export const ImageProvider = (props) => {
     //creates an API post request to cloudinary
     const upLoadImage = (formData) => {
-        return Axios.post(`http://api.cloudinary.com/v1_1/${cloudinaryKeys.cloudName}/image/upload`, formData)
+        return Axios.post(`http://api.cloudinary.com/v1_1/nch66862/image/upload`, formData)
     }
     //exposes all of the functions and data from the provider in the context
     return (
