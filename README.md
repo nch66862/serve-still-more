@@ -4,9 +4,7 @@
 
 <p align="center">**This project is inspired by the people of Lost River Church**</p>
 
-<p align="center"> **Live demo is not yet live**</p>
-
-<h2 align="center"><a  href=#>Live Demo</a></h2>
+<h2 align="center"><a  href="https://nac-serve-still-more.netlify.app/">Live Demo</a></h2>
 
 ## Description
 <p>In the Spring of 2020, the pandemic forced everyone to stay home. Church attendance was no exception. Having the ability to live stream a worship service was an excellent way to continue to give glory to God along with other members of the church. However, virtual church was no substitute for seeing familiar faces and keeping up with one another's lives the same as worshipping next to someone.</p>
