@@ -7,7 +7,7 @@ import { GroupContext } from "../groups/GroupProvider";
 import './MemberForm.css'
 import { ImageContext } from "../images/ImageProvider";
 import { Image, Placeholder } from 'cloudinary-react'
-import { cloudinaryKeys } from "../settings";
+import { cloudinaryKeys } from "../Settings";
 //displays a form to create a new member
 export const MemberForm = () => {
     //the contexts expose the data to use from the provider
