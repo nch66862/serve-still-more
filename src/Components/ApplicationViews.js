@@ -10,11 +10,13 @@ import { ElderDashboard } from "./users/ElderDashboard";
 import { DeaconDashboard } from "./users/DeaconDashboard";
 import { UserContext, UserProvider } from "./users/UserProvider";
 import { ImageProvider } from "./images/ImageProvider";
+import { Loading } from "./nav/Loading";
 //this component handles which component to display based on the URL route
 export const ApplicationViews = () => {
     //gets the current logged in user id
     const loggedInUserId = parseInt(sessionStorage.getItem("Lost_River_User"))
     const [loggedInUserObj, setLoggedInUserObj] = useState({})
+    const [serverIsLoading, setServerIsLoading] = useState(true)
     const { getUserById } = useContext(UserContext)
     const { getRoles, roles } = useContext(RoleContext)
     //finds the matching role object of the current logged in user
@@ -25,6 +27,11 @@ export const ApplicationViews = () => {
             .then(setLoggedInUserObj)
             .then(getRoles)
     }, [])
+    useEffect(() => {
+        if (loggedInUserObj.id){
+            setServerIsLoading(false)
+        }
+    }, [loggedInUserObj])
     return (
         <>
             <Route exact path="/">
@@ -36,7 +43,7 @@ export const ApplicationViews = () => {
                                     <HistoryProvider>
                                         <ImageProvider>
                                             {/* renders a dashboard based on if the user is an elder or not */}
-                                            {matchingRole?.name.toLowerCase() === "elder" ? <ElderDashboard /> : <DeaconDashboard />}
+                                            {!serverIsLoading && matchingRole?.name.toLowerCase() === "elder" ? <ElderDashboard /> : !serverIsLoading && <DeaconDashboard />}
                                         </ImageProvider>
                                     </HistoryProvider>
                                 </MemberProvider>
@@ -53,6 +60,9 @@ export const ApplicationViews = () => {
                         </ImageProvider>
                     </GroupProvider>
                 </MemberProvider>
+            </Route>
+            <Route path="/">
+                {serverIsLoading && <Loading />}
             </Route>
         </>
     )
