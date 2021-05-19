@@ -6,7 +6,7 @@ export const ElderCard = ({ user }) => {
     let croppedURLPhoto = ""
     if (user.photo) {
         const [prefix, suffix] = user.photo.split("/upload/")
-        const cropSection = "/upload/w_400,h_400,c_crop,g_face,r_max/w_100/"
+        const cropSection = "/upload/w_400,h_400,r_max/w_100/"
         croppedURLPhoto = prefix.concat(cropSection, suffix)
     }
     return (
