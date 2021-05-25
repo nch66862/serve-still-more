@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
-import { Route } from "react-router-dom"
+import { Route, useHistory } from "react-router-dom"
 import { GroupProvider } from "./groups/GroupProvider";
 import { MemberForm } from "./members/MemberForm";
 import { MemberProvider } from "./members/MemberProvider";
@@ -17,6 +17,7 @@ export const ApplicationViews = () => {
     const loggedInUserId = parseInt(sessionStorage.getItem("Lost_River_User"))
     const [loggedInUserObj, setLoggedInUserObj] = useState({})
     const [serverIsLoading, setServerIsLoading] = useState(true)
+    const history = useHistory()
     const { getUserById } = useContext(UserContext)
     const { getRoles, roles } = useContext(RoleContext)
     //finds the matching role object of the current logged in user
@@ -30,6 +31,7 @@ export const ApplicationViews = () => {
     useEffect(() => {
         if (loggedInUserObj.id){
             setServerIsLoading(false)
+            history.push("/")
         }
     }, [loggedInUserObj])
     return (
@@ -61,7 +63,7 @@ export const ApplicationViews = () => {
                     </GroupProvider>
                 </MemberProvider>
             </Route>
-            <Route path="/">
+            <Route exact path="/loading">
                 {serverIsLoading && <Loading />}
             </Route>
         </>
