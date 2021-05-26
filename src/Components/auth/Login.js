@@ -33,12 +33,12 @@ export const Login = () => {
     const logInAsElder = (event) => {
         event.preventDefault()
         sessionStorage.setItem(userStorageKey, 5)
-        history.push("/")
+        history.push("/loading")
     }
     const logInAsDeacon = (event) => {
         event.preventDefault()
         sessionStorage.setItem(userStorageKey, 7)
-        history.push("/")
+        history.push("/loading")
     }
     //the function that checks username and password. Sets error dialog boxes if the user cant log in or redirects to the homepage if login credentials are correct
     // const handleLogin = (event) => {
